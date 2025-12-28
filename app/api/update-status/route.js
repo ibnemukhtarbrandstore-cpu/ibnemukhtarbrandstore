@@ -4,7 +4,7 @@ import { Coupon } from "@/models/Coupon";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
 import { Proof } from "@/models/Proof";
-import { Uniform } from "@/models/uniform.models";
+
 import cloudinary from "@/utils/cloudinory";
 import { NextResponse } from "next/server";
 
@@ -165,12 +165,7 @@ export const POST = async (req) => {
 
       for (let slug in products) {
         const item = products[slug];
-        // ðŸ‘‰ Check if itâ€™s a uniform product (by checking if it has uniformNumberFormat)
-        if (item.uniformNumberFormat) {
-          await Uniform.deleteOne({
-            uniformNumberFormat: item.uniformNumberFormat,
-          });
-        }
+
 
         // ðŸ›’ Reduce stock for normal product (and uniform too if present in Product collection)
         const product = await Product.findOneAndUpdate(

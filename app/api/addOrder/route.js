@@ -1,5 +1,5 @@
 ﻿import { Product } from "@/models/Product";
-import { Uniform } from "@/models/uniform.models";
+
 import cloudinary from "@/utils/cloudinory";
 
 import connectDb from "../../../middleware/mongoose";
@@ -50,46 +50,8 @@ export async function POST(req) {
           price: product.price,
         };
       } else if (productNumberRaw) {
-        const productNumbersArray = productNumberRaw
-          .split(",")
-          .map((p) => p.trim())
-          .filter((p) => p);
-
-        const uniformFindPromises = productNumbersArray.map((number) =>
-          Uniform.findOne({ uniformNumberFormat: number })
-        );
-        const uniforms = await Promise.all(uniformFindPromises);
-
-        for (let i = 0; i < productNumbersArray.length; i++) {
-          const number = productNumbersArray[i];
-          const uniform = uniforms[i];
-
-          if (!uniform) {
-            console.warn(`âš ï¸ Uniform not found for: ${number}`);
-            products[number] = {
-              uniformNumberFormat: number,
-              status: "Not found in DB but payment ok",
-            };
-            continue;
-          }
-
-          products[uniform.uniformNumberFormat] = {
-            name: uniform.name,
-            company: uniform.company,
-            size: uniform.size,
-            category: uniform.category,
-            upperColor: uniform.upperColor,
-            trowserColor: uniform.trowserColor,
-            seneiority: uniform.seneiority,
-            imageUrl: uniform.imageUrl,
-            style: uniform.style,
-            uniformNumberFormat: uniform.uniformNumberFormat,
-            neckStyle: uniform.neckStyle,
-            poomseOrNot: uniform.poomseOrNot,
-          };
-
-          await Uniform.deleteOne({ uniformNumberFormat: number });
-        }
+        // Uniform logic removed as per request
+        console.warn("Uniform logic removed, productNumberRaw ignored:", productNumberRaw);
       }
 
       return products;

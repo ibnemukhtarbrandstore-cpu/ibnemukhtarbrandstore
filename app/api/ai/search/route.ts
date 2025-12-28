@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Product } from '@/models/Product';
-import { Uniform } from '@/models/uniform.models';
+
 import { connectDb } from '@/middleware/mongodb';
 import CalculatePrice from '@/utils/priceCalculator';
 import { Types } from 'mongoose';
@@ -36,24 +36,7 @@ interface IProduct {
     updatedAt?: Date;
 }
 
-interface IUniform {
-    _id: Types.ObjectId;
-    name?: string;
-    company: string;
-    size: string;
-    category: 'a' | 'a+' | 'b' | 'c' | 'd';
-    upperColor?: string;
-    trowserColor?: string;
-    seneiority?: string;
-    imageUrl?: string;
-    style?: string;
-    uniformNumberFormat: string;
-    neckStyle?: string;
-    poomseOrNot?: string;
-    videoUrl?: string | null;
-    createdAt?: Date;
-    updatedAt?: Date;
-}
+
 
 // Force dynamic to prevent caching of search results
 export const dynamic = 'force-dynamic';
@@ -72,24 +55,14 @@ export async function GET(request: NextRequest) {
         const searchRegex = new RegExp(query, 'i');
 
         // Parallel search
-        const [products, uniforms] = await Promise.all([
-            Product.find({
-                $or: [
-                    { title: searchRegex },
-                    { disc: searchRegex },
-                    { category: searchRegex },
-                    { tags: searchRegex }
-                ]
-            }).lean<IProduct[]>().limit(10),
-
-            Uniform.find({
-                $or: [
-                    { name: searchRegex },
-                    { category: searchRegex },
-                    { company: searchRegex }
-                ]
-            }).lean<IUniform[]>().limit(10)
-        ]);
+        const products = await Product.find({
+            $or: [
+                { title: searchRegex },
+                { disc: searchRegex },
+                { category: searchRegex },
+                { tags: searchRegex }
+            ]
+        }).lean<IProduct[]>().limit(10);
 
         // Normalize Data
         const normalizedProducts = products.map(p => ({
@@ -102,17 +75,7 @@ export async function GET(request: NextRequest) {
             type: 'product'
         }));
 
-        const normalizedUniforms = uniforms.map(u => ({
-            id: u._id.toString(),
-            title: `${u.company} ${u.name || 'Dobok'}`, // Construct a display title
-            description: u.category ? `Category ${u.category.toUpperCase()} Uniform` : 'Martial Arts Uniform',
-            price: CalculatePrice(u), // Use utility to calculate price
-            image: u.imageUrl || 'https://www.champzones.com/images/championchoice-logo.png',
-            link: `/product/${u._id}`,
-            type: 'uniform'
-        }));
-
-        const combinedResults = [...normalizedProducts, ...normalizedUniforms];
+        const combinedResults = [...normalizedProducts];
 
         return NextResponse.json({
             success: true,

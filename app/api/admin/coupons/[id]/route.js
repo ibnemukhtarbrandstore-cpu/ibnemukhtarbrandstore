@@ -1,6 +1,6 @@
 import { connectDb } from '@/middleware/mongodb';
 import { Product } from '@/models/Product';
-import { Uniform } from '@/models/uniform.models';
+
 import jwt from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 import { NextResponse } from 'next/server';
@@ -54,10 +54,7 @@ export const PUT = async (req, { params }) => {
     }
 
     if (applyTo === 'uniforms') {
-      const validUniforms = await Uniform.find({ _id: { $in: uniforms.map(id => new ObjectId(id)) } });
-      if (validUniforms.length !== uniforms.length) {
-        return NextResponse.json({ message: 'Some uniforms do not exist' }, { status: 400 });
-      }
+      return NextResponse.json({ message: 'Uniforms are no longer supported' }, { status: 400 });
     }
 
     if (applyTo === 'products') {
