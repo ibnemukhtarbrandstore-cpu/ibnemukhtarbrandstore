@@ -8,19 +8,18 @@ import CategorySEO from "@/components/atom/CategorySEO";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Mugs - CHAMPIONCHOICE",
+  title: "Fashion Accessories - IBNEMUKHTARBRANDSTORE | Bags, Jewelry & More",
   description:
-    "Explore our premium collection of martial arts & taekwondo fashion mugs. Perfect for sports lovers and martial artists. Stylish, durable, and designed to inspire.",
+    "Explore our collection of fashion accessories including bags, jewelry, and lifestyle items. Perfect for fashion lovers looking to complete their style. Affordable prices.",
   keywords: [
-    "martial arts mugs",
-    "sports fashion mugs",
-    "taekwondo mugs",
-    "karate mugs",
-    "champion choice mugs",
-    "martial arts accessories",
-    "cool martial arts gear",
-    "mugs for fighters",
-
+    "fashion accessories Pakistan",
+    "women's bags",
+    "jewelry items",
+    "lifestyle accessories",
+    "affordable accessories",
+    "fashion gifts",
+    "women accessories",
+    "stylish items Pakistan",
   ],
 };
 
@@ -84,8 +83,8 @@ const Page = async ({ searchParams }) => {
     name: item.title,
     price: item.price || 0,
     currency: "PKR",
-    image: item.images?.[0] || "/images/championchoice-logo.png",
-    url: `https://www.champzones.com/product/${item.slug}`
+    image: item.images?.[0] || "/images/ibnemukhtar-logo.png",
+    url: `https://ibnemukhtarbrandstore.vercel.app/product/${item.slug}`
   }));
 
   return (
@@ -93,7 +92,7 @@ const Page = async ({ searchParams }) => {
       <CategorySEO
         category={categoryData}
         products={productsForSEO}
-        url="https://www.champzones.com/"
+        url="https://ibnemukhtarbrandstore.vercel.app/"
       />
       <ProductsPageLayout product={product} category={category} tag={tag} />
     </>

@@ -29,11 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const description = post.content.substring(0, 160);
-  const url = `https://www.champzones.com/blog/${slug}`;
-  const images = post.featuredImage?.url ? [post.featuredImage.url] : ['https://www.champzones.com/images/championchoice-logo.png'];
+  const url = `https://ibnemukhtarbrandstore.vercel.app/blog/${slug}`;
+  const images = post.featuredImage?.url ? [post.featuredImage.url] : ['https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png'];
 
   return {
-    title: `${post.title} | Champion Choice Blog`,
+    title: `${post.title} | Ibnemukhtar Blog`,
     description: description,
     keywords: [...(post.tags || []), 'martial arts', 'champion choice', 'blog'],
     authors: [{ name: post.author.name || 'Champion Choice' }],
@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: Props) {
           image: post.featuredImage?.url,
           slug: post.slug
         }}
-        url="https://www.champzones.com"
+        url="https://ibnemukhtarbrandstore.vercel.app"
       />
       <main className="container mx-auto px-4 mt-10 py-8">
         <article className="max-w-4xl mx-auto">

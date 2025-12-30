@@ -155,15 +155,54 @@ export const POST = async (req) => {
         // Free delivery logic here
       }
     }
-    const expectedAmount = serverTotal + body.deliveryCharge - discountAmount;
-    console.log("SERVER TOTAL: ", serverTotal);
-    console.log("DISCOUNT AMOUNT: ", discountAmount);
-    console.log("EXPECTED amount: ", expectedAmount);
 
-    if (expectedAmount !== body.amount) {
+    // 🆕 COD Verification - Server-side constant
+    const COD_CHARGES = 100; // MUST match frontend
+    let codCharge = 0;
+
+    // Check if payment method is COD
+    if (body.paymentMethod === "COD") {
+      // Verify COD charges from client
+      if (!body.codCharges || body.codCharges !== COD_CHARGES) {
+        console.log("COD CHARGES MISMATCH:", {
+          received: body.codCharges,
+          expected: COD_CHARGES
+        });
+        return new Response(
+          JSON.stringify({
+            error: `COD charges mismatch! Expected: Rs. ${COD_CHARGES}, received: Rs. ${body.codCharges || 0}`,
+          }),
+          { status: 400 }
+        );
+      }
+      codCharge = COD_CHARGES;
+    }
+
+    // Calculate expected amount: products + delivery + COD - discount
+    const expectedAmount = serverTotal + body.deliveryCharge + codCharge - discountAmount;
+
+    console.log("=== AMOUNT VERIFICATION ===");
+    console.log("SERVER TOTAL (products): ", serverTotal);
+    console.log("DELIVERY CHARGES: ", body.deliveryCharge);
+    console.log("COD CHARGES: ", codCharge);
+    console.log("DISCOUNT AMOUNT: ", discountAmount);
+    console.log("EXPECTED TOTAL: ", expectedAmount);
+    console.log("RECEIVED TOTAL: ", body.amount);
+    console.log("===========================");
+
+    // Verify total amount matches (allow small floating point differences)
+    if (Math.abs(expectedAmount - body.amount) > 0.01) {
       return new Response(
         JSON.stringify({
-          error: `Subtotal mismatch! Expected: ${serverTotal}, received: ${body.amount}.`,
+          error: `Amount mismatch! Expected: Rs. ${expectedAmount}, received: Rs. ${body.amount}`,
+          breakdown: {
+            products: serverTotal,
+            delivery: body.deliveryCharge,
+            cod: codCharge,
+            discount: discountAmount,
+            expectedTotal: expectedAmount,
+            receivedTotal: body.amount
+          }
         }),
         { status: 400 }
       );
@@ -200,17 +239,33 @@ export const POST = async (req) => {
       deliveryMethod: body.deliveryMethod,
       discountValue: discountAmount || "0",
       couponCode: body.code || " ",
+      paymentMethod: body.paymentMethod || "MANUAL", // 🆕 COD or MANUAL
     });
 
     await odr.save();
     console.log("#######################################################");
     console.log("after saving order ");
     console.log("#######################################################");
+
+    // 🆕 Send email notification to admin
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/notifications/send-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: odr.orderId,
+          paymentMethod: body.paymentMethod || "MANUAL",
+          amount: body.amount,
+          customerName: body.name,
+          email: body.email
+        })
+      });
+    } catch (emailError) {
+      console.log("Email notification failed (non-critical):", emailError.message);
+    }
+
     return new Response(
-      JSON.stringify({
-        message: "Order placed successfully, please wait for admin",
-        odr,
-      }),
+      JSON.stringify({ orderId: odr.orderId, success: true }),
       {
         status: 201,
         headers: {

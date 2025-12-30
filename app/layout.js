@@ -28,22 +28,22 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
     title: {
         default:
-            "Buy Premium Martial Arts Equipment & Taekwondo Uniforms Pakistan ",
+            "Shop Women's Suits, Winter Jackets & Shoes | Ibnemukhtar Brand Store Pakistan",
         template: "%s | Champion Choice",
     },
     description:
         "Discover premium quality sports uniforms and martial arts equipment designed for performance, durability, and style. Whether you're a beginner or a professional athlete, we bring you a wide range of gear that empowers your training and boosts your confidence.",
     keywords:
-        "martial arts equipment, taekwondo uniforms, sports gear, training equipment",
+        "women's suits, winter jackets, shoes, affordable fashion, pre-loved clothing, formal suits, casual wear",
     authors: [{ name: "Champion Choice" }],
     creator: "Champion Choice",
     publisher: "Champion Choice",
-    metadataBase: new URL("https://www.champzones.com/"), // Replace with your actual domain
+    metadataBase: new URL("https://ibnemukhtarbrandstore.vercel.app/"), // Replace with your actual domain
     openGraph: {
-        title: "Buy Premium Martial Arts Equipment & Taekwondo Uniforms Pakistan",
+        title: "Shop Women's Suits, Winter Jackets & Shoes | Ibnemukhtar Brand Store",
         description:
             "Discover premium quality sports uniforms and martial arts equipment designed for performance, durability, and style.",
-        url: "https://www.champzones.com/", // Replace with your actual domain
+        url: "https://ibnemukhtarbrandstore.vercel.app/", // Replace with your actual domain
         siteName: "Champion Choice",
         images: [
             {
@@ -76,7 +76,7 @@ export const metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Buy Premium Martial Arts Equipment & Taekwondo Uniforms Pakistan",
+        title: "Shop Women's Suits, Winter Jackets & Shoes | Ibnemukhtar Brand Store",
         description:
             "Discover premium quality sports uniforms and martial arts equipment.",
         images: [

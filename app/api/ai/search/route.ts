@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Product } from '@/models/Product';
 
 import { connectDb } from '@/middleware/mongodb';
-import CalculatePrice from '@/utils/priceCalculator';
 import { Types } from 'mongoose';
 
 // TypeScript interfaces for Mongoose models
@@ -70,7 +69,7 @@ export async function GET(request: NextRequest) {
             title: p.title,
             description: p.disc, // Ensure text is stripped on frontend if needed
             price: p.price,
-            image: p.images?.[0] || 'https://www.champzones.com/images/championchoice-logo.png',
+            image: p.images?.[0] || 'https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png',
             link: `/product/${p.slug}`,
             type: 'product'
         }));

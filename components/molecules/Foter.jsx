@@ -30,7 +30,7 @@ function Foter() {
                   className="flex items-center"
                 >
                   <span className="text-2xl font-bold text-gray-900">
-                    CHAMPION-CHOICE
+                    IBNEMUKHTAR BRAND STORE
                   </span>
                 </Link>
               </div>
@@ -67,20 +67,11 @@ function Foter() {
               <ul className="space-y-3">
                 <li>
                   <Link
-                    onMouseEnter={() => handleHover("/uniforms")}
-                    href="/uniforms"
-                    className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
-                  >
-                    Taekwondo Uniforms
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     href="/tshirts"
                     onMouseEnter={() => handleHover("/tshirts")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    Martial Arts T-Shirts
+                    T-Shirts
                   </Link>
                 </li>
                 <li>
@@ -89,7 +80,7 @@ function Foter() {
                     onMouseEnter={() => handleHover("/hoodies")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    Training Hoodies
+                    Hoodies
                   </Link>
                 </li>
                 <li>
@@ -98,7 +89,7 @@ function Foter() {
                     onMouseEnter={() => handleHover("/stickers")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    Martial Arts Stickers
+                    Stickers
                   </Link>
                 </li>
                 <li>
@@ -107,7 +98,7 @@ function Foter() {
                     onMouseEnter={() => handleHover("/mugs")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    Training Mugs
+                    Mugs
                   </Link>
                 </li>
                 <li>
@@ -312,7 +303,7 @@ function Foter() {
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-600 text-sm text-center md:text-left mb-4 md:mb-0">
-                © 2025 CHAMPION-CHOICE. All rights reserved. | Premium Martial
+                © 2026 IBNEMUKHTAR BRAND STORE. All rights reserved. | Premium Martial
                 Arts Gear
               </p>
               <div className="flex space-x-6 text-sm">

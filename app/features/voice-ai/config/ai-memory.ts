@@ -37,24 +37,29 @@ export const AI_MEMORY = {
     categories: {
         'shirt': '/tshirts',
         'shirts': '/tshirts',
-        'tshirt': '/tshirts',
-        'tshirts': '/tshirts',
+        'shoes': '/tshirts',
+        'footwear': '/tshirts',
+        'jutay': '/tshirts',
 
         'hoodie': '/hoodies',
         'hoodies': '/hoodies',
+        'jacket': '/hoodies',
+        'jackets': '/hoodies',
+        'winter': '/hoodies',
 
-        'mug': '/mugs',
-        'mugs': '/mugs',
-        'cup': '/mugs',
+        'accessories': '/mugs',
+        'bags': '/mugs',
+        'jewelry': '/mugs',
 
-        'sticker': '/stickers',
-        'stickers': '/stickers',
+        'gifts': '/stickers',
+        'gift': '/stickers',
 
-        'uniform': '/uniforms',
-        'uniforms': '/uniforms',
-        'dobok': '/uniforms',
-        'karate': '/uniforms',
-        'taekwondo': '/uniforms',
+        'suit': '/uniforms',
+        'suits': '/uniforms',
+        'women suit': '/uniforms',
+        'formal': '/uniforms',
+        'casual': '/uniforms',
+        'office wear': '/uniforms',
 
         'trending': '/all-products/trending',
         'recommended': '/all-products/recommended',
@@ -69,11 +74,11 @@ export const AI_MEMORY = {
         'account': '/myaccount'
     } as Record<string, string>,
 
-    // Uniform Sizes
-    uniformSizes: ['120', '130', '140', '150', '160', '170', '180', '190'],
+    // Suit Sizes (Women's)
+    suitSizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL', '2XL', '3XL'],
 
-    // Uniform Categories
-    uniformCategories: ['A', 'A+', 'B', 'C', 'D'],
+    // Clothing Categories
+    clothingCategories: ['Formal Suits', 'Casual Suits', 'Winter Jackets', 'Shoes', 'Accessories'],
 
     // Colors (Urdu & English)
     colors: {
@@ -140,21 +145,22 @@ export function findRoute(categoryName: string): string | null {
 }
 
 /**
- * Extract uniform parameters from transcript
+ * Extract suit/clothing parameters from transcript
  */
-export function extractUniformParams(transcript: string) {
+export function extractSuitParams(transcript: string) {
     const params: any = {};
 
     // Extract size
-    const sizeMatch = transcript.match(/(\d{3})\s*(size|cm|سائز)?/i);
-    if (sizeMatch && AI_MEMORY.uniformSizes.includes(sizeMatch[1])) {
-        params.size = sizeMatch[1];
+    const sizeMatch = transcript.match(/\b(XS|S|M|L|XL|XXL|2XL|3XL)\b/i);
+    if (sizeMatch) {
+        params.size = sizeMatch[1].toUpperCase();
     }
 
     // Extract category
-    const categoryMatch = transcript.match(/\b([A-D]|A\+)\s*(category|grade|کیٹگری)?/i);
-    if (categoryMatch) {
-        params.category = categoryMatch[1].toUpperCase();
+    if (transcript.toLowerCase().includes('formal')) {
+        params.category = 'formal';
+    } else if (transcript.toLowerCase().includes('casual')) {
+        params.category = 'casual';
     }
 
     // Extract color
@@ -169,9 +175,9 @@ export function extractUniformParams(transcript: string) {
 }
 
 /**
- * Build filter URL for uniforms
+ * Build filter URL for suits/clothing
  */
-export function buildUniformURL(params: any): string {
+export function buildSuitURL(params: any): string {
     const queryParams = new URLSearchParams();
 
     if (params.size) queryParams.append('size', params.size);

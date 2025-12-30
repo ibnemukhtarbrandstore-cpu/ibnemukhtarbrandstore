@@ -27,34 +27,62 @@ export default function ManualPaymentConfirmation() {
   const [amount, setAmount] = useState(false);
   const [loading, setLoading] = useState(false);
 
- useEffect(() => {
-  toast.info("Upload Payment Screen Shot");
+  // 🆕 COD Toggle State
+  const COD_CHARGES = 100;
+  const [isCOD, setIsCOD] = useState(false); // Toggle for COD
+  const [baseAmount, setBaseAmount] = useState(0); // Original amount without COD
+  const [finalAmount, setFinalAmount] = useState(0); // Final amount with/without COD
 
-  const pendingOrderDataString = localStorage.getItem("pendingOrderData");
-  console.log("after saving locally order data", pendingOrderDataString);
+  useEffect(() => {
+    toast.info("Upload Payment Screen Shot");
 
-  if (!pendingOrderDataString) {
-    toast.error("No order data found. Please go back to checkout.");
-    router.push("/checkout");
-    return;
-  }
+    const pendingOrderDataString = localStorage.getItem("pendingOrderData");
+    console.log("after saving locally order data", pendingOrderDataString);
 
-  // ✅ Parse String → Object
-  const pendingOrderData = JSON.parse(pendingOrderDataString);
+    if (!pendingOrderDataString) {
+      toast.error("No order data found. Please go back to checkout.");
+      router.push("/checkout");
+      return;
+    }
 
-  console.log("after added trackchekout data : ", pendingOrderData.cart);
-  console.log("after added trackchekout data amount: ", pendingOrderData.amount);
+    // ✅ Parse String → Object
+    const pendingOrderData = JSON.parse(pendingOrderDataString);
 
-  // ✅ Track checkout with correct values
-  trackCheckout(pendingOrderData.cart, pendingOrderData.amount);
+    console.log("after added trackchekout data : ", pendingOrderData.cart);
+    console.log("after added trackchekout data amount: ", pendingOrderData.amount);
 
-  setAmount(pendingOrderData.amount);
-  setOrderId(pendingOrderData.orderId);
+    // ✅ Track checkout with correct values
+    trackCheckout(pendingOrderData.cart, pendingOrderData.amount);
 
-  return () => {
-    cancelPendingRequests();
+    setBaseAmount(pendingOrderData.amount); // Store original amount
+    setFinalAmount(pendingOrderData.amount); // Initially same
+    setOrderId(pendingOrderData.orderId);
+
+    return () => {
+      cancelPendingRequests();
+    };
+  }, []);
+
+  // 🆕 COD Toggle Handler - Add/Remove 100 rupees
+  const handleCODToggle = () => {
+    const newCODState = !isCOD;
+    setIsCOD(newCODState);
+
+    if (newCODState) {
+      // Add COD charges
+      setFinalAmount(baseAmount + COD_CHARGES);
+      toast.info(`COD charges Rs. ${COD_CHARGES} added!`, {
+        autoClose: 1500,
+      });
+    } else {
+      // Remove COD charges
+      setFinalAmount(baseAmount);
+      toast.info("COD charges removed", {
+        autoClose: 1500,
+      });
+    }
   };
-}, []);
+
 
 
   const handleSubmit = async (e) => {
@@ -73,6 +101,19 @@ export default function ManualPaymentConfirmation() {
 
       const orderData = JSON.parse(pendingOrderData);
 
+      // 🆕 Update with COD details if toggle is ON
+      if (isCOD) {
+        orderData.paymentMethod = "COD";
+        orderData.codCharges = COD_CHARGES;
+        orderData.amount = finalAmount; // Updated amount with COD
+      } else {
+        // Ensure MANUAL is set if not COD
+        if (!orderData.paymentMethod || orderData.paymentMethod === "easypaisa") {
+          orderData.paymentMethod = "MANUAL";
+        }
+        orderData.codCharges = 0;
+      }
+
       // Step 1: Create order first from backend
       const orderRes = await fetch(
         `${process.env.NEXT_PUBLIC_HOST}/api/manual-payment`,
@@ -86,7 +127,7 @@ export default function ManualPaymentConfirmation() {
       );
 
       const orderResult = await orderRes.json();
-      console.log("order rquest result: ",orderResult)
+      console.log("order rquest result: ", orderResult)
       // Check if order creation failed (temp/error)
       if (!orderRes.ok || orderResult.error) {
         setLoading(false);
@@ -109,43 +150,58 @@ export default function ManualPaymentConfirmation() {
         return;
       }
 
-      // Step 2: Create proof
-      const formData = new FormData();
-      formData.append("orderId", orderResult.odr.orderId);
-      formData.append("image", image);
+      // Step 2: Create proof (skip for COD)
+      if (orderData.paymentMethod === "MANUAL") {
+        const formData = new FormData();
+        formData.append("orderId", orderResult.odr.orderId);
+        formData.append("image", image);
 
-      const proofRes = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}/api/menual-payment-proof`,
-        {
-          method: "POST",
-          body: formData,
+        const proofRes = await fetch(
+          `${process.env.NEXT_PUBLIC_HOST}/api/menual-payment-proof`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!proofRes.ok) {
+          const errorText = await proofRes.text();
+          console.error("Plese again submit Screenshort:", errorText);
+          setLoading(false);
+          return;
         }
-      );
 
-      if (!proofRes.ok) {
-        const errorText = await proofRes.text();
-        console.error("Plese again submit Screenshort:", errorText);
-        setLoading(false);
-        return;
-      }
+        const proofResult = await proofRes.json();
+        if (proofResult.error) {
+          setSubmitted(false);
+          setLoading(false);
+          return;
+        }
 
-      const proofResult = await proofRes.json();
-      if (proofResult.error) {
-        setSubmitted(false);
-        setLoading(false);
-        return;
-      }
+        if (proofRes.ok) {
+          setSubmitted(true);
+          setId(orderResult.odr._id);
+          localStorage.setItem("orderID", orderResult.odr.orderId);
 
-      if (proofRes.ok) {
+          // Clear localStorage data
+          localStorage.removeItem("pendingOrderData");
+          localStorage.removeItem("userOriginPage");
+
+          toast.success("Congrates! Proof sent successfully", {
+            autoClose: 1000,
+            closeOnClick: true,
+            pauseOnHover: true,
+          });
+        }
+      } else {
+        // COD: No proof needed, just mark as submitted
         setSubmitted(true);
         setId(orderResult.odr._id);
         localStorage.setItem("orderID", orderResult.odr.orderId);
-
-        // Clear localStorage data
         localStorage.removeItem("pendingOrderData");
         localStorage.removeItem("userOriginPage");
 
-        toast.success("Congrates! Proof sent successfully", {
+        toast.success("COD Order placed successfully!", {
           autoClose: 1000,
           closeOnClick: true,
           pauseOnHover: true,
@@ -190,7 +246,7 @@ export default function ManualPaymentConfirmation() {
             <RxCross1 className="absolute top-2 right-4 text-black text-xl" />
           </button>
           <h2 className="text-xl text-gray-700 font-semibold mb-2 ">
-            PROOF UPLOADED
+            ORDER PLACED
           </h2>
           <div className=" w-80 text-center relative">
             <motion.div
@@ -203,14 +259,14 @@ export default function ManualPaymentConfirmation() {
             </motion.div>
           </div>
           <p className="py-4 px-4">
-            Your order was successfully sent to CHAMPION-CHOICE Team Your order
+            Your order was successfully sent to IBNEMUKHTAR Brand Store Team Your order
             confirem in 3 working days your Order ID: {orderId}
           </p>
           <div className="w-[40%]">
             <BorderSection />
           </div>
           <div className="flex space-x-3 mt-10">
-            <Link href={"/uniforms"}>
+            <Link href={"/products"}>
               <button
                 onClick={toggleCloseU}
                 className="bg-black hover:bg-[#DD8560] text-white py-3 px-5 text-sm "
@@ -266,54 +322,94 @@ export default function ManualPaymentConfirmation() {
       <Typography variant="body1" align="center" color="text.secondary" mb={3}>
         Please follow the steps below to confirm your manual Easypaisa payment.
       </Typography>
+
+      {/* 🆕 COD Toggle Checkbox */}
+      <Box mb={3} p={3} bgcolor={isCOD ? "#EEF2FF" : "#F9FAFB"} borderRadius={2} border={isCOD ? "2px solid #4F46E5" : "1px solid #E5E7EB"}>
+        <label className="flex items-center justify-between cursor-pointer">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              checked={isCOD}
+              onChange={handleCODToggle}
+              className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 cursor-pointer"
+            />
+            <div className="ml-3">
+              <Typography variant="subtitle1" fontWeight="bold" color={isCOD ? "#4F46E5" : "text.primary"}>
+                💵 Cash on Delivery (COD)
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Pay when you receive your order
+              </Typography>
+            </div>
+          </div>
+          <Typography variant="h6" fontWeight="bold" color={isCOD ? "#4F46E5" : "text.secondary"}>
+            + Rs. {COD_CHARGES}
+          </Typography>
+        </label>
+      </Box>
+
       <Typography
         className="flex items-center justify-start space-x-2"
         variant="subtitle1"
         fontWeight="bold"
       >
         Your Amount: Rs.
-        {amount ? amount : <LuLoader className="animate-spin" />}/_
+        {finalAmount ? finalAmount : <LuLoader className="animate-spin" />}/_
       </Typography>
-      <Box mb={3} p={2} bgcolor="#f5f5f5" borderRadius={2}>
-        <Typography variant="subtitle1" fontWeight="bold">
-          Step 1: Send Payment
-        </Typography>
-        <Typography variant="body2" color="text.secondary" mt={1}>
-          Send the required amount to the following Easypaisa number:
-        </Typography>
-        <PaymentMethods />
-      </Box>
-      <Box mb={3} p={2} bgcolor="#f5f5f5" borderRadius={2}>
-        <Typography variant="subtitle1" fontWeight="bold">
-          Step 3: Upload Screenshot
-        </Typography>
-        <Typography variant="body2" color="text.secondary" mt={1}>
-          After making the payment, take a clear screenshot and upload it using
-          the form below.
-        </Typography>
-      </Box>
-      <form onSubmit={handleSubmit}>
-        <Typography fontWeight="500" mb={1}>
-          Upload Payment Screenshot:
-        </Typography>
-        <Input
-          type="file"
-          inputProps={{ accept: "image/*" }}
-          fullWidth
-          onChange={(e) => setImage(e.target.files?.[0])}
-          required
-        />
 
-        <Typography variant="caption" color="text.secondary" mt={1}>
-          Only JPG or PNG. Max size: 5MB
-        </Typography>
+      {/* 🆕 Hide Step 1 when COD selected */}
+      {!isCOD && (
+        <Box mb={3} p={2} bgcolor="#f5f5f5" borderRadius={2}>
+          <Typography variant="subtitle1" fontWeight="bold">
+            Step 1: Send Payment
+          </Typography>
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            Send the required amount to the following Easypaisa number:
+          </Typography>
+          <PaymentMethods />
+        </Box>
+      )}
+
+      {/* 🆕 Hide Step 2 when COD selected */}
+      {!isCOD && (
+        <Box mb={3} p={2} bgcolor="#f5f5f5" borderRadius={2}>
+          <Typography variant="subtitle1" fontWeight="bold">
+            Step 2: Upload Screenshot
+          </Typography>
+          <Typography variant="body2" color="text.secondary" mt={1}>
+            After making the payment, take a clear screenshot and upload it using
+            the form below.
+          </Typography>
+        </Box>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        {/* 🆕 Hide image upload when COD */}
+        {!isCOD && (
+          <>
+            <Typography fontWeight="500" mb={1}>
+              Upload Payment Screenshot:
+            </Typography>
+            <Input
+              type="file"
+              inputProps={{ accept: "image/*" }}
+              fullWidth
+              onChange={(e) => setImage(e.target.files?.[0])}
+              required
+            />
+
+            <Typography variant="caption" color="text.secondary" mt={1}>
+              Only JPG or PNG. Max size: 5MB
+            </Typography>
+          </>
+        )}
 
         <button
           disabled={loading}
           type="submit"
           className="disabled:cursor-not-allowed bg-black text-white font-[100] w-full py-3"
         >
-          {loading ? "Uploading..." : "Upload & Submit"}
+          {loading ? "Processing..." : (isCOD ? "Confirm COD Order" : "Upload & Submit")}
         </button>
       </form>
       <Divider sx={{ my: 3 }} />

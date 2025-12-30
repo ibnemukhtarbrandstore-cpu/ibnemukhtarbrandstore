@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/admin/', '/myaccount/'],
         },
-        sitemap: 'https://www.champzones.com/sitemap.xml',
+        sitemap: 'https://ibnemukhtarbrandstore.vercel.app/sitemap.xml',
     };
 }

@@ -38,11 +38,11 @@ const Header = () => {
     <>
       {/* Mobile Menu Sidebar */}
       <div
-        className={` menue  ${
-          open
+        suppressHydrationWarning={true}
+        className={` menue  ${open
             ? "w-full h-full block fixed top-0 z-50 mt-[-20px]"
             : "w-0 h-0 hidden"
-        }  bg-white transition-all duration-300`}
+          }  bg-white transition-all duration-300`}
       >
         <button
           suppressHydrationWarning={true}
@@ -57,11 +57,6 @@ const Header = () => {
             <Link href={"/"}>
               <li className="hover:text-[#DD8560] transition-colors cursor-pointer">
                 Home
-              </li>
-            </Link>
-            <Link href={"/uniforms"}>
-              <li className="hover:text-[#DD8560] transition-colors cursor-pointer">
-                Uniforms
               </li>
             </Link>
             <Link href={"/tshirts"}>
@@ -127,9 +122,8 @@ const Header = () => {
 
       {/* Mobile Header */}
       <header
-        className={`z-50 header block md:hidden fixed top-0 w-full bg-white flex justify-between items-center px-6 py-3 shadow-md border-b border-gray-200 ${
-          open || openCart ? "hidden" : "block"
-        }`}
+        className={`z-50 header block md:hidden fixed top-0 w-full bg-white flex justify-between items-center px-6 py-3 shadow-md border-b border-gray-200 ${open || openCart ? "hidden" : "block"
+          }`}
       >
         {/* Left: Menu Icon */}
         <button
@@ -164,11 +158,10 @@ const Header = () => {
 
       {/* Cart Sidebar */}
       <div
-        className={`cart ${
-          openCart
-            ? "w-full h-[95dvh] block fixed  top-0 z-50 mt-[-20px]"
-            : "w-0 h-0 hidden"
-        }  bg-white transition-all duration-300`}
+        className={`cart ${openCart
+          ? "w-full h-[95dvh] block fixed  top-0 z-50 mt-[-20px]"
+          : "w-0 h-0 hidden"
+          }  bg-white transition-all duration-300`}
       >
         <button
           suppressHydrationWarning={true}

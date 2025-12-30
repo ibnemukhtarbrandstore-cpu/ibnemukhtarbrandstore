@@ -8,18 +8,18 @@ import CategorySEO from "@/components/atom/CategorySEO";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Hoodies - CHAMPION-CHOICE",
+  title: "Winter Jackets & Hoodies - IBNEMUKHTARBRANDSTORE",
   description:
-    "Discover our premium martial arts & taekwondo hoodies designed for comfort, performance, and fashion. Perfect for sports training, casual wear, and martial arts enthusiasts.",
+    "Discover our premium winter jackets and hoodies designed for warmth, comfort, and style. Perfect for cold weather, casual wear, and outdoor activities. Affordable pre-loved and new items.",
   keywords: [
-    "martial arts hoodies",
-    "karate hoodies",
-    "taekwondo hoodies",
-    "champion choice hoodies",
-    "sportswear martial arts",
-    "fashion hoodies for fighters",
-    "training hoodies",
-    "hoodies for martial artists",
+    "winter jackets Pakistan",
+    "warm hoodies",
+    "winter wear",
+    "affordable jackets",
+    "casual hoodies",
+    "outdoor jackets",
+    "pre-loved winter clothes",
+    "men women jackets",
   ],
 };
 
@@ -83,16 +83,16 @@ const Page = async ({ searchParams }) => {
     name: item.title,
     price: item.price || 0,
     currency: "PKR",
-    image: item.images?.[0] || "/images/championchoice-logo.png",
-    url: `https://www.champzones.com/product/${item.slug}`
+    image: item.images?.[0] || "/images/ibnemukhtar-logo.png",
+    url: `https://ibnemukhtarbrandstore.vercel.app/product/${item.slug}`
   }));
-  
+
   return (
     <>
-      <CategorySEO 
+      <CategorySEO
         category={categoryData}
         products={productsForSEO}
-        url="https://www.champzones.com/"
+        url="https://ibnemukhtarbrandstore.vercel.app/"
       />
       <ProductsPageLayout product={product} category={category} tag={tag} />
     </>

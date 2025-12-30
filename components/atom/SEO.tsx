@@ -32,8 +32,8 @@ export default function SEO({
   title,
   description,
   keywords = 'martial arts, taekwondo, uniforms, gear, champion choice, fighting equipment',
-  image = 'https://www.champzones.com/images/championchoice-logo.png',
-  url = 'https://www.champzones.com',
+  image = 'https://ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png',
+  url = 'https://ibnemukhtarbrandstore.vercel.app',
   type = 'website',
   productData,
   articleData
@@ -50,9 +50,9 @@ export default function SEO({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Champion Choice",
-    "url": "https://www.champzones.com",
-    "logo": "https://www.champzones.com/images/championchoice-logo.png",
+    "name": "Ibnemukhtar Brand Store",
+    "url": "https://ibnemukhtarbrandstore.vercel.app",
+    "logo": "https://ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png",
     "description": "Premium martial arts equipment and taekwondo uniforms",
     "address": {
       "@type": "PostalAddress",
@@ -108,10 +108,10 @@ export default function SEO({
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Champion Choice",
+      "name": "Ibnemukhtar Brand Store",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.champzones.com/images/championchoice-logo.png"
+        "url": "https://ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png"
       }
     },
     "datePublished": articleData.publishedTime,
@@ -133,7 +133,7 @@ export default function SEO({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.champzones.com"
+        "item": "https://ibnemukhtarbrandstore.vercel.app"
       },
       {
         "@type": "ListItem",
@@ -148,12 +148,12 @@ export default function SEO({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Champion Choice",
-    "url": "https://www.champzones.com",
+    "name": "Ibnemukhtar Brand Store",
+    "url": "https://ibnemukhtarbrandstore.vercel.app",
     "description": "Premium martial arts equipment and taekwondo uniforms",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.champzones.com/search?q={search_term_string}",
+      "target": "https://ibnemukhtarbrandstore.vercel.app/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };

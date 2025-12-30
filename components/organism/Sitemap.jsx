@@ -149,23 +149,81 @@ const Sitemap = () => {
       </style>
 
       <div id="top">
-        <nav>champion-choice-pearl.vercel.app HTML Site Map</nav>
+        <nav>ibnemukhtarbrandstore.vercel.app HTML Site Map</nav>
         <h3>
           <span>Last updated: 2025, July 23 04:57:05<br />
             Total pages: 37</span>
-          <a href="https://www.champzones.com/">champion-choice-pearl.vercel.app Homepage</a>
+          <a href="https://ibnemukhtarbrandstore.vercel.app/">ibnemukhtarbrandstore.vercel.app Homepage</a>
         </h3>
       </div>
       <div id="cont">
         <ul className="ultree level-1 has-pages">
-          <li className="lhead" title="Click to toggle">https://www.champzones.com/<span className="lcount">28 pages <small>[+9 in 2 subfolders]</small></span></li>
+          <li className="lhead" title="Click to toggle">https://ibnemukhtarbrandstore.vercel.app/<span className="lcount">28 pages <small>[+9 in 2 subfolders]</small></span></li>
 
           <li className="lpagelist">
             <ul className="ulpages">
               <li className="lpage">
-                <a href="https://www.champzones.com/"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
+                <a href="https://ibnemukhtarbrandstore.vercel.app/"
+                  title="Ibnemukhtar Brand Store | Women's Suits, Winter Jackets & Shoes in Pakistan">Ibnemukhtar Brand Store | Women's Suits, Winter Jackets & Shoes in Pakistan</a>
+                <br /><small>Discover premium quality women's suits, winter jackets, and shoes at unbeatable prices. From elegant formal suits to cozy winter wear and stylish footwear, we offer affordable fashion for everyone in Pakistan.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/uniforms"
+                  title="Women's Suits - IBNEMUKHTARBRANDSTORE | Formal & Casual Suits for Women">Women's Suits - IBNEMUKHTARBRANDSTORE | Formal & Casual Suits for Women</a>
+                <br /><small>Discover premium women's suits at IBNEMUKHTARBRANDSTORE. Shop elegant formal suits, casual two-piece sets, and stylish office wear designed for comfort and sophistication. Perfect for work, events, and everyday elegance with a wide range of sizes and styles.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/hoodies"
+                  title="Winter Jackets & Hoodies - IBNEMUKHTARBRANDSTORE">Winter Jackets & Hoodies - IBNEMUKHTARBRANDSTORE</a>
+                <br /><small>Discover our premium winter jackets and hoodies designed for warmth, comfort, and style. Perfect for cold weather, casual wear, and outdoor activities. Pre-loved and new items available.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/tshirts"
+                  title="Shoes & Footwear - IBNEMUKHTARBRANDSTORE | Men, Women & Kids Shoes">Shoes & Footwear - IBNEMUKHTARBRANDSTORE | Men, Women & Kids Shoes</a>
+                <br /><small>Browse premium shoes and footwear at IBNEMUKHTARBRANDSTORE. Stylish and comfortable shoes for men, women, and kids. Perfect for casual wear, formal events, and everyday use at affordable prices.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/mugs" title="Accessories - IBNEMUKHTARBRANDSTORE">Accessories - IBNEMUKHTARBRANDSTORE</a>
+                <br /><small>Explore our collection of fashion accessories including bags, jewelry, and lifestyle items. Perfect for fashion lovers looking to complete their style.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/stickers"
+                  title="Gift Items - IBNEMUKHTARBRANDSTORE | Fashion Accessories">Gift Items - IBNEMUKHTARBRANDSTORE | Fashion Accessories</a>
+                <br /><small>Explore fashion gift items and accessories at IBNEMUKHTARBRANDSTORE. Perfect for gifting to loved ones or treating yourself.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/login" title="Login | IBNEMUKHTARBRANDSTORE">Login | IBNEMUKHTARBRANDSTORE</a>
+                <br /><small>Login to your IBNEMUKHTARBRANDSTORE account to manage your orders, edit your personal details, and access exclusive member features for women's suits, jackets, and shoes.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/checkout"
+                  title="Checkout - IBNEMUKHTARBRANDSTORE | Women's Suits, Jackets & Shoes">Checkout - IBNEMUKHTARBRANDSTORE | Women's Suits, Jackets & Shoes</a>
+                <br /><small>Secure checkout for high-quality women's suits, winter jackets, and shoes. Shop affordable fashion with cash on delivery and free shipping options.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/products"
+                  title="All Products - IBNEMUKHTARBRANDSTORE">All Products - IBNEMUKHTARBRANDSTORE</a>
+                <br /><small>Explore all available fashion products at IBNEMUKHTARBRANDSTORE. Find women's suits, winter jackets, shoes, hoodies, and more. Easily search your favorite products.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/contact-us"
+                  title="Contact Us | IBNEMUKHTARBRANDSTORE Fashion Support">Contact Us | IBNEMUKHTARBRANDSTORE Fashion Support</a>
+                <br /><small>Have questions about orders, sizing, or products? Contact IBNEMUKHTARBRANDSTORE for customer support, order tracking, and fashion inquiries about women's suits, jackets, and shoes.</small>
+              </li>
+
+              <li className="lpage">
+                <a href="https://ibnemukhtarbrandstore.vercel.app/uniforms-company?company=dae%20do"
+                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE">BUY
+                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE</a>
                 <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
                   performance, durability, and style. Whether you&apos;re a beginner or a professional
                   athlete, we bring you a wide range of gear that empowers your training and boosts your
@@ -173,82 +231,9 @@ const Sitemap = () => {
               </li>
 
               <li className="lpage">
-                <a href="https://www.champzones.com/uniforms"
-                  title="Martial Arts Uniforms - CHAMPION-CHOICE | Karate, Taekwondo & MMA">Martial Arts
-                  Uniforms - CHAMPION-CHOICE | Karate, Taekwondo & MMA</a>
-                <br /><small>Discover premium martial arts uniforms at CHAMPION-CHOICE. Shop high-quality karate
-                  gis, taekwondo doboks, MMA fight gear, and poomse uniforms designed for comfort, durability,
-                  and performance. Perfect for training, competitions, and casual wear with a wide range of
-                  sizes and styles.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/hoodies"
-                  title="Hoodies - CHAMPION-CHOICE">Hoodies - CHAMPION-CHOICE</a>
-                <br /><small>Discover our premium martial arts hoodies designed for comfort, performance, and
-                  fashion. Perfect for sports training, casual wear, and martial arts enthusiasts.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/tshirts"
-                  title="Shirts - CHAMPION-CHOICE | Martial Arts & Sports Fashion">Shirts -
-                  CHAMPION-CHOICE | Martial Arts & Sports Fashion</a>
-                <br /><small>Browse premium martial arts shirts at CHAMPION-CHOICE. Stylish and
-                  performance-ready shirts for taekwondo, karate, MMA, and sports lovers. Perfect fit for
-                  training and casual wear.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/mugs" title="Mugs - CHAMPIONCHOICE">Mugs -
-                  CHAMPIONCHOICE</a>
-                <br /><small>Explore our premium collection of martial arts fashion mugs. Perfect for sports
-                  lovers and martial artists. Stylish, durable, and designed to inspire.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/stickers"
-                  title="Stickers & Logos - CHAMPION-CHOICE | Martial Arts Style Accessories">Stickers
-                  & Logos - CHAMPION-CHOICE | Martial Arts Style Accessories</a>
-                <br /><small>Explore martial arts-themed stickers and logos at CHAMPION-CHOICE. Perfect for
-                  customizing gear, laptops, and accessories with taekwondo, karate, and MMA styles.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/login" title="Login | CHAMPION-CHOICE">Login |
-                  CHAMPION-CHOICE</a>
-                <br /><small>Login to your CHAMPION-CHOICE account to manage your martial arts gear orders, edit
-                  your personal details, and access exclusive member features.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/checkout"
-                  title="Checkout - CHAMPION-CHOICE | Premium Martial Arts Gear">Checkout - CHAMPION-CHOICE |
-                  Premium Martial Arts Gear</a>
-                <br /><small>Secure checkout for top-quality martial arts uniforms, protective gear, and
-                  training equipment. Shop karate, taekwondo, jiu-jitsu & MMA gear with the best prices
-                  and free shipping.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/products"
-                  title="All Products - CHAMPION-CHOICE">All Products - CHAMPION-CHOICE</a>
-                <br /><small>Explore all available martial arts gear and sportswear at CHAMPION-CHOICE. Find
-                  uniforms, hoodies, belts, gloves, mugs, and more. Easily search your favorite
-                  products.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/contact-us"
-                  title="Contact Us | CHAMPION-CHOICE Martial Arts Gear Support">Contact Us | CHAMPION-CHOICE
-                  Martial Arts Gear Support</a>
-                <br /><small>Have questions about martial arts gear, orders, or services? Contact
-                  CHAMPION-CHOICE for customer support, order tracking, and product inquiries.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/uniforms-company?company=dae%20do"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
+                <a href="https://ibnemukhtarbrandstore.vercel.app/uniforms-company?company=fila"
+                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE">BUY
+                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE</a>
                 <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
                   performance, durability, and style. Whether you&apos;re a beginner or a professional
                   athlete, we bring you a wide range of gear that empowers your training and boosts your
@@ -256,9 +241,9 @@ const Sitemap = () => {
               </li>
 
               <li className="lpage">
-                <a href="https://www.champzones.com/uniforms-company?company=fila"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
+                <a href="https://ibnemukhtarbrandstore.vercel.app/uniforms-company?company=gr%20tkd"
+                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE">BUY
+                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE</a>
                 <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
                   performance, durability, and style. Whether you&apos;re a beginner or a professional
                   athlete, we bring you a wide range of gear that empowers your training and boosts your
@@ -266,9 +251,9 @@ const Sitemap = () => {
               </li>
 
               <li className="lpage">
-                <a href="https://www.champzones.com/uniforms-company?company=gr%20tkd"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
+                <a href="https://ibnemukhtarbrandstore.vercel.app/uniforms-company?company=moto"
+                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE">BUY
+                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE</a>
                 <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
                   performance, durability, and style. Whether you&apos;re a beginner or a professional
                   athlete, we bring you a wide range of gear that empowers your training and boosts your
@@ -276,9 +261,9 @@ const Sitemap = () => {
               </li>
 
               <li className="lpage">
-                <a href="https://www.champzones.com/uniforms-company?company=moto"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
+                <a href="https://ibnemukhtarbrandstore.vercel.app/uniforms-company?company=pine%20tree"
+                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE">BUY
+                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE</a>
                 <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
                   performance, durability, and style. Whether you&apos;re a beginner or a professional
                   athlete, we bring you a wide range of gear that empowers your training and boosts your
@@ -286,9 +271,9 @@ const Sitemap = () => {
               </li>
 
               <li className="lpage">
-                <a href="https://www.champzones.com/uniforms-company?company=pine%20tree"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
+                <a href="https://ibnemukhtarbrandstore.vercel.app/uniforms-company?company=pro%20specs"
+                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE">BUY
+                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | IBNEMUKHTARBRANDSTORE</a>
                 <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
                   performance, durability, and style. Whether you&apos;re a beginner or a professional
                   athlete, we bring you a wide range of gear that empowers your training and boosts your
@@ -296,78 +281,28 @@ const Sitemap = () => {
               </li>
 
               <li className="lpage">
-                <a href="https://www.champzones.com/uniforms-company?company=pro%20specs"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
-                <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
-                  performance, durability, and style. Whether you&apos;re a beginner or a professional
-                  athlete, we bring you a wide range of gear that empowers your training and boosts your
-                  confidence.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/about"
-                  title="About Us | CHAMPION-CHOICE Martial Arts Gear & Equipment">About Us |
-                  CHAMPION-CHOICE Martial Arts Gear & Equipment</a>
-                <br /><small>Learn about CHAMPION-CHOICE, your trusted store for premium martial arts uniforms,
+                <a href="https://ibnemukhtarbrandstore.vercel.app/about"
+                  title="About Us | IBNEMUKHTARBRANDSTORE Martial Arts Gear & Equipment">About Us |
+                  IBNEMUKHTARBRANDSTORE Martial Arts Gear & Equipment</a>
+                <br /><small>Learn about IBNEMUKHTARBRANDSTORE, your trusted store for premium martial arts uniforms,
                   protective gear, and training equipment. Discover our mission, values, and commitment to
                   supporting martial artists worldwide.</small>
               </li>
 
               <li className="lpage">
-                <a href="https://www.champzones.com/privacy-policy"
-                  title="Privacy Policy | CHAMPION-CHOICE Martial Arts Gear & Equipment">Privacy Policy |
-                  CHAMPION-CHOICE Martial Arts Gear & Equipment</a>
-                <br /><small>Learn how CHAMPION-CHOICE safeguards your personal information when shopping
+                <a href="https://ibnemukhtarbrandstore.vercel.app/privacy-policy"
+                  title="Privacy Policy | IBNEMUKHTARBRANDSTORE Martial Arts Gear & Equipment">Privacy Policy |
+                  IBNEMUKHTARBRANDSTORE Martial Arts Gear & Equipment</a>
+                <br /><small>Learn how IBNEMUKHTARBRANDSTORE safeguards your personal information when shopping
                   for martial arts gear, uniforms, and accessories. Read our privacy policy to understand
                   how we collect, store, and use your data.</small>
               </li>
               <li className="lpage">
-                <a href="https://www.champzones.com/blog" title="Blog | Hunting Blog">Blog |
-                  CHAMPIONS-CHOICE Blog</a>
-                <br /><small>Read our latest hunting stories, tips, and adventures.</small>
+                <a href="https://ibnemukhtarbrandstore.vercel.app/blog" title="Blog | IBNEMUKHTARBRANDSTORE Blog">Blog | IBNEMUKHTARBRANDSTORE Blog</a>
+                <br /><small>Read our latest fashion tips, styling guides, and shopping inspiration for women's suits, winter jackets, and shoes.</small>
               </li>
 
-              <li className="lpage">
-                <a href="https://www.champzones.com/search"
-                  title="Search Products - CHAMPION-CHOICE">Search Products - CHAMPION-CHOICE</a>
-                <br /><small>Search for martial arts products, uniforms, and accessories at CHAMPION-CHOICE.
-                  Find exactly what you&apos;re looking for with our advanced search.</small>
-              </li>
 
-              <li className="lpage">
-                <a href="https://www.champzones.com/myaccount"
-                  title="My Account - CHAMPIONCHOICE">My Account - CHAMPIONCHOICE</a>
-                <br /><small>Access your CHAMPION-CHOICE account to view personal information, order history,
-                  and update your martial arts gear preferences.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/orders"
-                  title="Orders - CHAMPION-CHOICE">Orders - CHAMPION-CHOICE</a>
-                <br /><small>View all your past, pending, paid, or delivered martial arts gear orders at
-                  CHAMPION-CHOICE. Track your purchases and stay updated on shipping status.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/privacy-policy"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
-                <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
-                  performance, durability, and style. Whether you&apos;re a beginner or a professional
-                  athlete, we bring you a wide range of gear that empowers your training and boosts your
-                  confidence.</small>
-              </li>
-
-              <li className="lpage">
-                <a href="https://www.champzones.com/return-policy"
-                  title="BUY TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE">BUY
-                  TAEKWONDO & ALL MARTIAL ARTS UNIFOMRS AND GEARS | CHAMPIONCHOICE</a>
-                <br /><small>Discover premium quality sports uniforms and martial arts equipment designed for
-                  performance, durability, and style. Whether you&apos;re a beginner or a professional
-                  athlete, we bring you a wide range of gear that empowers your training and boosts your
-                  confidence.</small>
-              </li>
 
               <li className="lpage">
                 <a href="https://www.champzones.com/refund-policy"

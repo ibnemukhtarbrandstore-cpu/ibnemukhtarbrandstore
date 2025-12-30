@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
 
     const image =
       productData.images?.[0] ||
-      "https://www.champzones.com/images/championchoice-logo.png";
+      "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png";
 
     return {
       title,
@@ -48,8 +48,8 @@ export async function generateMetadata({ params }) {
         title,
         description,
         type: "website",
-        url: `https://www.champzones.com/product/${slug}`,
-        siteName: "Champion Choice",
+        url: `https://ibnemukhtarbrandstore.vercel.app/product/${slug}`,
+        siteName: "Ibnemukhtar Brand Store",
         images: [
           {
             url: image,
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }) {
         images: [image],
       },
       alternates: {
-        canonical: `https://www.champzones.com/product/${slug}`,
+        canonical: `https://ibnemukhtarbrandstore.vercel.app/product/${slug}`,
       },
       other: {
         "og:type": "product",
@@ -83,10 +83,10 @@ export async function generateMetadata({ params }) {
       type: "website",
       images: [
         {
-          url: "https://www.champzones.com/images/championchoice-logo.png",
+          url: "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
           width: 1200,
           height: 630,
-          alt: "Champion Choice Logo",
+          alt: "Ibnemukhtar Brand Store Logo",
         },
       ],
     },
@@ -168,7 +168,7 @@ export default async function SlugPage({ params }) {
               }
               : undefined,
           }}
-          url={`https://www.champzones.com/product/${slug}`}
+          url={`https://ibnemukhtarbrandstore.vercel.app/product/${slug}`}
         />
 
         <ProductDetail

@@ -146,6 +146,8 @@ const Menuitems: MenuitemsType[] = [
     icon: IconShoppingCart,
     href: "#",
     bgcolor: "error",
+    chip: "dynamic", // 🆕 Badge on parent
+    chipColor: "error",
     children: [
       {
         id: uniqueId(),
@@ -158,6 +160,8 @@ const Menuitems: MenuitemsType[] = [
         title: "Unshifted",
         icon: IconDeviceIpadCheck,
         href: "/admin/unshifted-Orders",
+        chip: "dynamic", // 🆕 Will be replaced with count
+        chipColor: "error",
       },
       {
         id: uniqueId(),

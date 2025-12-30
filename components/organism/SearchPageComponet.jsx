@@ -32,14 +32,14 @@ const SearchPageComponent = ({ allData }) => {
     const q = searchQuery || searchParams.get('q') || '';
     const cat = categoryQuery || searchParams.get('category') || '';
     const tag = tagQuery || searchParams.get('tag') || '';
-    
+
     const filtered = allData.filter(product => {
       const matchesSearch = product.title?.toLowerCase().includes(q.toLowerCase());
       const matchesCategory = !cat || product.category?.toLowerCase() === cat.toLowerCase();
       const matchesTag = !tag || (product.tags && product.tags.includes(tag));
       return matchesSearch && matchesCategory && matchesTag;
     });
-    
+
     setFilteredProducts(filtered);
   }, [allData, searchParams]);
 
@@ -61,16 +61,16 @@ const SearchPageComponent = ({ allData }) => {
   const handleTagClick = (clickedTag) => {
     const newTag = selectedTag === clickedTag ? "" : clickedTag;
     setSelectedTag(newTag);
-    
+
     // Update URL with tag filter
     const params = new URLSearchParams();
     if (query) params.set('q', query);
     if (category) params.set('category', category);
     if (newTag) params.set('tag', newTag);
-    
+
     const queryString = params.toString();
     router.push(`/search${queryString ? `?${queryString}` : ''}`);
-    
+
     filterProducts(query, category, newTag);
   };
 
@@ -103,11 +103,11 @@ const SearchPageComponent = ({ allData }) => {
           price: product.price || 0,
           currency: "PKR",
           image: product.images?.[0] || "/images/championchoice-logo.png",
-          url: `https://www.champzones.com/product/${product.slug}`,
+          url: `https://ibnemukhtarbrandstore.vercel.app/product/${product.slug}`,
           type: "product"
         }))}
         totalResults={filteredProducts.length}
-        url="https://www.champzones.com"
+        url="https://ibnemukhtarbrandstore.vercel.app"
       />
       <h2 className="text-xl text-center mt-16 mb-1">SEARCH</h2>
       <BorderSection />
@@ -142,9 +142,9 @@ const SearchPageComponent = ({ allData }) => {
           </div>
           <div className="flex flex-wrap gap-2">
             {query && (
-                          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-              Search: &ldquo;{query}&rdquo;
-            </span>
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                Search: &ldquo;{query}&rdquo;
+              </span>
             )}
             {category && (
               <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
@@ -169,11 +169,10 @@ const SearchPageComponent = ({ allData }) => {
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}
-                className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition-colors ${
-                  selectedTag === tag
+                className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition-colors ${selectedTag === tag
                     ? "bg-blue-500 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+                  }`}
               >
                 {tag}
               </button>
@@ -182,11 +181,11 @@ const SearchPageComponent = ({ allData }) => {
         </div>
       )}
 
-<div className="grid grid-cols-2 md:ml-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
+      <div className="grid grid-cols-2 md:ml-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
+        {filteredProducts.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };

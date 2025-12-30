@@ -27,6 +27,8 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import BaseCard from "../(DashboardLayout)/components/shared/BaseCard";
 import { cancelPendingRequests } from "@/services/api";
+import NotificationBadge from "../(DashboardLayout)/components/NotificationBadge"; // 🆕
+
 const MainWrapper = styled("div")(() => ({
   display: "flex",
   // minHeight: "100vh",
@@ -140,6 +142,29 @@ const Page = () => {
       cancelPendingRequests();
     };
   }, [router]);
+
+  // 🆕 Mark notifications as read when orders are displayed
+  useEffect(() => {
+    if (orders.length > 0) {
+      markOrdersAsRead();
+    }
+  }, [orders]);
+
+  const markOrdersAsRead = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const orderIds = orders.map(o => o.orderId);
+
+      await fetch("/api/admin/notifications/mark-read", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, orderIds })
+      });
+    } catch (error) {
+      console.error("Failed to mark notifications as read:", error);
+    }
+  };
+
   const toBase64 = (file) => {
     return new Promise((resolve, reject) => {
       if (!(file instanceof Blob)) {
@@ -289,7 +314,12 @@ const Page = () => {
                 }}
               >
                 <BaseCard
-                  title="Unshifted Orders"
+                  title={
+                    <Box display="flex" alignItems="center" gap={2}>
+                      <Typography variant="h5">Unshifted Orders</Typography>
+                      <NotificationBadge /> {/* 🆕 Notification Badge */}
+                    </Box>
+                  }
                   action={
                     <Select
                       labelId="month-dd"
@@ -341,6 +371,12 @@ const Page = () => {
                               Amount
                             </Typography>
                           </TableCell>
+                          {/* 🆕 Payment Method Column */}
+                          <TableCell>
+                            <Typography color="textSecondary" variant="h6">
+                              Payment
+                            </Typography>
+                          </TableCell>
                           <TableCell>
                             <Typography color="textSecondary" variant="h6">
                               Voucher
@@ -387,6 +423,40 @@ const Page = () => {
                                 <Typography color="textSecondary" variant="h6">
                                   Rs.{order.amount}/_
                                 </Typography>
+                              </TableCell>
+                              {/* 🆕 Payment Method Badge */}
+                              <TableCell>
+                                {order.paymentMethod === "COD" ? (
+                                  <Typography
+                                    variant="body2"
+                                    fontWeight={600}
+                                    sx={{
+                                      backgroundColor: "#FEF3C7",
+                                      color: "#F59E0B",
+                                      padding: "4px 8px",
+                                      borderRadius: "4px",
+                                      display: "inline-block",
+                                      fontSize: "12px"
+                                    }}
+                                  >
+                                    💵 COD
+                                  </Typography>
+                                ) : (
+                                  <Typography
+                                    variant="body2"
+                                    fontWeight={600}
+                                    sx={{
+                                      backgroundColor: "#D1FAE5",
+                                      color: "#10B981",
+                                      padding: "4px 8px",
+                                      borderRadius: "4px",
+                                      display: "inline-block",
+                                      fontSize: "12px"
+                                    }}
+                                  >
+                                    🏦 Manual
+                                  </Typography>
+                                )}
                               </TableCell>
                               <TableCell align="center">
                                 <input

@@ -12,23 +12,21 @@ export const metadata = {
   description:
     "Browse our complete collection of winter jackets and shoes. Quality products for men, women, and kids at affordable prices. Shop now!",
   keywords: [
-    "martial arts products",
-    "taekwondo equipment",
-    "taekwondo belts",
-    "taekwondo gloves",
-    "taekwondo mugs",
-    "sports hoodies",
-    "champion-choice store",
-    "buy martial arts gear",
-    "taekwondo gear in pakistan",
-    "taekwondo gear in lahore",
-    "taekwondo gear in karachi",
-    "taekwondo gear in islamabad",
-    "taekwondo gear in faisalabad",
-    "taekwondo gear in rawalpindi",
-    "taekwondo gear in multan",
-    "taekwondo gear in gujranwala"
-
+    "women's suits Pakistan",
+    "winter jackets",
+    "shoes Pakistan",
+    "affordable fashion",
+    "pre-loved clothing",
+    "formal suits",
+    "casual wear",
+    "fashion Pakistan",
+    "women fashion Lahore",
+    "women fashion Karachi",
+    "women fashion Islamabad",
+    "suits Faisalabad",
+    "winter wear Rawalpindi",
+    "shoes Multan",
+    "affordable clothing Gujranwala"
   ],
 };
 
@@ -86,7 +84,7 @@ const Page = async ({ searchParams }) => {
       : "Browse our complete collection of winter jackets and shoes for men, women, and kids. Quality products at best prices.",
     slug: category?.toLowerCase() || "products",
     productCount: Object.keys(product).length,
-    parentCategory: "Martial Arts & Taekwondo"
+    parentCategory: "Women's Fashion & Accessories"
   };
 
   // Prepare products data for SEO
@@ -94,8 +92,8 @@ const Page = async ({ searchParams }) => {
     name: item.title,
     price: item.price || 0,
     currency: "PKR",
-    image: item.images?.[0] || "/images/championchoice-logo.png",
-    url: `https://www.champzones.com/product/${item.slug}`
+    image: item.images?.[0] || "/images/ibnemukhtar-logo.png",
+    url: `https://ibnemukhtarbrandstore.vercel.app/product/${item.slug}`
   }));
 
   return (
@@ -103,7 +101,7 @@ const Page = async ({ searchParams }) => {
       <CategorySEO
         category={categoryData}
         products={productsForSEO}
-        url="https://www.champzones.com/"
+        url="https://ibnemukhtarbrandstore.vercel.app/"
       />
       <ProductsPageLayout product={product} category={category} tag={tag} />
     </>

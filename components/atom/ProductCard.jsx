@@ -348,7 +348,7 @@ const ProductCard = forwardRef(function ProductCard(
 
   // SEO Structured Data for Product
   const generateProductSchema = () => {
-    const productUrl = `https://www.champzones.com${slug}`;
+    const productUrl = `https://ibnemukhtarbrandstore.vercel.app${slug}`;
     const productImages = product.images || [imageSource];
 
     return {
@@ -358,8 +358,8 @@ const ProductCard = forwardRef(function ProductCard(
       description:
         product.disc ||
         product.description ||
-        `Buy ${getProductTitle()} - Premium martial arts equipment at Champion Choice`,
-      image: productImages.map((img) => `https://www.champzones.com${img}`),
+        `Buy ${getProductTitle()} - Premium martial arts equipment at Ibnemukhtar Brand Store`,
+      image: productImages.map((img) => `https://ibnemukhtarbrandstore.vercel.app${img}`),
       url: productUrl,
       sku: product.slug || product.uniformNumberFormat,
       mpn: product.uniformNumberFormat || product.slug,
@@ -382,8 +382,8 @@ const ProductCard = forwardRef(function ProductCard(
         url: productUrl,
         seller: {
           "@type": "Organization",
-          name: "Champion Choice",
-          url: "https://www.champzones.com",
+          name: "Ibnemukhtar Brand Store",
+          url: "https://ibnemukhtarbrandstore.vercel.app",
         },
       },
       aggregateRating: {
@@ -527,83 +527,62 @@ const ProductCard = forwardRef(function ProductCard(
             )}
           </motion.button>
 
-          {/* Zoom Icon Overlay */}
-          <button
-            type="button"
-            aria-label="Zoom image"
-            onClick={(e) => {
-              e.preventDefault();
-              setZoomOpen(true);
-            }}
-            className=" z-10 bg-white/90 rounded-full p-1 shadow border border-gray-300 flex items-center justify-center transition-all duration-200 group-hover:scale-110 focus:outline-none"
-            style={{ display: "flex" }}
-          >
-            <FaSearchPlus className="text-lg text-red-500" />
-          </button>
-
-          <button
-            className="z-10 bg-white/90 rounded-full p-1 shadow border border-gray-300 flex items-center justify-center transition-all duration-200 group-hover:scale-110 focus:outline-none"
-            onClick={() => setOpenShare(true)}
-          >
-            <Share fontSize="small" />
-          </button>
-
-          {/* Share Popup */}
-          <ShareModal
-            open={openShare}
-            setOpen={setOpenShare}
-            product={product}
-          />
         </div>
 
         {/* 🖼️ Product Image or Video */}
-        <Link href={`${slug}`}>
-          <div className="w-full h-32 bg-gray-100 aspect-[3/2] overflow-hidden relative group-hover:bg-blue-50 transition-colors flex items-center justify-center">
-            {product.videoUrl ? (
-              /* Show video if available */
-              <ProductVideo videoUrl={product.videoUrl} autoplay={true} className="w-full h-full" />
-            ) : imageSource && !imageError ? (
-              /* Show image if no video */
-              <>
-                <Image
-                  src={imageSource}
-                  alt={getProductAlt()}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  onError={handleImageError}
-                  onLoad={handleImageLoad}
-                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                  priority={false}
-                  itemProp="image"
-                />
-                {imageLoading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-                {imageSource ? "Image not available" : "No Image"}
-              </div>
-            )}
-          </div>
-        </Link>
+        <div className="w-full h-32 bg-gray-100 aspect-[3/2] overflow-hidden relative group-hover:bg-blue-50 transition-colors flex items-center justify-center">
+          {product.videoUrl ? (
+            /* Show video if available */
+            <ProductVideo videoUrl={product.videoUrl} autoplay={true} className="w-full h-full" />
+          ) : imageSource && !imageError ? (
+            /* Show image if no video */
+            <>
+              <Image
+                src={imageSource}
+                alt={getProductAlt()}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                onError={handleImageError}
+                onLoad={handleImageLoad}
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                priority={false}
+                itemProp="image"
+              />
+              {imageLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+              {imageSource ? "Image not available" : "No Image"}
+            </div>
+          )}
+        </div>
+
 
         {/* 📝 Product Info */}
         <div className="p-2 flex-1 flex flex-col gap-1 justify-between">
-          <h3
-            className="text-[15px] font-semibold line-clamp-2 text-gray-800 group-hover:text-blue-700 transition-colors leading-tight mb-0.5"
-            itemProp="name"
-          >
-            {getProductTitle()}
-          </h3>
-
+          <Link href={`${slug}`}>
+            <h3
+              className="text-[15px] font-semibold line-clamp-2 text-gray-800 group-hover:text-blue-700 transition-colors leading-tight mb-0.5"
+              itemProp="name"
+            >
+              {getProductTitle()}
+            </h3>
+          </Link>
           {/* Size/Color/Category Display (unchanged) */}
           {product.slug && (
             <>
               <div className="mt-0 text-[12px]">
                 Size:
+                {product.size.includes("xxs") && (
+                  <span className="border border-gray-500 px-1 mx-1 ">XXS</span>
+                )}
+                {product.size.includes("xs") && (
+                  <span className="border border-gray-500 px-1 mx-1 ">XS</span>
+                )}
                 {product.size.includes("s") && (
                   <span className="border border-gray-500 px-1 mx-1 ">S</span>
                 )}
@@ -646,29 +625,7 @@ const ProductCard = forwardRef(function ProductCard(
               </div>
             </>
           )}
-          {/* Size Display */}
-          {product.uniformNumberFormat && (
-            <div className="flex flex-row items-center justify-start">
-              <div className="text-[12px]">
-                Size:
-                <span className=" px-1 text-gray-500  ">{product.size}cm</span>
-              </div>
-              <div className="text-[12px] flex items-center justify-start">
-                Category:
-                <button className=" ml-1 flex items-center text-gray-500 justify-center w-4 h-4 focus:outline-none">
-                  {product.category.toUpperCase()}
-                </button>
-              </div>
-            </div>
-          )}
-          {product.uniformNumberFormat && (
-            <h4 className="text-xs font-normal line-clamp-2 text-gray-500">
-              Product no:{" "}
-              <span className="border border-gray-400 p-0.5 rounded bg-gray-50">
-                {product.uniformNumberFormat}
-              </span>
-            </h4>
-          )}
+
 
           {/* 🔥 Flash Countdown */}
           {hasFlashSale && (
@@ -789,40 +746,6 @@ const ProductCard = forwardRef(function ProductCard(
           - Buy Now button prominent aur rounded hai.
         */}
       </div>
-      {/* Zoom Modal */}
-      {zoomOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-          onClick={() => setZoomOpen(false)}
-        >
-          <div
-            className="relative bg-white rounded-lg shadow-lg max-w-full w-[90vw] md:w-[600px] lg:w-[800px] p-2 flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute top-2 right-2 text-gray-700 bg-white rounded-full p-2 shadow border border-gray-300 z-10"
-              onClick={() => setZoomOpen(false)}
-              aria-label="Close zoom"
-            >
-              ✕
-            </button>
-            {getHighResImage() ? (
-              <Image
-                src={getHighResImage()}
-                alt={getProductAlt()}
-                width={800}
-                height={800}
-                className="object-contain w-full h-auto max-h-[80vh] rounded"
-                priority
-              />
-            ) : (
-              <div className="w-full h-80 flex items-center justify-center text-gray-400 text-lg">
-                Image not available
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </Fragment>
   );
 });

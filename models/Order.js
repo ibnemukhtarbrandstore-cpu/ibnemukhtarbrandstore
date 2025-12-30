@@ -74,6 +74,19 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    paymentMethod: {
+      type: String,
+      default: "MANUAL",
+    },
+    notificationStatus: {
+      type: String,
+      enum: ["unread", "read"],
+      default: "unread",
+    },
+    notificationReadAt: {
+      type: Date,
+      default: null,
+    },
   },
   { timestamps: true }
 );

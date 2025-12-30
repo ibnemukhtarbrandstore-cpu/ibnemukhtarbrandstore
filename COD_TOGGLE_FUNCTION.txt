@@ -1,0 +1,19 @@
+  // 🆕 COD Toggle Handler
+  const handleCODToggle = () => {
+    const newCODState = !isCOD;
+    setIsCOD(newCODState);
+    
+    if (newCODState) {
+      // Add COD charges
+      setFinalAmount(baseAmount + COD_CHARGES);
+      toast.info(`COD charges Rs. ${COD_CHARGES} added!`, {
+        autoClose: 1500,
+      });
+    } else {
+      // Remove COD charges
+      setFinalAmount(baseAmount);
+      toast.info("COD charges removed", {
+        autoClose: 1500,
+      });
+    }
+  };

@@ -7,73 +7,43 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const slides = [
     {
-        image: "/images/mobile-images/mobile-home-fight (2).png",
-        alt: "best image ",
-        heading: "Premium Martial Arts Gear – High-Quality Uniforms & Equipment",
+        imgSrc: "/images/slide-1.png",
+        heading: "Women's Formal Suits – Professional & Elegant",
+        paragraph: "Shop premium quality women's formal suits for office wear and special occasions.",
+        buttonText: "Shop Suits",
+        buttonLink: "/uniforms",
     },
     {
-        image: "/images/mobile-images/mobile-home-fight (3).png",
-        alt: "best image ",
-        heading: "BJJ & Grappling Shirts – Lightweight & Breathable for Fighters",
+        imgSrc: "/images/slide-2.png",
+        heading: "Winter Jackets – Warm & Stylish",
+        paragraph: "Stay cozy with our collection of winter jackets and hoodies at affordable prices.",
+        buttonText: "Shop Jackets",
+        buttonLink: "/hoodies",
     },
     {
-        image: "/images/mobile-images/mobile-home-fight (4).png",
-        alt: "best image ",
-        heading: "Premium Martial Arts Gear – High-Quality Uniforms & Equipment",
+        imgSrc: "/images/slide-3.png",
+        heading: "Shoes Collection – For Everyone",
+        paragraph: "Explore comfortable and stylish footwear for men, women and kids.",
+        buttonText: "Shop Shoes",
+        buttonLink: "/tshirts",
     },
     {
-        image: "/images/mobile-images/mobile-home-fight.png",
-        alt: "best image ",
-        heading: "Motivational Martial Arts Apparel – Train Hard, Fight Strong",
+        imgSrc: "/images/slide-4.png",
+        heading: "Fashion Accessories – Complete Your Style",
+        paragraph: "Browse bags, jewelry and accessories to elevate your fashion game.",
+        buttonText: "Shop Accessories",
+        buttonLink: "/mugs",
     },
     {
-        image: "/images/mobile-images/mobile-home-mugs.png",
-        alt: "best image ",
-        heading: "MMA & Karate Mugs – Perfect Gift for Martial Artists",
-    },
-    {
-        image: "/images/mobile-images/mobile-home-shirts.png",
-        alt: "best image ",
-        heading: "Martial Arts T-Shirts – Bold Designs for Fighters & Fans",
-    },
-    {
-        image: "/images/mobile-images/mobile-home.png",
-        alt: "best image ",
-        heading: "Premium Martial Arts Gear – High-Quality Uniforms & Equipment",
-    },
-    {
-        image: "/images/mobile-images/mobile-hone-pomsa.png",
-        alt: "best image ",
-        heading: "Martial Arts Gift Bundle – Shirts, Mugs & Hoodies Combo",
-    },
-    {
-        image: "/images/mobile-images/mobile-hoodies (2).png",
-        alt: "best image ",
-        heading: "Taekwondo Hoodies – Comfortable & Stylish for Training & Casual Wear",
-    },
-    {
-        image: "/images/mobile-images/mobile-hoodies.png",
-        alt: "best image ",
-        heading: "Limited Edition Taekwondo Hoodies – Exclusive Designs for True Fans",
-    },
-    {
-        image: "/images/mobile-images/mobile-shirts (2).png",
-        alt: "best image ",
-        heading: "Custom Martial Arts Shirts – Personalized for Your Dojo or Team",
-    },
-    {
-        image: "/images/mobile-images/mobile-shirts (3).png",
-        alt: "best image ",
-        heading: "Premium Martial Arts Gear – High-Quality Uniforms & Equipment",
-    },
-    {
-        image: "/images/mobile-images/mobile-shirts.png",
-        alt: "best image ",
-        heading: "Kids Martial Arts Shirts – Fun & Durable for Young Fighters",
+        imgSrc: "/images/slide-5.png",
+        heading: "Pre-Loved Premium Fashion – Quality Guaranteed",
+        paragraph: "Discover high-quality pre-loved items at unbeatable prices. Eco-friendly shopping!",
+        buttonText: "Shop Now",
+        buttonLink: "/products",
     },
 ];
 
-const MobilePageBanner = ({ slides = [], textPosition='left-2 bottom-12' }) => {
+const MobilePageBanner = ({ slides = [], textPosition = 'left-2 bottom-12' }) => {
     return (
         <div>
             {" "}

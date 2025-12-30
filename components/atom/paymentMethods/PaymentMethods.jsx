@@ -45,7 +45,6 @@ export default function PaymentMethods() {
     { id: "easypaisa", label: "", icon: "https://res.cloudinary.com/dmkqox9ry/image/upload/v1763396138/easypaisa_mdsmss.png" },
     { id: "jazzcash", label: "", icon: "https://res.cloudinary.com/dmkqox9ry/image/upload/v1763399473/jazzcash_deyigu.png" },
     { id: "meezan", label: "Meezan Bank", icon: "https://res.cloudinary.com/dmkqox9ry/image/upload/v1763372659/ibn-e-mukhtar_logo_1_uc5cry.png" },
-    { id: "cod", label: "Cash on Delivery", icon: "https://res.cloudinary.com/dmkqox9ry/image/upload/v1763399108/ibn-e-mukhtar_logo_2_nftazv.png" },
   ];
 
   const info = {
@@ -97,7 +96,7 @@ export default function PaymentMethods() {
       </h2>
 
       {/* Buttons */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
         {methods.map((m) => (
           <button
             key={m.id}

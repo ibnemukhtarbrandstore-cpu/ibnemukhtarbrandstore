@@ -56,47 +56,47 @@ export default function PrivacyPolicyPage() {
       question: "How long does delivery take?",
       answer: "Standard delivery takes 3-5 business days across Pakistan. You’ll receive tracking details after dispatch."
     },
-        
+
   ];
 
   return (
     <>
-      <FAQSEO 
+      <FAQSEO
         title="Privacy Policy"
         description="Read Champion Choice's privacy policy to understand how we collect, use, and protect your personal information when you use our website and services."
         faqs={faqs}
-        url="https://www.champzones.com/privacy-policy"
+        url="https://ibnemukhtarbrandstore.vercel.app/privacy-policy"
         category="Legal"
       />
       <div className="container mx-auto px-4 py-8 mt-12">
         <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
         <div className="prose max-w-none">
           <p className="text-lg mb-4">
-            At Champion Choice, we are committed to protecting your privacy and ensuring the security of your personal information. 
+            At Champion Choice, we are committed to protecting your privacy and ensuring the security of your personal information.
             This privacy policy explains how we collect, use, and protect your data when you use our website and services.
           </p>
-          
+
           <h2 className="text-2xl font-semibold mt-8 mb-4">Information We Collect</h2>
           <p className="mb-4">
-            We collect information you provide when you create an account, place orders, or contact us. 
+            We collect information you provide when you create an account, place orders, or contact us.
             This includes your name, email address, shipping address, and payment information.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">How We Use Your Information</h2>
           <p className="mb-4">
-            We use your information to process orders, provide customer support, send order updates, 
+            We use your information to process orders, provide customer support, send order updates,
             and improve our services. We never sell your personal information to third parties.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Data Security</h2>
           <p className="mb-4">
-            We implement appropriate security measures to protect your personal information against unauthorized access, 
+            We implement appropriate security measures to protect your personal information against unauthorized access,
             alteration, disclosure, or destruction.
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Your Rights</h2>
           <p className="mb-4">
-            You have the right to access, correct, or delete your personal information. 
+            You have the right to access, correct, or delete your personal information.
             You can also opt out of marketing communications at any time.
           </p>
         </div>

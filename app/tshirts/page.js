@@ -8,19 +8,19 @@ import CategorySEO from "@/components/atom/CategorySEO";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Shirts - CHAMPION-CHOICE |CHAMPION-CHOICE | Buy Martial arts Karate, Taekwondo & MMA  Shirts in Pakistan",
+  title: "Shoes & Footwear - IBNEMUKHTARBRANDSTORE | Buy Men, Women & Kids Shoes in Pakistan",
   description:
-    "Browse premium martial arts & taekwondo shirts at CHAMPION-CHOICE. Stylish and performance-ready shirts for taekwondo, karate, MMA, and sports lovers. Perfect fit for training and casual wear.",
+    "Browse premium shoes and footwear at IBNEMUKHTARBRANDSTORE. Stylish and comfortable shoes for men, women, and kids. Perfect for casual wear, formal events, and everyday use at affordable prices.",
   keywords: [
-    "martial arts shirts",
-    "karate shirts",
-    "taekwondo apparel",
-    "sports fashion shirts",
-    "MMA clothing",
-    "training wear",
-    "CHAMPION-CHOICE fashion",
-    "martial arts t-shirts",
-    "karate casual wear",
+    "shoes Pakistan",
+    "men's shoes",
+    "women's footwear",
+    "kids shoes",
+    "casual shoes",
+    "formal shoes",
+    "affordable footwear",
+    "comfortable shoes",
+    "branded shoes Pakistan",
   ],
 };
 
@@ -72,11 +72,11 @@ const Page = async ({ searchParams }) => {
 
   // Prepare category data for SEO
   const categoryData = {
-    name: "Martial Arts & Taekwondo Shirts",
-    description: "Browse premium martial arts & taekwondo shirts at CHAMPION-CHOICE. Stylish and performance-ready shirts for taekwondo, karate, MMA, and sports lovers.",
+    name: "Shoes & Footwear Collection",
+    description: "Browse premium shoes and footwear at IBNEMUKHTARBRANDSTORE. Stylish and comfortable shoes for men, women, and kids at affordable prices.",
     slug: "tshirts",
     productCount: Object.keys(product).length,
-    parentCategory: "Apparel"
+    parentCategory: "Footwear"
   };
 
   // Prepare products data for SEO
@@ -84,16 +84,16 @@ const Page = async ({ searchParams }) => {
     name: item.title,
     price: item.price || 0,
     currency: "PKR",
-    image: item.images?.[0] || "/images/championchoice-logo.png",
-    url: `https://www.champzones.com/product/${item.slug}`
+    image: item.images?.[0] || "/images/ibnemukhtar-logo.png",
+    url: `https://ibnemukhtarbrandstore.vercel.app/product/${item.slug}`
   }));
-  
+
   return (
     <>
-      <CategorySEO 
+      <CategorySEO
         category={categoryData}
         products={productsForSEO}
-        url="https://www.champzones.com/"
+        url="https://ibnemukhtarbrandstore.vercel.app/"
       />
       <ProductsPageLayout product={product} category={category} tag={tag} />
     </>

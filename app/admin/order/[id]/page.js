@@ -18,7 +18,7 @@ export default function OrderDetailPage({ params }) {
       setError(null);
       try {
         console.log("orderId:: ", id);
-        
+
         const res = await fetch(`/api/get-order?orderId=${id}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Order not found");
@@ -112,6 +112,19 @@ export default function OrderDetailPage({ params }) {
         )}
         {order.paymentInfo && (
           <Typography variant="subtitle1"><b>Payment Info:</b> {order.paymentInfo}</Typography>
+        )}
+
+        {/* 🆕 Display Payment Method */}
+        {order.paymentMethod && (
+          <Typography variant="subtitle1">
+            <b>Payment Method:</b>{" "}
+            <span style={{
+              color: order.paymentMethod === "COD" ? "#F59E0B" : "#10B981",
+              fontWeight: "bold"
+            }}>
+              {order.paymentMethod === "COD" ? "💵 Cash on Delivery (COD)" : "🏦 Manual Payment"}
+            </span>
+          </Typography>
         )}
       </Paper>
     </Box>

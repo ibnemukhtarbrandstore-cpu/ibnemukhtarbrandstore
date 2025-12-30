@@ -5,36 +5,39 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+
 const slides = [
   {
-    image: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728182/srikanta-h-u-v0U6fwD00ns-unsplash_in4d5j.jpg",
-    alt: "best image ",
-    heading: "Premium Martial Arts Gear – High-Quality Uniforms & Equipment",
+    imgSrc: "/images/slide-1.png",
+    heading: "Premium Women's Suits – Elegant & Affordable Fashion",
+    paragraph:
+      "Discover our collection of formal and casual women's suits at unbeatable prices in Pakistan.",
+    buttonText: "Shop Women's Suits",
+    buttonLink: "/uniforms",
   },
   {
-    image: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728170/QuillBot-generated-image-2_qxgwka.png",
-    alt: "best image ",
-    heading: "BJJ & Grappling Shirts – Lightweight & Breathable for Fighters",
+    imgSrc: "/images/slide-2.png",
+    heading: "Winter Jackets & Hoodies – Stay Warm in Style",
+    paragraph:
+      "Browse premium winter jackets and cozy hoodies for men, women & kids. Pre-loved and new items available.",
+    buttonText: "Shop Winter Wear",
+    buttonLink: "/hoodies",
   },
   {
-    image: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686449/download_r6qimr.jpg",
-    alt: "best image ",
-    heading: "Premium Martial Arts Gear – High-Quality Uniforms & Equipment",
+    imgSrc: "/images/slide-3.png",
+    heading: "Shoes & Footwear – Comfortable & Stylish",
+    paragraph:
+      "Explore our collection of shoes for men, women & kids. Quality footwear at affordable prices.",
+    buttonText: "Shop Shoes",
+    buttonLink: "/tshirts",
   },
   {
-    image: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686480/Frosty_Family_Fun_x21s1g.jpg",
-    alt: "best image ",
-    heading: "Motivational Martial Arts Apparel – Train Hard, Fight Strong",
-  },
-  {
-    image: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728166/LYL___Wecools_We_Choose_%E5%86%AC%E6%96%B0%E4%BD%9C%E7%B6%9A%E3%80%85%E5%85%A5%E8%8D%B7%E4%B8%AD_aojvpw.jpg",
-    alt: "best image ",
-    heading: "MMA & Karate Mugs – Perfect Gift for Martial Artists",
-  },
-  {
-    image: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766743347/download_cwl1zg.jpg",
-    alt: "best image ",
-    heading: "MMA & Karate Mugs – Perfect Gift for Martial Artists",
+    imgSrc: "/images/slide-4.png",
+    heading: "Fashion Accessories – Complete Your Look",
+    paragraph:
+      "Browse bags, jewelry and lifestyle items to complement your style. Affordable fashion for everyone.",
+    buttonText: "Shop Accessories",
+    buttonLink: "/mugs",
   },
 ];
 

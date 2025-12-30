@@ -20,13 +20,13 @@ export default function DynamicSEO({
   description,
   keywords = 'martial arts, taekwondo, uniforms, gear, champion choice, fighting equipment',
   image = '/images/championchoice-logo.png',
-  url = 'https://www.champzones.com',
+  url = 'https://www.ibnemukhtarbrandstore.vercel.app',
   type = 'website',
   data,
   structuredData
 }: DynamicSEOProps) {
   const [fullUrl, setFullUrl] = useState(url);
-  
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setFullUrl(`${url}${window.location.pathname}`);
@@ -42,8 +42,8 @@ export default function DynamicSEO({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Champion Choice",
-      "url": "https://www.champzones.com",
-      "logo": "https://www.champzones.com/images/championchoice-logo.png",
+      "url": "https://www.ibnemukhtarbrandstore.vercel.app",
+      "logo": "https://www.ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png",
       "description": "Premium martial arts equipment and taekwondo uniforms",
       "address": {
         "@type": "PostalAddress",
@@ -59,11 +59,11 @@ export default function DynamicSEO({
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Champion Choice",
-      "url": "https://www.champzones.com",
+      "url": "https://www.ibnemukhtarbrandstore.vercel.app",
       "description": "Premium martial arts equipment and taekwondo uniforms",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.champzones.com/search?q={search_term_string}",
+        "target": "https://www.ibnemukhtarbrandstore.vercel.app/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     };
@@ -113,7 +113,7 @@ export default function DynamicSEO({
               "name": "Champion Choice",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.champzones.com/images/championchoice-logo.png"
+                "url": "https://www.ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png"
               }
             },
             "datePublished": data.publishedAt,
@@ -183,7 +183,7 @@ export default function DynamicSEO({
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.champzones.com"
+          "item": "https://www.ibnemukhtarbrandstore.vercel.app"
         },
         {
           "@type": "ListItem",
@@ -209,7 +209,7 @@ export default function DynamicSEO({
       <meta name="author" content="Champion Choice" />
       <meta name="language" content="en" />
       <meta name="revisit-after" content="7 days" />
-      
+
       {/* Open Graph Tags */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -220,7 +220,7 @@ export default function DynamicSEO({
       <meta property="og:locale" content="en_US" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      
+
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
@@ -228,7 +228,7 @@ export default function DynamicSEO({
       <meta name="twitter:image" content={image} />
       <meta name="twitter:site" content="@championchoice" />
       <meta name="twitter:creator" content="@championchoice" />
-      
+
       {/* Additional SEO Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#DD8560" />
@@ -236,7 +236,7 @@ export default function DynamicSEO({
       <link rel="canonical" href={fullUrl} />
       <link rel="icon" href="/images/championchoice-logo.png" />
       <link rel="apple-touch-icon" href="/images/championchoice-logo.png" />
-      
+
       {/* Structured Data */}
       {schemas.map((schema: any, index: number) => (
         <script

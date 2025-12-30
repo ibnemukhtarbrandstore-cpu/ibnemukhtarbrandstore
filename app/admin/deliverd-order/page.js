@@ -256,12 +256,12 @@ const Page = () => {
                               Name
                             </Typography>
                           </TableCell>
-                             <TableCell>
+                          <TableCell>
                             <Typography color="textSecondary" variant="h6">
                               Email
                             </Typography>
                           </TableCell>
-                           <TableCell>
+                          <TableCell>
                             <Typography color="textSecondary" variant="h6">
                               Adress
                             </Typography>
@@ -274,6 +274,12 @@ const Page = () => {
                           <TableCell>
                             <Typography color="textSecondary" variant="h6">
                               Amount
+                            </Typography>
+                          </TableCell>
+                          {/* 🆕 Payment Method Column */}
+                          <TableCell>
+                            <Typography color="textSecondary" variant="h6">
+                              Payment
                             </Typography>
                           </TableCell>
                           <TableCell>
@@ -318,7 +324,7 @@ const Page = () => {
                                 </Box>
                               </Box>
                             </TableCell>
-                             <TableCell>
+                            <TableCell>
                               <Box display="flex" alignItems="center">
                                 <Box>
                                   <CopyAddress text={order.email} />
@@ -332,7 +338,7 @@ const Page = () => {
                               </Box>
                             </TableCell>
                             <TableCell>
-                            <Box display="flex" alignItems="center">
+                              <Box display="flex" alignItems="center">
                                 <Box>
                                   <CopyAddress text={order.address} />
                                   <Typography
@@ -354,12 +360,46 @@ const Page = () => {
                                 Rs.{order.amount}/_
                               </Typography>
                             </TableCell>
+                            {/* 🆕 Payment Method Badge */}
+                            <TableCell>
+                              {order.paymentMethod === "COD" ? (
+                                <Typography
+                                  variant="body2"
+                                  fontWeight={600}
+                                  sx={{
+                                    backgroundColor: "#FEF3C7",
+                                    color: "#F59E0B",
+                                    padding: "4px 8px",
+                                    borderRadius: "4px",
+                                    display: "inline-block",
+                                    fontSize: "12px"
+                                  }}
+                                >
+                                  💵 COD
+                                </Typography>
+                              ) : (
+                                <Typography
+                                  variant="body2"
+                                  fontWeight={600}
+                                  sx={{
+                                    backgroundColor: "#D1FAE5",
+                                    color: "#10B981",
+                                    padding: "4px 8px",
+                                    borderRadius: "4px",
+                                    display: "inline-block",
+                                    fontSize: "12px"
+                                  }}
+                                >
+                                  🏦 {order.paymentMethod || "Manual"}
+                                </Typography>
+                              )}
+                            </TableCell>
                             <TableCell>
                               <Typography variant="h6">{order.city}</Typography>
                             </TableCell>
                             <TableCell align="right">
-                                  <CopyAddress text={order.phone} />
-                              
+                              <CopyAddress text={order.phone} />
+
                             </TableCell>
                             <TableCell>
                               <Typography color="textSecondary" variant="h6">

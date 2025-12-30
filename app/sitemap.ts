@@ -4,7 +4,7 @@ import BlogPost from '@/models/BlogPost';
 import { connectDb } from '@/middleware/mongodb';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://www.champzones.com';
+    const baseUrl = 'https://ibnemukhtarbrandstore.vercel.app';
 
     // Standard routes
     const routes = [
@@ -21,6 +21,46 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: route === '' ? 1 : 0.8,
+    }));
+
+    // Collection pages
+    const collectionRoutes = [
+        // Product Categories
+        '/collections/health',
+        '/collections/clothing',
+        '/collections/shoes',
+        '/collections/beauty',
+        '/collections/accessories',
+        '/collections/sports',
+        '/collections/electronics',
+        // Demographics
+        '/collections/mens',
+        '/collections/womens',
+        '/collections/kids',
+        // Trending & Popular
+        '/collections/new-arrivals',
+        '/collections/best-sellers',
+        '/collections/trending',
+        '/collections/sale',
+        // Activity/Lifestyle
+        '/collections/running',
+        '/collections/gym',
+        '/collections/outdoor',
+        '/collections/casual',
+        '/collections/formal',
+        // Seasonal
+        '/collections/winter',
+        '/collections/summer',
+        '/collections/eid',
+        // Condition-Based
+        '/collections/unique-finds',
+        '/collections/pre-loved',
+        '/collections/fresh-stock',
+    ].map((route) => ({
+        url: `${baseUrl}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
     }));
 
     try {
@@ -44,10 +84,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.7,
         }));
 
-        return [...routes, ...productUrls, ...blogUrls];
+        return [...routes, ...collectionRoutes, ...productUrls, ...blogUrls];
 
     } catch (error) {
         console.error('Sitemap generation error:', error);
-        return routes;
+        return [...routes, ...collectionRoutes];
     }
 }

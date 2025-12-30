@@ -150,28 +150,28 @@ const AvailableUniforms = () => {
       const pageHeight = pdf.internal.pageSize.getHeight();
       const margin = 20;
       const contentWidth = pageWidth - (2 * margin);
-      
+
       let currentY = margin;
       const lineHeight = 8;
       const titleHeight = 15;
-      
+
       // Add header with date
       const currentDate = new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
       });
-      
+
       pdf.setFontSize(20);
       pdf.setFont('helvetica', 'bold');
       pdf.text('Available Uniforms Report', pageWidth / 2, currentY, { align: 'center' });
       currentY += titleHeight;
-      
+
       pdf.setFontSize(12);
       pdf.setFont('helvetica', 'normal');
       pdf.text(`Generated on: ${currentDate}`, pageWidth / 2, currentY, { align: 'center' });
       currentY += lineHeight * 2;
-      
+
       // Function to add new page if needed
       const addNewPageIfNeeded = () => {
         if (currentY > pageHeight - margin) {
@@ -179,24 +179,24 @@ const AvailableUniforms = () => {
           currentY = margin;
         }
       };
-      
+
       // Add available numbers
       if (availableNumbers.length > 0) {
         pdf.setFontSize(16);
         pdf.setFont('helvetica', 'bold');
         pdf.text('Available Product Numbers:', margin, currentY);
         currentY += lineHeight;
-        
+
         pdf.setFontSize(10);
         pdf.setFont('helvetica', 'normal');
-        
+
         let numbersPerLine = Math.floor(contentWidth / 15); // Approximate width per number
         let currentLine = '';
         let numbersInCurrentLine = 0;
-        
+
         for (let i = 0; i < availableNumbers.length; i++) {
           addNewPageIfNeeded();
-          
+
           if (numbersInCurrentLine >= numbersPerLine) {
             pdf.text(currentLine, margin, currentY);
             currentY += lineHeight;
@@ -204,39 +204,39 @@ const AvailableUniforms = () => {
             numbersInCurrentLine = 0;
             addNewPageIfNeeded();
           }
-          
+
           currentLine += `${availableNumbers[i]}, `;
           numbersInCurrentLine++;
         }
-        
+
         if (currentLine) {
           pdf.text(currentLine.slice(0, -2), margin, currentY);
           currentY += lineHeight * 2;
         }
-        
+
         pdf.text(`Total Available: ${availableNumbers.length}`, margin, currentY);
         currentY += lineHeight * 2;
       }
-      
+
       // Add missing numbers
       if (missingNumbers.length > 0) {
         addNewPageIfNeeded();
-        
+
         pdf.setFontSize(16);
         pdf.setFont('helvetica', 'bold');
         pdf.text('Missing Product Numbers:', margin, currentY);
         currentY += lineHeight;
-        
+
         pdf.setFontSize(10);
         pdf.setFont('helvetica', 'normal');
-        
+
         let numbersPerLine = Math.floor(contentWidth / 15);
         let currentLine = '';
         let numbersInCurrentLine = 0;
-        
+
         for (let i = 0; i < missingNumbers.length; i++) {
           addNewPageIfNeeded();
-          
+
           if (numbersInCurrentLine >= numbersPerLine) {
             pdf.text(currentLine, margin, currentY);
             currentY += lineHeight;
@@ -244,30 +244,30 @@ const AvailableUniforms = () => {
             numbersInCurrentLine = 0;
             addNewPageIfNeeded();
           }
-          
+
           currentLine += `${missingNumbers[i]}, `;
           numbersInCurrentLine++;
         }
-        
+
         if (currentLine) {
           pdf.text(currentLine.slice(0, -2), margin, currentY);
           currentY += lineHeight * 2;
         }
-        
+
         pdf.text(`Total Missing: ${missingNumbers.length}`, margin, currentY);
       }
-      
+
       // Save the PDF
       const fileName = `uniforms_report_${new Date().toISOString().split('T')[0]}.pdf`;
       pdf.save(fileName);
-      
+
       toast.success("PDF downloaded successfully!", {
         position: "bottom-left",
         autoClose: 1000,
         closeOnClick: true,
         pauseOnHover: true,
       });
-      
+
     } catch (error) {
       console.error("Error generating PDF:", error);
       toast.error("Error generating PDF. Please try again.", {
@@ -283,11 +283,11 @@ const AvailableUniforms = () => {
 
   // SEO Data
   const seoData = {
-    title: "Available Uniforms Inventory Management | Champion Choice Admin",
-    description: "Comprehensive inventory management system for martial arts uniforms. Track available and missing uniform numbers, generate reports, and manage stock efficiently. Admin dashboard for Champion Choice.",
+    title: "Available Uniforms Inventory Management | Ibnemukhtar Admin",
+    description: "Comprehensive inventory management system for martial arts uniforms. Track available and missing uniform numbers, generate reports, and manage stock efficiently. Admin dashboard for Ibnemukhtar.",
     keywords: "uniform inventory management, martial arts uniforms, taekwondo uniforms, stock management, admin dashboard, champion choice, inventory tracking, uniform numbers, missing uniforms, available uniforms",
-    url: "https://www.champzones.com/admin/available-uniforms",
-    image: "/images/championchoice-logo.png",
+    url: "https://ibnemukhtarbrandstore.vercel.app/admin/available-uniforms",
+    image: "/images/ibnemukhtar-logo.png",
     type: "website"
   };
 
@@ -312,11 +312,11 @@ const AvailableUniforms = () => {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Champion Choice",
-      "url": "https://www.champzones.com",
+      "name": "Ibnemukhtar",
+      "url": "https://ibnemukhtarbrandstore.vercel.app",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.champzones.com/images/championchoice-logo.png"
+        "url": "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png"
       }
     },
     "breadcrumb": {
@@ -357,10 +357,10 @@ const AvailableUniforms = () => {
         <meta name="language" content="English" />
         <meta name="revisit-after" content="7 days" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
+
         {/* Canonical URL */}
         <link rel="canonical" href={seoData.url} />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content={seoData.type} />
         <meta property="og:url" content={seoData.url} />
@@ -369,7 +369,7 @@ const AvailableUniforms = () => {
         <meta property="og:image" content={seoData.image} />
         <meta property="og:site_name" content="Champion Choice" />
         <meta property="og:locale" content="en_US" />
-        
+
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={seoData.url} />
@@ -378,14 +378,14 @@ const AvailableUniforms = () => {
         <meta property="twitter:image" content={seoData.image} />
         <meta property="twitter:site" content="@championchoice" />
         <meta property="twitter:creator" content="@championchoice" />
-        
+
         {/* Additional Meta Tags */}
         <meta name="theme-color" content="#DD8560" />
         <meta name="msapplication-TileColor" content="#DD8560" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Champion Choice Admin" />
-        
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -393,22 +393,22 @@ const AvailableUniforms = () => {
             __html: JSON.stringify(structuredData)
           }}
         />
-        
+
         {/* Additional Security Headers */}
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        
+
         {/* Preconnect for Performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Favicon */}
         <link rel="icon" type="image/png" sizes="32x32" href="/images/championchoice-logo.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/images/championchoice-logo.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/images/championchoice-logo.png" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      
+
       <ToastContainer
         position="bottom-left"
         autoClose={1000}
@@ -484,7 +484,7 @@ const AvailableUniforms = () => {
                           FIND MISSING NUMBERS
                         </button>
                       )}
-                      
+
                       {/* Download PDF Button */}
                       {(availableNumbers.length > 0 || missingNumbers.length > 0) && (
                         <button

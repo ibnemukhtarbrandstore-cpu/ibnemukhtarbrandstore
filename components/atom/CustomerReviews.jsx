@@ -9,63 +9,6 @@ export default function CustomerReviews() {
 
   const reviews = [
     {
-      id: 5,
-      name: "Ray Ali Raza Rajpoot",
-      rating: 5,
-      comment: "Great experience! Products exceeded my expectations. Very satisfied customer.",
-      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753635560/sir_ali_raza_drltwp.jpg",
-      product: "Taekwondo Shirts",
-      location: "Multan, Pakistan"
-    },
-    {
-      id: 1,
-      name: "Muhammad Usama",
-      rating: 5,
-      comment: "Best martial arts gear I&rsquo;ve ever bought. Fast delivery and excellent customer service.",
-      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753641804/7_l40u4g.png",
-      product: "Taekwondo Uniform",
-      location: "Chiniot, Pakistan"
-    },
-    {
-      id: 4,
-      name: "Noor ul Hassan",
-      rating: 5,
-      comment: "Perfect for my taekwondo classes. The uniform is durable and looks professional.",
-      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753628395/noor_c0tekc.png",
-      product: "Taekwondo Hoodies",
-      location: "Faisalabad, Pakistan"
-    },
-    {
-      id: 2,
-      name: "Ali Hassan",
-      rating: 5,
-      comment: "Amazing quality uniforms! Perfect fit and comfortable material. Highly recommended!",
-      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753628395/ali_hassan_gcj36e.png",
-      product: "Taekwondo Kick Padds",
-      location: "Karachi, Pakistan"
-    },
-    {
-      id: 3,
-      name: "Ali Nisar",
-      rating: 5,
-      comment: "Premium quality products at reasonable prices. Will definitely shop again!",
-      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753628395/ali_ondtkq.png",
-      product: "Taekwondo Gloves",
-      location: "Islamabad, Pakistan"
-    },
-    {
-      id: 4,
-      name: "Zainab Khan",
-      rating: 5,
-      comment: "Absolutely loved the quality! I wasn&rsquo;t expecting such premium stitching. Will definitely order again.",
-      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753640434/6_j0ale0.png",
-      product: "Taekwondo Mugs",
-      location: "Lahore, Pakistan"
-    },
-    {
-      id: 5,
-      name: "Haroon Tareen",
-      rating: 4,
       comment: "Fast delivery and great customer support. The sizes fit perfectly. Just what I needed!",
       image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753640475/5_eovfzu.png",
       product: "Taekwondo Shirts",
@@ -103,11 +46,11 @@ export default function CustomerReviews() {
 
   // SEO Data
   const seoData = {
-    title: "Customer Reviews & Testimonials | Champion Choice Martial Arts",
+    title: "Customer Reviews & Testimonials | Ibnemukhtar Brand Store",
     description: "Read authentic customer reviews and testimonials from satisfied martial arts enthusiasts. Real feedback from taekwondo practitioners about our quality uniforms and equipment.",
     keywords: "customer reviews, testimonials, martial arts reviews, taekwondo uniform reviews, champion choice reviews, customer feedback, martial arts equipment reviews",
-    url: "https://www.champzones.com/reviews",
-    image: "/images/championchoice-logo.png",
+    url: "https://ibnemukhtarbrandstore.vercel.app/reviews",
+    image: "/images/ibnemukhtar-logo.png",
     type: "website"
   };
 
@@ -115,7 +58,7 @@ export default function CustomerReviews() {
   const generateReviewSchema = () => {
     const currentReviewData = reviews[currentReview];
     const reviewDate = new Date().toISOString();
-    
+
     return {
       "@context": "https://schema.org",
       "@type": "Review",
@@ -147,7 +90,7 @@ export default function CustomerReviews() {
       "publisher": {
         "@type": "Organization",
         "name": "Champion Choice",
-        "url": "https://www.champzones.com"
+        "url": "https://www.ibnemukhtarbrandstore.vercel.app"
       }
     };
   };
@@ -156,7 +99,7 @@ export default function CustomerReviews() {
   const generateAggregateRatingSchema = () => {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     const averageRating = totalRating / reviews.length;
-    
+
     return {
       "@context": "https://schema.org",
       "@type": "Product",
@@ -195,8 +138,8 @@ export default function CustomerReviews() {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Champion Choice",
-      "url": "https://www.champzones.com",
-      "logo": "https://www.champzones.com/images/championchoice-logo.png",
+      "url": "https://www.ibnemukhtarbrandstore.vercel.app",
+      "logo": "https://www.ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
       "description": "Premium martial arts equipment and taekwondo uniforms",
       "address": {
         "@type": "PostalAddress",
@@ -247,9 +190,9 @@ export default function CustomerReviews() {
       cancelPendingRequests();
     };
   }, [reviews.length]);
-  
+
   let OptimizedProfileUrl = getOptimizedCloudinaryUrl(reviews[currentReview].image)
-  
+
   return (
     <>
       {/* SEO Meta Tags */}
@@ -261,10 +204,10 @@ export default function CustomerReviews() {
         <meta name="keywords" content={seoData.keywords} />
         <meta name="author" content="Champion Choice" />
         <meta name="robots" content="index, follow" />
-        
+
         {/* Canonical URL */}
         <link rel="canonical" href={seoData.url} />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content={seoData.type} />
         <meta property="og:url" content={seoData.url} />
@@ -273,14 +216,14 @@ export default function CustomerReviews() {
         <meta property="og:image" content={seoData.image} />
         <meta property="og:site_name" content="Champion Choice" />
         <meta property="og:locale" content="en_US" />
-        
+
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={seoData.url} />
         <meta property="twitter:title" content={seoData.title} />
         <meta property="twitter:description" content={seoData.description} />
         <meta property="twitter:image" content={seoData.image} />
-        
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -302,13 +245,13 @@ export default function CustomerReviews() {
         />
       </Head>
 
-      <section 
+      <section
         className="bg-white p-4 my-2"
         itemScope
         itemType="https://schema.org/Review"
       >
         <div className="text-center mb-6">
-          <h2 
+          <h2
             className="text-2xl font-bold text-gray-800 mb-2"
             itemProp="name"
           >
@@ -337,7 +280,7 @@ export default function CustomerReviews() {
               {/* Review Content */}
               <div className="flex-1 text-center md:text-left">
                 {/* Stars */}
-                <div 
+                <div
                   className="flex justify-center md:justify-start mb-2"
                   itemProp="reviewRating"
                   itemScope
@@ -352,7 +295,7 @@ export default function CustomerReviews() {
                 </div>
 
                 {/* Comment */}
-                <p 
+                <p
                   className="text-gray-700 text-lg italic mb-3"
                   itemProp="reviewBody"
                 >
@@ -362,7 +305,7 @@ export default function CustomerReviews() {
                 {/* Customer Info */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div>
-                    <h4 
+                    <h4
                       className="font-semibold text-gray-800"
                       itemProp="author"
                       itemScope
@@ -399,7 +342,7 @@ export default function CustomerReviews() {
 
         {/* Additional SEO Content */}
         <div className="mt-8 text-center">
-          <div 
+          <div
             itemProp="aggregateRating"
             itemScope
             itemType="https://schema.org/AggregateRating"

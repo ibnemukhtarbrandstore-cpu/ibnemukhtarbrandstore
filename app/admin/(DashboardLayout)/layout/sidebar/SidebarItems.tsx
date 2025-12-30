@@ -16,9 +16,10 @@ import Logo from "@/components/atom/Logo";
 import { IconPoint } from "@tabler/icons-react";
 import Upgrade from "./Updrade";
 import { DashboardContext } from "@/app/context/DashboardContext";
+import { useNotificationCount } from "../../hooks/useNotificationCount"; // 🆕
 
-const RenderMenuItems = (items: any[], pathDirect: string) => {
-const {pendingOrdersLength} = useContext(DashboardContext)
+const RenderMenuItems = (items: any[], pathDirect: string, notificationCount: number) => {
+  const { pendingOrdersLength } = useContext(DashboardContext)
   return items.map((item) => {
     const Icon = item.icon ? item.icon : IconPoint;
     const itemIcon = <Icon stroke={1.5} size="1.3rem" />;
@@ -36,9 +37,41 @@ const {pendingOrdersLength} = useContext(DashboardContext)
 
     //If the item has children (submenu)
     if (item.children) {
+      // For Orders menu - add badge inline to title
+      const titleWithBadge = item.title === "Orders" ? (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <span>{item.title}</span>
+          {notificationCount >= 0 && (
+            <Box
+              sx={{
+                backgroundColor: "#ef4444",
+                color: "white",
+                borderRadius: "12px",
+                padding: "2px 8px",
+                fontSize: "11px",
+                fontWeight: "bold",
+                minWidth: "20px",
+                textAlign: "center",
+                animation: notificationCount > 0 ? "pulse 2s infinite" : "none",
+                "@keyframes pulse": {
+                  "0%, 100%": { opacity: 1, transform: "scale(1)" },
+                  "50%": { opacity: 0.8, transform: "scale(1.05)" }
+                }
+              }}
+            >
+              {notificationCount}
+            </Box>
+          )}
+        </Box>
+      ) : item.title;
+
       return (
-        <Submenu key={item.id} title={item.title} icon={itemIcon}>
-          {RenderMenuItems(item.children, pathDirect)}
+        <Submenu
+          key={item.id}
+          title={titleWithBadge}
+          icon={itemIcon}
+        >
+          {RenderMenuItems(item.children, pathDirect, notificationCount)}
         </Submenu>
       );
     }
@@ -47,24 +80,30 @@ const {pendingOrdersLength} = useContext(DashboardContext)
 
     return (
       <MenuItem
-      key={item.id}
-      isSelected={pathDirect === item?.href}
-      icon={itemIcon}
-      component={Link}
-      link={item.href && item.href !== "" ? item.href : "#"}
-      target={item.href && item.href.startsWith("https") ? "_blank" : "_self"}
-      badge={item.title === "Confirm Order" ? true : item.chip ? true : false}
-      badgeContent={
-        item.title === "Confirm Order"
-          ? pendingOrdersLength?.toString() || "0"
-          : item.chip || ""
-      }
-      badgeColor="secondary"
-      disabled={item.disabled}
-    >
-      {item.title}
-    </MenuItem>
-    
+        key={item.id}
+        isSelected={pathDirect === item?.href}
+        icon={itemIcon}
+        component={Link}
+        link={item.href && item.href !== "" ? item.href : "#"}
+        target={item.href && item.href.startsWith("https") ? "_blank" : "_self"}
+        badge={item.title === "Confirm Order" ? true : item.title === "Unshifted" ? true : item.title === "Pending" ? true : item.chip ? true : false}
+        badgeContent={
+          item.title === "Confirm Order"
+            ? pendingOrdersLength?.toString() || "0"
+            : item.title === "Unshifted"
+              ? notificationCount.toString() // Unshifted orders count
+              : item.title === "Pending"
+                ? pendingOrdersLength?.toString() || "0" // Pending/Delivering orders count
+                : item.chip && item.chip !== "dynamic"
+                  ? item.chip
+                  : ""
+        }
+        badgeColor={item.title === "Unshifted" || item.title === "Pending" ? "error" : "secondary"}
+        disabled={item.disabled}
+      >
+        {item.title}
+      </MenuItem>
+
     );
   });
 };
@@ -72,6 +111,7 @@ const {pendingOrdersLength} = useContext(DashboardContext)
 const SidebarItems = () => {
   const pathname = usePathname();
   const pathDirect = pathname;
+  const notificationCount = useNotificationCount(); // 🆕 Get notification count
 
   return (
     <Box sx={{ px: "20px", overflowX: "hiddbloen" }}>
@@ -82,13 +122,13 @@ const SidebarItems = () => {
         themeSecondaryColor="#1a97f51a"
       >
         <div className="flex items-center justify-start my-8">
-          <Logo 
-            width={100} 
-            height={50} 
+          <Logo
+            width={100}
+            height={50}
             showLink={true}
           />
         </div>
-        {RenderMenuItems(Menuitems, pathDirect)}
+        {RenderMenuItems(Menuitems, pathDirect, notificationCount)}
       </MUI_Sidebar>
     </Box>
   );

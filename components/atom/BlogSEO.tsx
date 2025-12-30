@@ -39,17 +39,17 @@ export default function BlogSEO({ post, url }: BlogSEOProps) {
     "@type": "Article",
     "headline": post.title,
     "description": description,
-    "image": post.image || "https://www.champzones.com/images/championchoice-logo.png",
+    "image": post.image || "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
     "author": {
       "@type": "Person",
       "name": post.author
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Champion Choice",
+      "name": "Ibnemukhtar Brand Store",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.champzones.com/images/championchoice-logo.png"
+        "url": "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png"
       }
     },
     "datePublished": post.publishedAt,
@@ -68,9 +68,9 @@ export default function BlogSEO({ post, url }: BlogSEOProps) {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Champion Choice",
-    "url": "https://www.champzones.com/",
-    "logo": "https://www.champzones.com/images/championchoice-logo.png",
+    "name": "Ibnemukhtar Brand Store",
+    "url": "https://ibnemukhtarbrandstore.vercel.app/",
+    "logo": "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
     "description": "Premium martial arts equipment and taekwondo uniforms",
     "address": {
       "@type": "PostalAddress",
@@ -91,19 +91,19 @@ export default function BlogSEO({ post, url }: BlogSEOProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.champzones.com/"
+        "item": "https://ibnemukhtarbrandstore.vercel.app/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://www.champzones.com/blog"
+        "item": "https://ibnemukhtarbrandstore.vercel.app/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.category,
-        "item": `https://www.champzones.com/blog/category/${post.category.toLowerCase()}`
+        "item": `https://ibnemukhtarbrandstore.vercel.app/blog/category/${post.category.toLowerCase()}`
       },
       {
         "@type": "ListItem",
@@ -120,17 +120,17 @@ export default function BlogSEO({ post, url }: BlogSEOProps) {
     "@type": "BlogPosting",
     "headline": post.title,
     "description": description,
-    "image": post.image || "https://www.champzones.com/images/championchoice-logo.png",
+    "image": post.image || "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
     "author": {
       "@type": "Person",
       "name": post.author
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Champion Choice",
+      "name": "Ibnemukhtar Brand Store",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.champzones.com/images/championchoice-logo.png"
+        "url": "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png"
       }
     },
     "datePublished": post.publishedAt,

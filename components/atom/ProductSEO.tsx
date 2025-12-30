@@ -107,9 +107,9 @@ export default function ProductSEO({ product, url }: ProductSEOProps) {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Champion Choice",
-    url: "https://www.champzones.com",
-    logo: "https://www.champzones.com/images/championchoice-logo.png",
+    name: "Ibnemukhtar Brand Store",
+    url: "https://ibnemukhtarbrandstore.vercel.app",
+    logo: "https://ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png",
     description: "Premium martial arts equipment and taekwondo uniforms",
     address: { "@type": "PostalAddress", addressCountry: "PK" },
     contactPoint: { "@type": "ContactPoint", contactType: "customer service" },
@@ -123,13 +123,13 @@ export default function ProductSEO({ product, url }: ProductSEOProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.champzones.com",
+        item: "https://ibnemukhtarbrandstore.vercel.app",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: product.category,
-        item: `https://www.champzones.com/${product.category.toLowerCase()}`,
+        item: `https://ibnemukhtarbrandstore.vercel.app/${product.category.toLowerCase()}`,
       },
       {
         "@type": "ListItem",

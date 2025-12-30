@@ -24,6 +24,17 @@ import LatestBlogs from '../atom/LatestBlogs';
 import AnnouncementBar from '../atom/AnnouncementBar';
 import AnnouncementBarAdvanced from '../atom/AnnouncementBarAdvanced';
 
+// NEW COMPONENTS
+import NewArrivals from '../atom/NewArrivals';
+import BestSellers from '../atom/BestSellers';
+import UniqueFinds from '../atom/UniqueFinds';
+import FreshStock from '../atom/FreshStock';
+import ShopByCollection from '../atom/ShopByCollection';
+import TrendingNow from '../atom/TrendingNow';
+import ShopByActivity from '../atom/ShopByActivity';
+import SeasonalCollections from '../atom/SeasonalCollections';
+import GenderCollectionGrid from '../atom/GenderCollectionGrid';
+
 export default function Home() {
   return (
     <div className="min-h-screen pb-20">
@@ -52,18 +63,53 @@ export default function Home() {
         glowEffect={true}
         separator="★"
       />
+      {/* NEW - Main category grid */}
+      <ShopByCollection />
+
       <CategoryGrid />
+
+      {/* NEW - High visibility for latest products */}
+      <NewArrivals />
+
       <LimitedDeals />
       {/* <TrustBadges /> */}
+
+      {/* NEW - Build trust with top sellers */}
+      <BestSellers />
+
       <Recommended />
+
+      {/* NEW - FOMO and social proof */}
+      <TrendingNow />
+
       <QualityPromise />
-      <Componies />
+      {/* <Componies /> */}
+
+      {/* NEW - Showcase limited inventory */}
+      <UniqueFinds />
+
+
+
       <AffordableFashion />
       {/* <DealSection /> */}
+
+      {/* NEW - Bulk new items */}
+      <FreshStock />
+
+      {/* NEW - Gender navigation */}
+      <GenderCollectionGrid />
+
       <FlashSale />
       {/* <UnderPriceDeals /> */}
       <FeaturedProducts />
+
+      {/* NEW - Lifestyle navigation */}
+      <ShopByActivity />
+
       <FastDelivery />
+
+      {/* NEW - Current season highlights */}
+      <SeasonalCollections />
       <WinterBanner />
       <CustomerReviews />
       {/* <CustomerTestimonials /> */}

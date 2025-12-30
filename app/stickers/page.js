@@ -8,19 +8,18 @@ import CategorySEO from "@/components/atom/CategorySEO";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Stickers & Logos - CHAMPION-CHOICE | Buy  Karate, Taekwondo & MMA  Stickers and logos in Pakistan",
+  title: "Gift Items & Accessories - IBNEMUKHTARBRANDSTORE | Fashion Gifts Pakistan",
   description:
-    "Explore martial arts-themed stickers and logos at CHAMPION-CHOICE. Perfect for customizing gear, laptops, and accessories with taekwondo, karate, and MMA styles.",
+    "Explore fashion gift items and accessories at IBNEMUKHTARBRANDSTORE. Perfect for gifting to loved ones or treating yourself. Affordable and stylish.",
   keywords: [
-    "martial arts stickers",
-    "karate stickers",
-    "taekwondo logos",
-    "MMA decals",
-    "martial arts logos",
-    "gear customization stickers",
-    "sports fashion stickers",
-    "CHAMPION-CHOICE branding accessories",
-    "custom martial arts gear",
+    "fashion gifts Pakistan",
+    "women gift items",
+    "accessories gifts",
+    "lifestyle items",
+    "affordable gifts",
+    "fashion presents",
+    "unique gifts Pakistan",
+    "stylish gift ideas",
   ],
 };
 
@@ -84,8 +83,8 @@ const Page = async ({ searchParams }) => {
     name: item.title,
     price: item.price || 0,
     currency: "PKR",
-    image: item.images?.[0] || "/images/championchoice-logo.png",
-    url: `https://www.champzones.com/product/${item.slug}`
+    image: item.images?.[0] || "/images/ibnemukhtar-logo.png",
+    url: `https://ibnemukhtarbrandstore.vercel.app/product/${item.slug}`
   }));
 
   return (
@@ -93,7 +92,7 @@ const Page = async ({ searchParams }) => {
       <CategorySEO
         category={categoryData}
         products={productsForSEO}
-        url="https://www.champzones.com/"
+        url="https://ibnemukhtarbrandstore.vercel.app/"
       />
       <ProductsPageLayout product={product} category={category} tag={tag} />
     </>

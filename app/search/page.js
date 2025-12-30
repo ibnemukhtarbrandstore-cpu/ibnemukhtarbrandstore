@@ -45,8 +45,8 @@ const Page = async ({ searchParams }) => {
     description: product.disc || "Martial arts product from Champion Choice",
     price: product.price || 0,
     currency: "PKR",
-    image: product.images?.[0] || "/images/championchoice-logo.png",
-    url: `https://www.champzones.com/product/${product.slug}`,
+    image: product.images?.[0] || "/images/ibnemukhtar-logo.png",
+    url: `https://ibnemukhtarbrandstore.vercel.app/product/${product.slug}`,
     type: "product"
   }));
 
@@ -56,7 +56,7 @@ const Page = async ({ searchParams }) => {
         query={q || "all products"}
         results={searchResults}
         totalResults={Products.length}
-        url="https://www.champzones.com/"
+        url="https://ibnemukhtarbrandstore.vercel.app/"
       />
       <Suspense fallback={<div>Loading Search...</div>}>
         <SearchPageCompoent allData={JSON.parse(JSON.stringify(Products))} />

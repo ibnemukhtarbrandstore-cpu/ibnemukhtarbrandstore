@@ -18,7 +18,7 @@ interface FAQSEOProps {
 
 export default function FAQSEO({ title, description, faqs, url, category }: FAQSEOProps) {
   const [fullUrl, setFullUrl] = useState(url);
-  
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setFullUrl(`${url}${window.location.pathname}`);
@@ -44,8 +44,8 @@ export default function FAQSEO({ title, description, faqs, url, category }: FAQS
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Champion Choice",
-    "url": "https://www.champzones.com",
-    "logo": "https://www.champzones.com/images/championchoice-logo.png",
+    "url": "https://ibnemukhtarbrandstore.vercel.app/",
+    "logo": "https://ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png",
     "description": "Premium martial arts equipment and taekwondo uniforms",
     "address": {
       "@type": "PostalAddress",
@@ -63,7 +63,7 @@ export default function FAQSEO({ title, description, faqs, url, category }: FAQS
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.champzones.com"
+      "item": "https://ibnemukhtarbrandstore.vercel.app/"
     }
   ];
 
@@ -72,7 +72,7 @@ export default function FAQSEO({ title, description, faqs, url, category }: FAQS
       "@type": "ListItem",
       "position": 2,
       "name": category,
-      "item": `https://www.champzones.com/${category.toLowerCase()}`
+      "item": `https://ibnemukhtarbrandstore.vercel.app/${category.toLowerCase()}`
     });
   }
 
@@ -94,11 +94,11 @@ export default function FAQSEO({ title, description, faqs, url, category }: FAQS
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Champion Choice",
-    "url": "https://www.champzones.com",
+    "url": "https://ibnemukhtarbrandstore.vercel.app/",
     "description": "Premium martial arts equipment and taekwondo uniforms",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.champzones.com/search?q={search_term_string}",
+      "target": "https://ibnemukhtarbrandstore.vercel.app/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -111,31 +111,31 @@ export default function FAQSEO({ title, description, faqs, url, category }: FAQS
       <meta name="keywords" content={`FAQ, frequently asked questions, ${category || 'martial arts'}, champion choice, help`} />
       <meta name="robots" content="index, follow" />
       <meta name="author" content="Champion Choice" />
-      
+
       {/* Open Graph Tags */}
       <meta property="og:title" content={`${title} - Champion Choice`} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://www.champzones.com/images/championchoice-logo.png" />
+      <meta property="og:image" content="https://ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png" />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Champion Choice" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      
+
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={`${title} - Champion Choice`} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://www.champzones.com/images/championchoice-logo.png" />
+      <meta name="twitter:image" content="https://ibnemukhtarbrandstore.vercel.app/images/championchoice-logo.png" />
       <meta name="twitter:site" content="@championchoice" />
       <meta name="twitter:creator" content="@championchoice" />
-      
+
       {/* Additional SEO Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#DD8560" />
       <link rel="canonical" href={fullUrl} />
-      
+
       {/* Structured Data */}
       <script
         type="application/ld+json"
@@ -143,21 +143,21 @@ export default function FAQSEO({ title, description, faqs, url, category }: FAQS
           __html: JSON.stringify(organizationSchema)
         }}
       />
-      
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(websiteSchema)
         }}
       />
-      
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqSchema)
         }}
       />
-      
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

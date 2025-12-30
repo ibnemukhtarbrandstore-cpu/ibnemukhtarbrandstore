@@ -21,7 +21,7 @@ export default function AboutPage() {
         description="Learn about Ibnemukhtar Brand Store, Pakistan's trusted source for affordable winter jackets and shoes. Quality products for men, women, and kids with excellent customer service and fast delivery."
         keywords="about Ibnemukhtar, winter jackets Pakistan, affordable jackets, winter shoes, Pakistani brand, winter wear"
         type="website"
-        url="https://www.champzones.com/about"
+        url="https://ibnemukhtarbrandstore.vercel.app/about"
       />
       <div className="container mx-auto px-4 py-8 mt-12 text-center md:text-left">
         <h1 className="text-3xl font-bold mb-6">Ibnemukhtar Brand Store</h1>

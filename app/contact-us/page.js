@@ -26,7 +26,7 @@ export default function ContactPage() {
         description="Contact Ibnemukhtar Brand Store for any questions about winter jackets, shoes, or orders. We are here to help with customer support and product inquiries."
         keywords="contact Ibnemukhtar, customer support, winter jackets help, product inquiries, order support"
         type="website"
-        url="https://www.champzones.com/contact-us"
+        url="https://ibnemukhtarbrandstore.vercel.app/contact-us"
       />
       <div className="max-w-4xl pt-20 mx-auto p-6">
         <Head>
