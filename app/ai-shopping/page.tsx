@@ -78,10 +78,6 @@ function AIShoppingContent() {
     );
 }
 
-export const metadata: Metadata = {
-    title: 'AI Shopping Assistant | Ibnemukhtar Brand Store',
-    description: 'Shop with voice commands! Get personalized fashion recommendations for women\'s suits, winter jackets, and shoes. Your AI fashion assistant in Pakistan.',
-};
 export default function AIShoppingPage() {
     return (
         <Suspense fallback={<div className="min-h-screen bg-black" />}>

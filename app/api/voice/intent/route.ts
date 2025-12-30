@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 import VoiceQuestion from '@/app/features/voice-ai/models/VoiceQuestion';
 import { KNOWLEDGE_BASE, FILLER_WORDS } from '@/app/features/voice-ai/config/knowledge-base';
-import { detectIntent, findRoute, extractUniformParams, buildUniformURL, extractProductName } from '@/app/features/voice-ai/config/ai-memory';
+import { detectIntent, findRoute, extractSuitParams, buildSuitURL, extractProductName } from '@/app/features/voice-ai/config/ai-memory';
 import { findPageByKeyword, getSimilarPages, SITE_MAP } from '@/app/features/voice-ai/config/site-map';
 import { FunctionExecutor } from '@/app/features/voice-ai/utils/function-executor';
 import { rateLimiter, isConfirmation } from '@/app/features/voice-ai/config/safety-controls';
@@ -244,7 +244,7 @@ export async function POST(req: Request) {
             const filterString = match ? match[1] : '';
 
             // Parse filter parameters
-            const params = extractUniformParams(filterString || transcript);
+            const params = extractSuitParams(filterString || transcript);
 
             // SMART ROUTING: Use uniforms-search for filtered queries
             const queryParams = new URLSearchParams();
