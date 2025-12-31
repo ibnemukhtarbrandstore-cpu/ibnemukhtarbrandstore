@@ -23,6 +23,19 @@ import CountdownTimer from "../molecules/CountdownTimer";
 import { useFacebookPixel } from "@/hooks/useFacebookPixel";
 import ProductVideo from "@/components/product/ProductVideo";
 
+// ✅ NEW: Conversion-optimized components
+import ProductBenefits from "../product/ProductBenefits";
+import ProductReviews from "../product/ProductReviews";
+import ProductGuarantee from "../product/ProductGuarantee";
+import ProductFAQ from "../product/ProductFAQ";
+
+// ✅ AIDA Product Page Components
+import ProductHowItWorks from "../product/ProductHowItWorks";
+import ProductMainBenefit from "../product/ProductMainBenefit";
+import ProductDetailedBenefits from "../product/ProductDetailedBenefits";
+import ProductHowToUse from "../product/ProductHowToUse";
+import ProductResults from "../product/ProductResults";
+
 const SlugPage = ({ product, variant, params, productrelatedData }) => {
   const { trackProductView } = useFacebookPixel();
   trackProductView({
@@ -427,6 +440,7 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
                 )}
               </span>
 
+
               {/* Product Specifications */}
               {(product.brand || product.material || product.weight || product.dimensions?.length || product.careInstructions || product.warranty || product.sku || product.condition) && (
                 <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
@@ -448,8 +462,8 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
                       <div className="flex">
                         <span className="font-medium text-gray-700 w-32">Condition:</span>
                         <span className={`px-2 py-0.5 rounded text-xs font-medium ${product.condition === 'New' ? 'bg-green-100 text-green-800' :
-                            product.condition === 'Pre-loved' ? 'bg-blue-100 text-blue-800' :
-                              'bg-yellow-100 text-yellow-800'
+                          product.condition === 'Pre-loved' ? 'bg-blue-100 text-blue-800' :
+                            'bg-yellow-100 text-yellow-800'
                           }`}>
                           {product.condition}
                         </span>
@@ -597,9 +611,48 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
                 </AccordionDetails>
               </Accordion>
             </div>
+
+
+
           </div>
         </div>
+        {/* ===== AIDA PRODUCT PAGE FLOW ===== */}
 
+        {/* 1. ATTENTION: 3 Emoji Benefits */}
+        {/* <ProductBenefits benefits={product.benefits} /> */}
+
+        {/* 2. INTEREST: How It Works */}
+        <ProductHowItWorks howItWorks={product.howItWorks} />
+
+        {/* 3. INTEREST: Main Benefit Section */}
+        <ProductMainBenefit
+          headline={product.mainBenefitHeadline}
+          text={product.mainBenefitText}
+        />
+
+        {/* 4. INTEREST: Detailed Benefits */}
+        <ProductDetailedBenefits benefits={product.detailedBenefits} />
+
+        {/* 5. INTEREST: How to Use */}
+        <ProductHowToUse
+          headline={product.howToUseHeadline}
+          text={product.howToUseText}
+        />
+
+        {/* 6. DESIRE: Results Statistics */}
+        <ProductResults
+          headline={product.resultsHeadline}
+          text={product.resultsText}
+          statistics={product.statistics}
+        />
+
+        {/* 7. DESIRE: Customer Reviews (Social Proof) */}
+        <ProductReviews reviews={product.reviews} />
+        {/* ✅ NEW: Money Back Guarantee - Remove anxiety (hardcoded) */}
+        <ProductGuarantee />
+
+        {/* ✅ NEW: FAQs - Handle objections (hardcoded) */}
+        <ProductFAQ />
         {/* You May Also Like */}
         <div className="flex flex-col items-center justify-center mt-12">
           <div className="flex flex-col items-center justify-center">

@@ -268,7 +268,7 @@ export default function CustomerReviews() {
                 <div className="w-32 h-32 md:w-20 md:h-20 rounded-full overflow-hidden border-4 border-white shadow-lg">
                   <Image
                     src={OptimizedProfileUrl}
-                    alt={reviews[currentReview].name}
+                    alt={reviews[currentReview].name || "ibnemukhtar brandstore customer image "}
                     width={80}
                     height={80}
                     className="w-full h-full object-cover"

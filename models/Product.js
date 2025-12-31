@@ -113,6 +113,52 @@ const productSchema = new mongoose.Schema(
       default: 'New'
     },
 
+    // ✅ CONVERSION BOOST FIELDS - High-converting product page elements
+    benefits: [{
+      emoji: { type: String, default: '' },
+      text: { type: String, default: '' }
+    }],
+
+    reviews: [{
+      name: { type: String, default: '' },
+      location: { type: String, default: '' },
+      text: { type: String, default: '' },
+      rating: { type: Number, default: 5, min: 1, max: 5 },
+      verified: { type: Boolean, default: true },
+      date: { type: Date, default: Date.now }
+    }],
+
+    // ✅ AIDA PRODUCT PAGE FIELDS
+    // How It Works - Collapsible explanation
+    howItWorks: { type: String, default: '' },
+
+    // Main Benefit Section
+    mainBenefitHeadline: { type: String, default: '' },
+    mainBenefitText: { type: String, default: '' },
+
+    // Detailed Benefits (3 bulletpoints with descriptions)
+    detailedBenefits: [{
+      title: { type: String, default: '' },
+      description: { type: String, default: '' }
+    }],
+
+    // How to Use Section
+    howToUseHeadline: { type: String, default: '' },
+    howToUseText: { type: String, default: '' },
+
+    // Results Statistics
+    resultsHeadline: { type: String, default: '' },
+    resultsText: { type: String, default: '' },
+    statistics: [{
+      percentage: { type: Number, default: 0 },
+      text: { type: String, default: '' }
+    }],
+
+    guarantee: {
+      days: { type: Number, default: 30 },
+      features: [{ type: String }]
+    },
+
   },
   { timestamps: true }
 );

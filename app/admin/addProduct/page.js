@@ -75,6 +75,41 @@ const Page = () => {
     warranty: "",
     sku: "",
     condition: "New",
+    // ✅ CONVERSION BOOST FIELDS
+    benefit1Emoji: "",
+    benefit1Text: "",
+    benefit2Emoji: "",
+    benefit2Text: "",
+    benefit3Emoji: "",
+    benefit3Text: "",
+    review1Name: "",
+    review1Location: "",
+    review1Text: "",
+    review1Rating: "5",
+    review2Name: "",
+    review2Location: "",
+    review2Text: "",
+    review2Rating: "5",
+    // AIDA Product Page Fields
+    howItWorks: "",
+    mainBenefitHeadline: "",
+    mainBenefitText: "",
+    detailedBenefit1Title: "",
+    detailedBenefit1Desc: "",
+    detailedBenefit2Title: "",
+    detailedBenefit2Desc: "",
+    detailedBenefit3Title: "",
+    detailedBenefit3Desc: "",
+    howToUseHeadline: "",
+    howToUseText: "",
+    resultsHeadline: "",
+    resultsText: "",
+    stat1Percentage: "94",
+    stat1Text: "",
+    stat2Percentage: "97",
+    stat2Text: "",
+    stat3Percentage: "96",
+    stat3Text: "",
   });
 
   const [uploadedImages, setUploadedImages] = useState([]); // [{ url, publicId, status, progress, error }]
@@ -185,7 +220,8 @@ const Page = () => {
   }
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setForm({ ...form, [name]: type === 'checkbox' ? checked : value });
   };
 
   const handleEditorChange = (content) => {
@@ -194,16 +230,127 @@ const Page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("=== FORM SUBMISSION STARTED ===");
+    console.log("1. Raw Form Data:", form);
+    console.log("2. AIDA Fields from Form:", {
+      howItWorks: form.howItWorks,
+      mainBenefitHeadline: form.mainBenefitHeadline,
+      mainBenefitText: form.mainBenefitText,
+      detailedBenefit1Title: form.detailedBenefit1Title,
+      detailedBenefit1Desc: form.detailedBenefit1Desc,
+      detailedBenefit2Title: form.detailedBenefit2Title,
+      detailedBenefit2Desc: form.detailedBenefit2Desc,
+      detailedBenefit3Title: form.detailedBenefit3Title,
+      detailedBenefit3Desc: form.detailedBenefit3Desc,
+      howToUseHeadline: form.howToUseHeadline,
+      howToUseText: form.howToUseText,
+      resultsHeadline: form.resultsHeadline,
+      resultsText: form.resultsText,
+      stat1Percentage: form.stat1Percentage,
+      stat1Text: form.stat1Text,
+      stat2Percentage: form.stat2Percentage,
+      stat2Text: form.stat2Text,
+      stat3Percentage: form.stat3Percentage,
+      stat3Text: form.stat3Text
+    });
+
     if (uploadedImages.length < 1 || uploadedImages.some(img => img.status !== "success")) {
       toast.error("Please upload at least one image successfully.", { autoClose: 1000 });
       return;
     }
     setBtnLoading(true);
+
+    // ✅ Structure conversion fields properly
+    const benefits = [];
+    if (form.benefit1Emoji && form.benefit1Text) {
+      benefits.push({ emoji: form.benefit1Emoji, text: form.benefit1Text });
+    }
+    if (form.benefit2Emoji && form.benefit2Text) {
+      benefits.push({ emoji: form.benefit2Emoji, text: form.benefit2Text });
+    }
+    if (form.benefit3Emoji && form.benefit3Text) {
+      benefits.push({ emoji: form.benefit3Emoji, text: form.benefit3Text });
+    }
+
+    const reviews = [];
+    if (form.review1Name && form.review1Text) {
+      reviews.push({
+        name: form.review1Name,
+        location: form.review1Location,
+        text: form.review1Text,
+        rating: parseInt(form.review1Rating),
+        verified: true
+      });
+    }
+    if (form.review2Name && form.review2Text) {
+      reviews.push({
+        name: form.review2Name,
+        location: form.review2Location,
+        text: form.review2Text,
+        rating: parseInt(form.review2Rating),
+        verified: true
+      });
+    }
+
+    // Structure AIDA Page Data
+    const detailedBenefits = [];
+    if (form.detailedBenefit1Title && form.detailedBenefit1Desc) {
+      detailedBenefits.push({ title: form.detailedBenefit1Title, description: form.detailedBenefit1Desc });
+    }
+    if (form.detailedBenefit2Title && form.detailedBenefit2Desc) {
+      detailedBenefits.push({ title: form.detailedBenefit2Title, description: form.detailedBenefit2Desc });
+    }
+    if (form.detailedBenefit3Title && form.detailedBenefit3Desc) {
+      detailedBenefits.push({ title: form.detailedBenefit3Title, description: form.detailedBenefit3Desc });
+    }
+
+    const statistics = [];
+    if (form.stat1Text) {
+      statistics.push({ percentage: parseInt(form.stat1Percentage) || 0, text: form.stat1Text });
+    }
+    if (form.stat2Text) {
+      statistics.push({ percentage: parseInt(form.stat2Percentage) || 0, text: form.stat2Text });
+    }
+    if (form.stat3Text) {
+      statistics.push({ percentage: parseInt(form.stat3Percentage) || 0, text: form.stat3Text });
+    }
+
     const cleanForm = {
       ...form,
       tags: form.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
       images: uploadedImages.map(img => img.url),
+      benefits,
+      reviews,
+      // AIDA Page Fields
+      howItWorks: form.howItWorks,
+      mainBenefitHeadline: form.mainBenefitHeadline,
+      mainBenefitText: form.mainBenefitText,
+      detailedBenefits,
+      howToUseHeadline: form.howToUseHeadline,
+      howToUseText: form.howToUseText,
+      resultsHeadline: form.resultsHeadline,
+      resultsText: form.resultsText,
+      statistics
     };
+
+    console.log("3. Structured Benefits:", benefits);
+    console.log("4. Structured Reviews:", reviews);
+    console.log("5. Structured DetailedBenefits:", detailedBenefits);
+    console.log("6. Structured Statistics:", statistics);
+    console.log("7. CleanForm Object (WILL BE SENT TO API):", cleanForm);
+    console.log("8. CleanForm AIDA Fields:", {
+      howItWorks: cleanForm.howItWorks,
+      mainBenefitHeadline: cleanForm.mainBenefitHeadline,
+      mainBenefitText: cleanForm.mainBenefitText,
+      detailedBenefits: cleanForm.detailedBenefits,
+      howToUseHeadline: cleanForm.howToUseHeadline,
+      howToUseText: cleanForm.howToUseText,
+      resultsHeadline: cleanForm.resultsHeadline,
+      resultsText: cleanForm.resultsText,
+      statistics: cleanForm.statistics
+    });
+
     try {
       const res = await fetch("/api/addProduct", {
         method: "POST",
@@ -211,7 +358,11 @@ const Page = () => {
         body: JSON.stringify(cleanForm),
       });
       const data = await res.json();
-      if (!res.ok) {
+
+      console.log("9. API Response Status:", res.status);
+      console.log("10. API Response Data:", data);
+
+      if (res.status === 201) {
         toast.error(data.error || "Something went wrong!", { autoClose: 1000 });
         // Cleanup: delete all uploaded images
         const publicIds = uploadedImages.map(img => img.publicId).filter(Boolean);
@@ -249,6 +400,40 @@ const Page = () => {
           warranty: "",
           sku: "",
           condition: "New",
+          benefit1Emoji: "",
+          benefit1Text: "",
+          benefit2Emoji: "",
+          benefit2Text: "",
+          benefit3Emoji: "",
+          benefit3Text: "",
+          review1Name: "",
+          review1Location: "",
+          review1Text: "",
+          review1Rating: "5",
+          review2Name: "",
+          review2Location: "",
+          review2Text: "",
+          review2Rating: "5",
+          // AIDA fields
+          howItWorks: "",
+          mainBenefitHeadline: "",
+          mainBenefitText: "",
+          detailedBenefit1Title: "",
+          detailedBenefit1Desc: "",
+          detailedBenefit2Title: "",
+          detailedBenefit2Desc: "",
+          detailedBenefit3Title: "",
+          detailedBenefit3Desc: "",
+          howToUseHeadline: "",
+          howToUseText: "",
+          resultsHeadline: "",
+          resultsText: "",
+          stat1Percentage: "94",
+          stat1Text: "",
+          stat2Percentage: "97",
+          stat2Text: "",
+          stat3Percentage: "96",
+          stat3Text: "",
         });
         setUploadedImages([]);
         setSuccess(true); // <-- show success message
@@ -256,9 +441,10 @@ const Page = () => {
         toast.success("Product Uploaded Successfully", { autoClose: 1000 });
       }
     } catch (error) {
-      toast.error("Upload failed!", { autoClose: 1000 });
+      console.error("11. ERROR during submission:", error);
+      alert("Error: " + error.message);
+      setBtnLoading(false);
     }
-    setBtnLoading(false);
   };
 
   return (
@@ -505,6 +691,480 @@ const Page = () => {
                         </Grid>
                       </Grid>
 
+                      {/* Conversion Boost Section */}
+                      <Typography variant="h6" sx={{ mt: 3, mb: 2, fontWeight: 'bold', color: 'secondary.main', borderTop: '2px solid', borderColor: 'secondary.main', pt: 2 }}>
+                        🚀 Conversion Boost - High-Converting Elements
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                        Add benefits, reviews, and guarantees to increase sales by 25-40%
+                      </Typography>
+
+                      {/* Product Benefits */}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>
+                        Product Benefits (3 items)
+                      </Typography>
+                      <Grid container spacing={1} sx={{ mb: 2 }}>
+                        <Grid item xs={2}>
+                          <TextField
+                            name="benefit1Emoji"
+                            placeholder="🌸"
+                            size="small"
+                            value={form.benefit1Emoji}
+                            onChange={handleChange}
+                            fullWidth
+                            inputProps={{ maxLength: 2, style: { fontSize: '1.5rem', textAlign: 'center' } }}
+                          />
+                        </Grid>
+                        <Grid item xs={10}>
+                          <TextField
+                            name="benefit1Text"
+                            placeholder="Feel Confident at Events"
+                            size="small"
+                            value={form.benefit1Text}
+                            onChange={handleChange}
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={2}>
+                          <TextField
+                            name="benefit2Emoji"
+                            placeholder="✨"
+                            size="small"
+                            value={form.benefit2Emoji}
+                            onChange={handleChange}
+                            fullWidth
+                            inputProps={{ maxLength: 2, style: { fontSize: '1.5rem', textAlign: 'center' } }}
+                          />
+                        </Grid>
+                        <Grid item xs={10}>
+                          <TextField
+                            name="benefit2Text"
+                            placeholder="Premium Quality That Lasts"
+                            size="small"
+                            value={form.benefit2Text}
+                            onChange={handleChange}
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={2}>
+                          <TextField
+                            name="benefit3Emoji"
+                            placeholder="💃"
+                            size="small"
+                            value={form.benefit3Emoji}
+                            onChange={handleChange}
+                            fullWidth
+                            inputProps={{ maxLength: 2, style: { fontSize: '1.5rem', textAlign: 'center' } }}
+                          />
+                        </Grid>
+                        <Grid item xs={10}>
+                          <TextField
+                            name="benefit3Text"
+                            placeholder="Perfect Fit Guaranteed"
+                            size="small"
+                            value={form.benefit3Text}
+                            onChange={handleChange}
+                            fullWidth
+                          />
+                        </Grid>
+                      </Grid>
+
+                      {/* Customer Reviews */}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 3, mb: 1 }}>
+                        Customer Reviews (2-3 reviews)
+                      </Typography>
+
+                      <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 2, p: 2, mb: 2 }}>
+                        <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>Review 1</Typography>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <TextField
+                              name="review1Name"
+                              label="Name"
+                              placeholder="Ayesha"
+                              size="small"
+                              value={form.review1Name}
+                              onChange={handleChange}
+                              fullWidth
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <TextField
+                              name="review1Location"
+                              label="Location"
+                              placeholder="Lahore"
+                              size="small"
+                              value={form.review1Location}
+                              onChange={handleChange}
+                              fullWidth
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="review1Text"
+                              label="Review Text"
+                              placeholder="Bahut acha quality! Office ke liye perfect."
+                              size="small"
+                              value={form.review1Text}
+                              onChange={handleChange}
+                              fullWidth
+                              multiline
+                              rows={2}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="review1Rating"
+                              label="Rating"
+                              size="small"
+                              value={form.review1Rating}
+                              onChange={handleChange}
+                              fullWidth
+                              select
+                              SelectProps={{ native: true }}
+                            >
+                              <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
+                              <option value="4">⭐⭐⭐⭐ (4 stars)</option>
+                            </TextField>
+                          </Grid>
+                        </Grid>
+                      </Box>
+
+                      <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 2, p: 2, mb: 2 }}>
+                        <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>Review 2</Typography>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <TextField
+                              name="review2Name"
+                              label="Name"
+                              placeholder="Fatima"
+                              size="small"
+                              value={form.review2Name}
+                              onChange={handleChange}
+                              fullWidth
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <TextField
+                              name="review2Location"
+                              label="Location"
+                              placeholder="Karachi"
+                              size="small"
+                              value={form.review2Location}
+                              onChange={handleChange}
+                              fullWidth
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="review2Text"
+                              label="Review Text"
+                              placeholder="Fast delivery aur beautiful packaging!"
+                              size="small"
+                              value={form.review2Text}
+                              onChange={handleChange}
+                              fullWidth
+                              multiline
+                              rows={2}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="review2Rating"
+                              label="Rating"
+                              size="small"
+                              value={form.review2Rating}
+                              onChange={handleChange}
+                              fullWidth
+                              select
+                              SelectProps={{ native: true }}
+                            >
+                              <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
+                              <option value="4">⭐⭐⭐⭐ (4 stars)</option>
+                            </TextField>
+                          </Grid>
+                        </Grid>
+                      </Box>
+
+                      {/* ===== AIDA PRODUCT PAGE SECTION ===== */}
+                      <Typography variant="h6" sx={{ mt: 4, mb: 2, fontWeight: 'bold', color: 'primary.main', borderTop: '3px solid', borderColor: 'primary.main', pt: 2 }}>
+                        📄 AIDA Product Page Content
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                        Complete product description using AIDA principles (Apne design template ke mutabiq)
+                      </Typography>
+
+                      {/* How It Works */}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>
+                        💡 How It Works (Product kaise use karte hain)
+                      </Typography>
+                      <TextField
+                        name="howItWorks"
+                        placeholder="Example: Just twist the cap and apply gently on skin. Use twice daily for best results. Safe for all skin types."
+                        value={form.howItWorks}
+                        onChange={handleChange}
+                        fullWidth
+                        multiline
+                        rows={2}
+                        size="small"
+                        sx={{ mb: 3 }}
+                      />
+
+                      {/* Main Benefit Section */}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>
+                        🎯 Main Benefit (Sabse bari benefit)
+                      </Typography>
+                      <Grid container spacing={2} sx={{ mb: 3 }}>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="mainBenefitHeadline"
+                            label="Headline"
+                            placeholder="Get Glowing Skin in 7 Days"
+                            value={form.mainBenefitHeadline}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="mainBenefitText"
+                            label="Description (2-3 sentences)"
+                            placeholder="Our advanced formula penetrates deep into skin layers. Clinical studies show visible results in just one week."
+                            value={form.mainBenefitText}
+                            onChange={handleChange}
+                            fullWidth
+                            multiline
+                            rows={2}
+                            size="small"
+                          />
+                        </Grid>
+                      </Grid>
+
+                      {/* Detailed Benefits */}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>
+                        💎 3 Detailed Benefits (Tafseel mein fayde)
+                      </Typography>
+
+                      <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 2, p: 2, mb: 2 }}>
+                        <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>Benefit 1</Typography>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="detailedBenefit1Title"
+                              label="Title"
+                              placeholder="Long-Lasting Results"
+                              value={form.detailedBenefit1Title}
+                              onChange={handleChange}
+                              fullWidth
+                              size="small"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="detailedBenefit1Desc"
+                              label="Description (2 sentences)"
+                              placeholder="Effects last up to 12 hours. No need for frequent reapplication throughout the day."
+                              value={form.detailedBenefit1Desc}
+                              onChange={handleChange}
+                              fullWidth
+                              multiline
+                              rows={2}
+                              size="small"
+                            />
+                          </Grid>
+                        </Grid>
+                      </Box>
+
+                      <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 2, p: 2, mb: 2 }}>
+                        <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>Benefit 2</Typography>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="detailedBenefit2Title"
+                              label="Title"
+                              placeholder="Safe & Natural"
+                              value={form.detailedBenefit2Title}
+                              onChange={handleChange}
+                              fullWidth
+                              size="small"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="detailedBenefit2Desc"
+                              label="Description (2 sentences)"
+                              placeholder="Made with organic ingredients. Dermatologically tested and approved for sensitive skin."
+                              value={form.detailedBenefit2Desc}
+                              onChange={handleChange}
+                              fullWidth
+                              multiline
+                              rows={2}
+                              size="small"
+                            />
+                          </Grid>
+                        </Grid>
+                      </Box>
+
+                      <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 2, p: 2, mb: 3 }}>
+                        <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>Benefit 3</Typography>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="detailedBenefit3Title"
+                              label="Title"
+                              placeholder="Fast Absorption"
+                              value={form.detailedBenefit3Title}
+                              onChange={handleChange}
+                              fullWidth
+                              size="small"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              name="detailedBenefit3Desc"
+                              label="Description (2 sentences)"
+                              placeholder="Lightweight formula absorbs in seconds. No greasy residue or sticky feeling."
+                              value={form.detailedBenefit3Desc}
+                              onChange={handleChange}
+                              fullWidth
+                              multiline
+                              rows={2}
+                              size="small"
+                            />
+                          </Grid>
+                        </Grid>
+                      </Box>
+
+                      {/* How to Use */}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>
+                        📖 How to Use (Istemal karne ka tareeqa)
+                      </Typography>
+                      <Grid container spacing={2} sx={{ mb: 3 }}>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="howToUseHeadline"
+                            label="Headline"
+                            placeholder="Simple 3-Step Application"
+                            value={form.howToUseHeadline}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="howToUseText"
+                            label="Instructions (2-3 sentences)"
+                            placeholder="Cleanse face thoroughly. Apply small amount and massage gently. Use morning and evening for best results."
+                            value={form.howToUseText}
+                            onChange={handleChange}
+                            fullWidth
+                            multiline
+                            rows={2}
+                            size="small"
+                          />
+                        </Grid>
+                      </Grid>
+
+                      {/* Results Statistics */}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, mb: 1 }}>
+                        📊 Customer Results (Statistics)
+                      </Typography>
+                      <Grid container spacing={2} sx={{ mb: 3 }}>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="resultsHeadline"
+                            label="Headline"
+                            placeholder="Proven Results from Real Customers"
+                            value={form.resultsHeadline}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="resultsText"
+                            label="Description"
+                            placeholder="Based on 500+ customer reviews and clinical trials."
+                            value={form.resultsText}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                          <TextField
+                            name="stat1Percentage"
+                            label="Stat 1 %"
+                            type="number"
+                            value={form.stat1Percentage}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            name="stat1Text"
+                            label="Stat 1 Text"
+                            placeholder="said 'Visible improvement in 7 days'"
+                            value={form.stat1Text}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                          <TextField
+                            name="stat2Percentage"
+                            label="Stat 2 %"
+                            type="number"
+                            value={form.stat2Percentage}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            name="stat2Text"
+                            label="Stat 2 Text"
+                            placeholder="said 'Would recommend to friends'"
+                            value={form.stat2Text}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                          <TextField
+                            name="stat3Percentage"
+                            label="Stat 3 %"
+                            type="number"
+                            value={form.stat3Percentage}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                        <Grid item xs={8}>
+                          <TextField
+                            name="stat3Text"
+                            label="Stat 3 Text"
+                            placeholder="said 'Better than expensive brands'"
+                            value={form.stat3Text}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                          />
+                        </Grid>
+                      </Grid>
+
                       {/* Images */}
                       <ImageUploader
                         maxImages={4}
@@ -516,15 +1176,15 @@ const Page = () => {
                       />
 
                       <Button type="submit" color="primary" variant="contained" fullWidth sx={{ py: 1.5, fontSize: { xs: '1rem', sm: '1.1rem' } }}>Submit</Button>
-                    </Stack>
-                  </form>
-                </BaseCard>
-              </Grid>
-            </Box>
-          </Container>
-        </Box>
-      </PageWrapper>
-    </MainWrapper>
+                    </Stack >
+                  </form >
+                </BaseCard >
+              </Grid >
+            </Box >
+          </Container >
+        </Box >
+      </PageWrapper >
+    </MainWrapper >
   );
 };
 
