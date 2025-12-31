@@ -63,21 +63,19 @@ export default function Home() {
         glowEffect={true}
         separator="★"
       />
+      <FlashSale />
+      <LimitedDeals />
+      <Recommended />
       {/* NEW - Main category grid */}
       <ShopByCollection />
-
       <CategoryGrid />
-
       {/* NEW - High visibility for latest products */}
       <NewArrivals />
-
-      <LimitedDeals />
-      {/* <TrustBadges /> */}
+      <TrustBadges />
 
       {/* NEW - Build trust with top sellers */}
       <BestSellers />
 
-      <Recommended />
 
       {/* NEW - FOMO and social proof */}
       <TrendingNow />
@@ -99,7 +97,7 @@ export default function Home() {
       {/* NEW - Gender navigation */}
       <GenderCollectionGrid />
 
-      <FlashSale />
+
       {/* <UnderPriceDeals /> */}
       <FeaturedProducts />
 
