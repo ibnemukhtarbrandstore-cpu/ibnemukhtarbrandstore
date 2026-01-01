@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import OptimizedImage from '@/components/common/OptimizedImage';
 import { getOptimizedCloudinaryUrl } from '@/services/api';
 
 export default function FreshStock() {
@@ -98,9 +98,7 @@ export default function FreshStock() {
 }
 
 function ProductCard({ product, onClick, mobile = false }) {
-    const [imageError, setImageError] = useState(false);
-
-    const cardClasses = mobile ? "flex-shrink-0 w-40 sm:w-48 snap-center" : "";
+    const cardClasses = mobile ? "flex-shrink-0 w-64 snap-center" : "w-full";
     const price = product.flashPrice || product.price;
     const stockCount = product.availability || 0;
 
@@ -127,15 +125,16 @@ function ProductCard({ product, onClick, mobile = false }) {
             </div>
 
             {/* Product Image */}
-            <div className={`relative ${mobile ? 'h-48' : 'h-64'} bg-gray-100 overflow-hidden`}>
-                {product.images && product.images.length > 0 && !imageError ? (
-                    <Image
+            <div className={`relative ${mobile ? 'h-56' : 'h-64'} bg-gray-100 overflow-hidden`}>
+                {product.images && product.images.length > 0 ? (
+                    <OptimizedImage
                         src={getOptimizedCloudinaryUrl(product.images[0])}
                         alt={product.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        onError={() => setImageError(false)}
-                        sizes={mobile ? "160px" : "(max-width: 768px) 50vw, 25vw"}
+                        sizes={mobile ? "256px" : "(max-width: 768px) 50vw, 25vw"}
+                        fallbackIcon="📦"
+                        priority={false}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">

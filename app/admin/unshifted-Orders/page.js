@@ -368,6 +368,11 @@ const Page = () => {
                           </TableCell>
                           <TableCell>
                             <Typography color="textSecondary" variant="h6">
+                              phone
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography color="textSecondary" variant="h6">
                               Amount
                             </Typography>
                           </TableCell>
@@ -419,6 +424,20 @@ const Page = () => {
                                   {Object.keys(order.products).length}
                                 </Typography>
                               </TableCell>
+                              <Typography
+                                variant="body2"
+                                fontWeight={600}
+                                sx={{
+                                  backgroundColor: "#FEF3C7",
+                                  color: "#F59E0B",
+                                  padding: "4px 8px",
+                                  borderRadius: "4px",
+                                  display: "inline-block",
+                                  fontSize: "12px"
+                                }}
+                              >
+                                {order.phone}
+                              </Typography>
                               <TableCell>
                                 <Typography color="textSecondary" variant="h6">
                                   Rs.{order.amount}/_

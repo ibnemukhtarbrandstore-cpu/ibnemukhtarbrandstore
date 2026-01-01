@@ -250,12 +250,16 @@ function CheckoutPage() {
   };
 
   useEffect(() => {
-    if (deliveryMethod === "post-office") {
-      setDeliveryCharge(calculateDeliveryCharges(cart, deliveryMethod));
-    } else {
+    // Always free delivery for Pakistan
+    if (isPakistan) {
       setDeliveryCharge(0);
+      setFreeDelivery(true);
+    } else {
+      // No delivery for non-Pakistan locations
+      setDeliveryCharge(0);
+      setFreeDelivery(false);
     }
-  }, [cart, deliveryMethod]);
+  }, [cart, deliveryMethod, isPakistan]);
 
   const handleDeliveryChange = (e) => {
     setDeliveryMethod(e.target.value);
@@ -263,6 +267,17 @@ function CheckoutPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if location is Pakistan
+    if (!isPakistan) {
+      toast.error("Sorry! We only deliver within Pakistan", {
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      return;
+    }
+
     if (disabled) {
       toast.error("Please fill all required fields");
       return;
@@ -658,8 +673,25 @@ function CheckoutPage() {
                 className="block w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-2 shadow-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               >
                 <option value="store">Pickup at Store</option>
-                <option value="post-office">By Post Office</option>
+                <option value="post-office">M&P Courier Service</option>
               </select>
+
+              {/* Delivery Availability Notice */}
+              {isPakistan ? (
+                <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-sm text-green-700 flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    <strong>Free Delivery</strong> available across Pakistan!
+                  </p>
+                </div>
+              ) : (
+                <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-sm text-red-700 flex items-center gap-2">
+                    <span className="text-red-600">⚠️</span>
+                    <strong>Sorry!</strong> We currently deliver only within Pakistan.
+                  </p>
+                </div>
+              )}
             </div>
             <CouponInput onApplyCoupon={handleApplyCoupon} />
             <div className="border-t pt-4">

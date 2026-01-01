@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import OptimizedImage from '@/components/common/OptimizedImage';
 import { getOptimizedCloudinaryUrl } from '@/services/api';
 
 export default function NewArrivals() {
@@ -73,7 +73,7 @@ export default function NewArrivals() {
             </div>
 
             {/* Products Grid - Mobile: Horizontal Scroll, Desktop: Grid */}
-            <div className="md:hidden flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide scroll-smooth snap-x snap-mandatory">
+            <div className="md:hidden flex overflow-x-auto pb-4 -mx-4 px-4 gap-4 scrollbar-hide scroll-smooth snap-x snap-mandatory">
                 {products.map((product, index) => (
                     <ProductCard
                         key={product._id || index}
@@ -99,11 +99,9 @@ export default function NewArrivals() {
 }
 
 function ProductCard({ product, onClick, mobile = false }) {
-    const [imageError, setImageError] = useState(false);
-
     const cardClasses = mobile
-        ? "flex-shrink-0 w-40 sm:w-48 snap-center"
-        : "";
+        ? "flex-shrink-0 w-64 snap-center"
+        : "w-full";
 
     const price = product.flashPrice || product.price;
     const hasDiscount = product.flashPrice && product.price > product.flashPrice;
@@ -114,27 +112,28 @@ function ProductCard({ product, onClick, mobile = false }) {
             onClick={onClick}
         >
             {/* New Badge */}
-            <div className="absolute top-2 left-2 z-10 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+            <div className="absolute top-2 left-2 z-10 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-1 rounded-full shadow-lg">
                 🆕 NEW
             </div>
 
             {/* Discount Badge */}
             {hasDiscount && product.discountPercent > 0 && (
-                <div className="absolute top-2 right-2 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                <div className="absolute top-2 right-2 z-10 bg-red-500 text-white text-[10px] md:text-xs font-bold px-2 py-1 rounded-full shadow-lg">
                     -{product.discountPercent}%
                 </div>
             )}
 
             {/* Product Image */}
-            <div className={`relative ${mobile ? 'h-48' : 'h-64'} bg-gray-100 overflow-hidden`}>
-                {product.images && product.images.length > 0 && !imageError ? (
-                    <Image
+            <div className={`relative ${mobile ? 'h-56' : 'h-64'} bg-gray-100 overflow-hidden`}>
+                {product.images && product.images.length > 0 ? (
+                    <OptimizedImage
                         src={getOptimizedCloudinaryUrl(product.images[0])}
                         alt={product.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        onError={() => setImageError(true)}
-                        sizes={mobile ? "160px" : "(max-width: 768px) 50vw, 25vw"}
+                        sizes={mobile ? "256px" : "(max-width: 768px) 50vw, 25vw"}
+                        fallbackIcon="📦"
+                        priority={false}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -145,33 +144,35 @@ function ProductCard({ product, onClick, mobile = false }) {
 
             {/* Product Info */}
             <div className="p-3 md:p-4">
-                <h3 className="text-sm md:text-base font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-sm md:text-base font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-blue-600 transition-colors h-10 md:h-12">
                     {product.title}
                 </h3>
 
                 {/* Price */}
                 <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg md:text-xl font-bold text-blue-600">
+                    <span className="text-base md:text-xl font-bold text-blue-600">
                         Rs. {price?.toLocaleString()}
                     </span>
                     {hasDiscount && (
-                        <span className="text-xs md:text-sm text-gray-400 line-through">
+                        <span className="text-[10px] md:text-sm text-gray-400 line-through">
                             Rs. {product.price?.toLocaleString()}
                         </span>
                     )}
                 </div>
 
                 {/* Stock Indicator */}
-                {product.availability <= 3 && product.availability > 0 && (
-                    <div className="text-xs text-orange-600 font-semibold">
-                        ⚠️ Only {product.availability} left!
-                    </div>
-                )}
-                {product.availability > 50 && (
-                    <div className="text-xs text-green-600 font-semibold">
-                        ✓ {product.availability}+ in stock
-                    </div>
-                )}
+                <div className="h-4">
+                    {product.availability <= 3 && product.availability > 0 && (
+                        <div className="text-[10px] md:text-xs text-orange-600 font-semibold">
+                            ⚠️ Only {product.availability} left!
+                        </div>
+                    )}
+                    {product.availability > 50 && (
+                        <div className="text-[10px] md:text-xs text-green-600 font-semibold">
+                            ✓ {product.availability}+ in stock
+                        </div>
+                    )}
+                </div>
 
                 {/* Quick Add Button */}
                 <button
@@ -179,7 +180,7 @@ function ProductCard({ product, onClick, mobile = false }) {
                         e.stopPropagation();
                         // Add to cart logic here
                     }}
-                    className="mt-3 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    className={`mt-3 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300 ${mobile ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
                 >
                     Quick Add
                 </button>

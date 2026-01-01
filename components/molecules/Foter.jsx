@@ -30,26 +30,32 @@ function Foter() {
                   className="flex items-center"
                 >
                   <span className="text-2xl font-bold text-gray-900">
-                    IBNEMUKHTAR BRAND STORE
+                    IBNEMUKHTAR
                   </span>
                 </Link>
               </div>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Your premier destination for premium martial arts gear. From
-                taekwondo uniforms to karate equipment, we provide high-quality
-                gear for champions.
+                Equipping Champions
+                The ultimate destination for martial arts excellence.
+                From durable uniforms to pro-level equipment, we have everything you need
+                to win.
               </p>
 
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <MdPhone className="text-[#DD8560] text-xl" />
-                  <span className="text-sm text-gray-700">+92 300 1234567</span>
+                  <a
+                    href="tel:+923164288921"
+                    className="text-sm text-gray-700 hover:text-[#DD8560] transition-colors duration-200"
+                  >
+                    +92 316 4288921
+                  </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MdEmail className="text-[#DD8560] text-xl" />
                   <span className="text-sm text-gray-700">
-                    info@champion-choice.com
+                    info@ibnemukhtarbrandstore.com
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -62,7 +68,7 @@ function Foter() {
             {/* Martial Arts Gear */}
             <div>
               <h3 className="text-gray-900 font-semibold text-lg mb-6 border-b border-[#DD8560] pb-2">
-                MARTIAL ARTS GEAR
+                Collections
               </h3>
               <ul className="space-y-3">
                 <li>
@@ -71,43 +77,43 @@ function Foter() {
                     onMouseEnter={() => handleHover("/tshirts")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    T-Shirts
+                    Formal
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/hoodies"
-                    onMouseEnter={() => handleHover("/hoodies")}
+                    href="/collections/clothing"
+                    onMouseEnter={() => handleHover("/collections/clothing")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    Hoodies
+                    Clothing
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/stickers"
-                    onMouseEnter={() => handleHover("/stickers")}
+                    href="/collections/mens"
+                    onMouseEnter={() => handleHover("/collections/mens")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    Stickers
+                    Mens
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/mugs"
-                    onMouseEnter={() => handleHover("/mugs")}
+                    href="/collections/womens"
+                    onMouseEnter={() => handleHover("/collections/womens")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    Mugs
+                    Womens
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/products"
-                    onMouseEnter={() => handleHover("/products")}
+                    href="/collections/winter"
+                    onMouseEnter={() => handleHover("/collections/winter")}
                     className="text-gray-600 hover:text-[#DD8560] transition-colors duration-200"
                   >
-                    All Products
+                    Winter
                   </Link>
                 </li>
               </ul>

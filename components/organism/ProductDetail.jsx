@@ -35,6 +35,10 @@ import ProductMainBenefit from "../product/ProductMainBenefit";
 import ProductDetailedBenefits from "../product/ProductDetailedBenefits";
 import ProductHowToUse from "../product/ProductHowToUse";
 import ProductResults from "../product/ProductResults";
+import SizeGuide from "../product/SizeGuide";
+import ProductDescriptionTabs from "../product/ProductDescriptionTabs";
+import TrustBadges from "../atom/TrustBadges";
+import PaymentTrustBadges from "../product/PaymentTrustBadges";
 
 const SlugPage = ({ product, variant, params, productrelatedData }) => {
   const { trackProductView } = useFacebookPixel();
@@ -342,7 +346,7 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
                 </div>
 
                 {/* Size selection */}
-                {availableSizesForColor.length > 0 && (
+                {availableSizesForColor.length > 0 && availableSizesForColor[0] !== "" && (
                   <div className="flex items-center">
                     <span className="mr-3">Size</span>
                     <div className="relative">
@@ -428,17 +432,55 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
                 </div>
               </div>
 
-              {/* Description */}
-              <span className="leading-relaxed mb-4">
-                {isHtml ? (
-                  <div
-                    className="prose lg:prose-lg sm:prose-sm max-w-none leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: product.disc }}
+
+
+              {/* Tabs: Description & Size Guide */}
+              {(() => {
+                // Check if product has sizes
+                const hasSizes = availableSizesForColor.length > 0 && availableSizesForColor[0] !== "";
+
+                // Detect size category based on product info
+                const detectSizeCategory = () => {
+                  const title = product.title?.toLowerCase() || '';
+                  const category = product.category?.toLowerCase() || '';
+                  const combined = title + ' ' + category;
+
+                  if (combined.includes('shoe') || combined.includes('footwear')) {
+                    if (combined.includes('women') || combined.includes('ladies')) return 'womens-shoes';
+                    if (combined.includes('kids') || combined.includes('children')) return 'kids-clothing';
+                    return 'mens-shoes';
+                  }
+
+                  if (combined.includes('kid') || combined.includes('child') || combined.includes('boy') || combined.includes('girl')) {
+                    return 'kids-clothing';
+                  }
+
+                  if (combined.includes('women') || combined.includes('ladies') || combined.includes('suit') || combined.includes('kurti') || combined.includes('dress')) {
+                    return 'womens-clothing';
+                  }
+
+                  return 'mens-clothing'; // default
+                };
+
+                return hasSizes ? (
+                  <ProductDescriptionTabs
+                    product={product}
+                    isHtml={isHtml}
+                    sizeCategory={detectSizeCategory()}
                   />
                 ) : (
-                  <span>{product.disc}</span>
-                )}
-              </span>
+                  <div className="mt-6 leading-relaxed">
+                    {isHtml ? (
+                      <div
+                        className="prose lg:prose-lg sm:prose-sm max-w-none leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: product.disc }}
+                      />
+                    ) : (
+                      <span>{product.disc}</span>
+                    )}
+                  </div>
+                );
+              })()}
 
 
               {/* Product Specifications */}
@@ -679,6 +721,7 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
             <HiArrowRight />
           </Link>
         </div>
+        <TrustBadges />
       </div>
     </section>
   );

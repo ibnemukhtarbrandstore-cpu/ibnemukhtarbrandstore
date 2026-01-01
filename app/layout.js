@@ -29,46 +29,46 @@ export const metadata = {
     title: {
         default:
             "Shop Women's Suits, Winter Jackets & Shoes | Ibnemukhtar Brand Store Pakistan",
-        template: "%s | Champion Choice",
+        template: "%s | Ibnemukhtar Brand Store",
     },
     description:
         "Discover premium quality sports uniforms and martial arts equipment designed for performance, durability, and style. Whether you're a beginner or a professional athlete, we bring you a wide range of gear that empowers your training and boosts your confidence.",
     keywords:
         "women's suits, winter jackets, shoes, affordable fashion, pre-loved clothing, formal suits, casual wear",
-    authors: [{ name: "Champion Choice" }],
-    creator: "Champion Choice",
-    publisher: "Champion Choice",
+    authors: [{ name: "Ibnemukhtar Brand Store" }],
+    creator: "Ibnemukhtar Brand Store",
+    publisher: "Ibnemukhtar Brand Store",
     metadataBase: new URL("https://ibnemukhtarbrandstore.vercel.app/"), // Replace with your actual domain
     openGraph: {
         title: "Shop Women's Suits, Winter Jackets & Shoes | Ibnemukhtar Brand Store",
         description:
             "Discover premium quality sports uniforms and martial arts equipment designed for performance, durability, and style.",
         url: "https://ibnemukhtarbrandstore.vercel.app/", // Replace with your actual domain
-        siteName: "Champion Choice",
+        siteName: "Ibnemukhtar Brand Store",
         images: [
             {
-                url: "https://res.cloudinary.com/do58gkhav/image/upload/v1755692437/IMG-20250820-WA0033_auqytq.jpg", // Add your OG image
+                url: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686449/download_r6qimr.jpg", // Add your OG image
                 width: 800,
                 height: 800,
-                alt: "Champion Choice - Premium Martial Arts Equipment",
+                alt: "Ibnemukhtar Brand Store - Premium pre loved shoes",
             },
             {
-                url: "https://res.cloudinary.com/do58gkhav/image/upload/v1755692435/IMG-20250820-WA0028_ollelz.jpg", // Add your OG image
+                url: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686480/Frosty_Family_Fun_x21s1g.jpg",
                 width: 1200,
                 height: 630,
-                alt: "Champion Choice - Premium Martial Arts Equipment",
+                alt: "Ibnemukhtar Brand Store - Premium pre loved jackets",
             },
             {
-                url: "https://res.cloudinary.com/do58gkhav/image/upload/v1755692436/IMG-20250820-WA0024_aixy5p.jpg", // Add your OG image
+                url: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728166/LYL___Wecools_We_Choose_%E5%86%AC%E6%96%B0%E4%BD%9C%E7%B6%9A%E3%80%85%E5%85%A5%E8%8D%B7%E4%B8%AD_aojvpw.jpg",
                 width: 1200,
                 height: 630,
-                alt: "Champion Choice - Premium Martial Arts Equipment",
+                alt: "Ibnemukhtar Brand Store - Premium pre loved suits",
             },
             {
-                url: "https://res.cloudinary.com/do58gkhav/image/upload/v1755692437/IMG-20250820-WA0031_pyn2wj.jpg", // Add your OG image
+                url: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686480/Frosty_Family_Fun_x21s1g.jpg", // Add your OG image
                 width: 1200,
                 height: 630,
-                alt: "Champion Choice - Premium Martial Arts Equipment",
+                alt: "Ibnemukhtar Brand Store - Premium pre loved jackets",
             },
         ],
         locale: "en_US",
@@ -78,11 +78,11 @@ export const metadata = {
         card: "summary_large_image",
         title: "Shop Women's Suits, Winter Jackets & Shoes | Ibnemukhtar Brand Store",
         description:
-            "Discover premium quality sports uniforms and martial arts equipment.",
+            "Discover premium quality preloved sports & fashion wears.",
         images: [
-            "https://res.cloudinary.com/do58gkhav/image/upload/v1755692437/IMG-20250820-WA0033_auqytq.jpg",
-            "https://res.cloudinary.com/do58gkhav/image/upload/v1755692437/IMG-20250820-WA0031_pyn2wj.jpg",
-            "https://res.cloudinary.com/do58gkhav/image/upload/v1755692435/IMG-20250820-WA0028_ollelz.jpg",
+            "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686480/Frosty_Family_Fun_x21s1g.jpg",
+            "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728166/LYL___Wecools_We_Choose_%E5%86%AC%E6%96%B0%E4%BD%9C%E7%B6%9A%E3%80%85%E5%85%A5%E8%8D%B7%E4%B8%AD_aojvpw.jpg",
+            "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686480/Frosty_Family_Fun_x21s1g.jpg",
         ], // Add your Twitter image
     },
     robots: {
@@ -97,9 +97,9 @@ export const metadata = {
         },
     },
     icons: {
-        icon: "/images/championchoice-logo.png",
-        shortcut: "/images/championchoice-logo.png",
-        apple: "/images/championchoice-logo.png",
+        icon: "/images/ibnemukhtar-logo.png",
+        shortcut: "/images/ibnemukhtar-logo.png",
+        apple: "/images/ibnemukhtar-logo.png",
     },
     verification: {
         google: "qCNmybA9NO4SfownCTp8dkYsHTx0XOvdRk0Kr7PmOBs",
@@ -121,18 +121,7 @@ export default function RootLayout({ children }) {
                 />
 
                 {/* Google Analytics */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-38MD4ZPE2T"
-                    strategy="afterInteractive"
-                />
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-38MD4ZPE2T');
-          `}
-                </Script>
+
             </head>
             <body className={inter.className}>
                 <Providers>

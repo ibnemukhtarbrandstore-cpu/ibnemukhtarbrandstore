@@ -42,7 +42,7 @@ export default function FlashSale() {
     .sort((a, b) => a - b)[0];
 
   return (
-    <section className="bg-white p-4 my-2">
+    <section className="bg-white p-2">
       <div className="flex justify-between items-center mb-3">
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-bold">Flash Sale</h2>

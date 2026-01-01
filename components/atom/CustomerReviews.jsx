@@ -9,39 +9,50 @@ export default function CustomerReviews() {
 
   const reviews = [
     {
-      comment: "Fast delivery and great customer support. The sizes fit perfectly. Just what I needed!",
-      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753640475/5_eovfzu.png",
-      product: "Taekwondo Shirts",
-      location: "Karachi, Pakistan"
+      id: 1,
+      name: "Saad Ahmed",
+      rating: 5,
+      comment: "Ordered a 3-piece suit and I am amazed by the fitting. It feels like it was custom made for me. Highly recommended!",
+      image: "https://res.cloudinary.com/do58gkhav/image/upload/v1753640475/5_eovfzu.png", // Aap apni image use karein
+      product: "Men's Formal Suit",
+      location: "Lahore, Pakistan"
     },
     {
-      id: 6,
-      name: "Ahmed Iqbal",
-      rating: 4,
-      comment: "The fabric is so breathable and comfortable during practice. Highly recommended!",
+      id: 2,
+      name: "Ayesha Khan",
+      rating: 5,
+      comment: "The quality of the heels is premium. Very comfortable to walk in and they look exactly like the pictures.",
       image: "/images/users/11.png",
-      product: "Taekwondo Equipments",
+      product: "Women's Fashion Footwear",
       location: "Karachi, Pakistan"
     },
     {
-      id: 7,
-      name: "Mike Jhonson",
+      id: 3,
+      name: "Bilal Raza",
       rating: 4,
-      comment: "Durable, comfortable, and stylish — the best taekwondo uniform I&rsquo;ve found online. Worth every rupee.",
+      comment: "Best leather jacket I have found online. It is warm, stylish, and the leather smells authentic. Fast delivery too!",
       image: "/images/users/7.jpg",
-      product: "Taekwondo Belts",
-      location: "Chicago, United State"
+      product: "Premium Leather Jacket",
+      location: "Islamabad, Pakistan"
     },
     {
-      id: 8,
-      name: "Leona",
-      rating: 4,
-      comment: "Superb stitching quality and premium fabric. My son won&rsquo;t wear any other uniform now!",
+      id: 4,
+      name: "Zara Ali",
+      rating: 5,
+      comment: "I love the fabric quality of the branded shirts. Colors are vibrant and didn't fade after washing. 10/10 service.",
       image: "/images/users/4.jpg",
-      product: "Taekwondo Belts",
-      location: "Kingston, Australia"
+      product: "Branded Casual Wear",
+      location: "Faisalabad, Pakistan"
     },
-
+    {
+      id: 5,
+      name: "Usman Malik",
+      rating: 4,
+      comment: "Great variety of shoes. I bought formal shoes for office use, and they are very durable and classy.",
+      image: "/images/users/2.jpg",
+      product: "Men's Formal Shoes",
+      location: "Multan, Pakistan"
+    }
   ];
 
   // SEO Data

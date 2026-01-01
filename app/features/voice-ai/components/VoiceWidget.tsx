@@ -1,4 +1,6 @@
 'use client';
+import React from 'react';
+import Image from 'next/image';
 import { useNativeVoice } from '../hooks/useNativeVoice';
 import { useAIVoice } from '../hooks/useAIVoice';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -28,7 +30,7 @@ export default function VoiceWidget() {
     }
 
     return (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-12 md:bottom-6 right-6 z-50">
             <AnimatePresence>
                 {isActive && (
                     <motion.div
@@ -89,9 +91,13 @@ export default function VoiceWidget() {
                         />
                     </div>
                 ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-white">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-                    </svg>
+                    <Image
+                        src="https://res.cloudinary.com/dwqchugmp/image/upload/v1767295428/Untitled_design_os1wtt.png"
+                        alt="Start Voice Assistant"
+                        width={100}
+                        height={100}
+                        className="object-contain"
+                    />
                 )}
             </motion.button>
         </div>

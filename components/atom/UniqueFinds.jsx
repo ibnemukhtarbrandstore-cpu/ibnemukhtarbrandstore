@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import OptimizedImage from '@/components/common/OptimizedImage';
 import { getOptimizedCloudinaryUrl } from '@/services/api';
 
 export default function UniqueFinds() {
@@ -98,9 +98,7 @@ export default function UniqueFinds() {
 }
 
 function ProductCard({ product, onClick, mobile = false }) {
-    const [imageError, setImageError] = useState(false);
-
-    const cardClasses = mobile ? "flex-shrink-0 w-44 sm:w-52 snap-center" : "";
+    const cardClasses = mobile ? "flex-shrink-0 w-64 snap-center" : "w-full";
     const price = product.flashPrice || product.price;
     const hasDiscount = product.flashPrice && product.price > product.flashPrice;
     const isPreLoved = product.condition === 'Pre-loved' || product.condition === 'Refurbished';
@@ -128,18 +126,19 @@ function ProductCard({ product, onClick, mobile = false }) {
             )}
 
             {/* Product Image */}
-            <div className={`relative ${mobile ? 'h-52' : 'h-72'} bg-gray-100 overflow-hidden`}>
+            <div className={`relative ${mobile ? 'h-56' : 'h-64'} bg-gray-100 overflow-hidden`}>
                 {/* Vintage Border Effect */}
                 <div className="absolute inset-0 border-4 border-amber-100 opacity-50 z-5 pointer-events-none"></div>
 
-                {product.images && product.images.length > 0 && !imageError ? (
-                    <Image
+                {product.images && product.images.length > 0 ? (
+                    <OptimizedImage
                         src={getOptimizedCloudinaryUrl(product.images[0])}
                         alt={product.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        onError={() => setImageError(true)}
-                        sizes={mobile ? "176px" : "(max-width: 768px) 50vw, 25vw"}
+                        sizes={mobile ? "256px" : "(max-width: 768px) 50vw, 25vw"}
+                        fallbackIcon="✨"
+                        priority={false}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">

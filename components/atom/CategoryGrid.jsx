@@ -25,17 +25,17 @@ export default function CategoryGrid() {
         {allCategory.map((category, index) => (
           <div
             key={index}
-            className="group relative flex-shrink-0 flex flex-col items-center cursor-pointer rounded-xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-400 p-4 overflow-hidden min-h-[140px] w-32"
+            className="group relative flex-shrink-0 flex flex-col items-center cursor-pointer rounded-xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-400 p-0 overflow-hidden w-32"
             onClick={() => handleCategoryClick(category)}
           >
-            <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-gray-100 to-gray-200 flex items-center justify-center text-2xl overflow-hidden border-2 border-gray-200 group-hover:border-blue-400 transition-all shadow-sm">
+            <div className="w-full bg-gradient-to-tr from-gray-100 to-gray-200 flex items-center justify-center text-2xl overflow-hidden border-2 border-gray-200 group-hover:border-blue-400 transition-all shadow-sm">
               {category.image ? (
                 <Image
                   src={getOptimizedCloudinaryUrl(category.image)}
                   alt={category.name}
-                  width={56}
-                  height={56}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  width={150}
+                  height={150}
+                  className="w-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               ) : (
                 <span className="text-lg text-gray-500 font-bold">
@@ -43,8 +43,8 @@ export default function CategoryGrid() {
                 </span>
               )}
             </div>
-            <span className="text-xs text-center mt-2 font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
-              {category.name}
+            <span className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs text-center mt-2 font-semibold text-white group-hover:text-blue-600 transition-colors">
+              {category.name.toUpperCase()}
             </span>
           </div>
         ))}

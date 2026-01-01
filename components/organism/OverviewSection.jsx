@@ -15,8 +15,10 @@ function OverviewSection() {
       />
       <div className="w-[70%]">
         <HeadingStyle tag="p" level="3">
-          Empowering martial artists with premium uniforms and gear that inspire
-          discipline, strength, and excellence in every training session and competition.
+          Ibnemukhtar Brand Store – Fashion for Everyone.
+          We bring you the best branded clothes and shoes for men and women.
+          From stylish jackets and suits to comfortable footwear, we have it all.
+          Upgrade your look with our high-quality fashion today.
         </HeadingStyle>
       </div>
 

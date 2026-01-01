@@ -235,10 +235,10 @@ export default function ManualPaymentConfirmation() {
     return (
       <BaseCard>
         <Head>
-          <title> Pyment Proff - CHAMPION-CHOICE</title>
+          <title> Pyment Proff - IBNEMUKHTAR BRAND STORE</title>
           <meta
             name="description"
-            content="You can upload here payment uprove if is valid  then CHAMPION-CHOICE TEAM placed your order if not then tell you please again pay your proof is not valid!"
+            content="You can upload here payment uprove if is valid  then IBNEMUKHTAR BRAND STORE TEAM placed your order if not then tell you please again pay your proof is not valid!"
           />
         </Head>
         <div className="flex flex-col items-center justify-between bg-white mx-auto text-center mt-[50px] py-20 px-auto mx-8 shadow-lg rounded-xl relative">
@@ -301,7 +301,7 @@ export default function ManualPaymentConfirmation() {
         <title>Upload Proof</title>
         <meta
           name="description"
-          content="you can also upload here proof of you payment if any issue then contect you by CHAMPION CHOICE team  "
+          content="you can also upload here proof of you payment if any issue then contect you by IBNEMUKHTAR BRAND STORE team  "
         />
       </Head>
       <ToastContainer
@@ -325,7 +325,7 @@ export default function ManualPaymentConfirmation() {
 
       {/* 🆕 COD Toggle Checkbox */}
       <Box mb={3} p={3} bgcolor={isCOD ? "#EEF2FF" : "#F9FAFB"} borderRadius={2} border={isCOD ? "2px solid #4F46E5" : "1px solid #E5E7EB"}>
-        <label className="flex items-center justify-between cursor-pointer">
+        <label className="flex flex-col sm:flex-row items-center justify-between cursor-pointer">
           <div className="flex items-center">
             <input
               type="checkbox"

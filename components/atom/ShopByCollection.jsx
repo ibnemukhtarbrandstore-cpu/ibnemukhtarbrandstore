@@ -11,7 +11,7 @@ export default function ShopByCollection() {
             id: 1,
             name: 'Unique Finds',
             icon: '✨',
-            imageUrl: 'https://www.freepik.com/premium-ai-image/collection-fashion-accessories-like-sunglasses-watches-necklaces-white-background_290389521.htm#fromView=keyword&page=1&position=11&uuid=265946ab-3af7-46e0-b398-726657f7fc31&query=Accessories',
+            imageUrl: 'https://res.cloudinary.com/dwqchugmp/image/upload/v1767253776/photo-1414408718521-f6f6198e9917_virkx3.jpg',
             gradient: 'from-amber-400 via-orange-500 to-red-600',
             badge: 'One-of-a-kind',
             link: '/collections/unique-finds',
