@@ -233,7 +233,7 @@ export const POST = async (req) => {
       products, // âœ… clean object with slugs as keys
       city: body.city,
       state: body.state,
-      status: "pending",
+      status: body.paymentMethod === "COD" ? "paid" : "pending", // ✅ Auto-approve COD orders
       deliveryStatus: "unshifted",
       deliveryCharge: body.deliveryCharge,
       deliveryMethod: body.deliveryMethod,

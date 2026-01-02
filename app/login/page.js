@@ -1,8 +1,8 @@
 import LoginPage from "@/components/tamplates/Login";
 export const metadata = {
-  title: "Login | CHAMPION-CHOICE",
+  title: "Login | IBNEMUKHTAR Brand Store",
   description:
-    "Login to your CHAMPION-CHOICE account to manage your martial arts gear orders, edit your personal details, and access exclusive member features.",
+    "Login to your IBNEMUKHTAR Brand Store account to manage your martial arts gear orders, edit your personal details, and access exclusive member features.",
   keywords: [
     "login champion choice",
     "martial arts gear login",
@@ -10,7 +10,7 @@ export const metadata = {
     "taekwondo account",
     "sports gear account login",
     "user login martial arts",
-    "login page CHAMPION-CHOICE",
+    "login page IBNEMUKHTAR Brand Store",
   ],
 };
 const Page = () => {

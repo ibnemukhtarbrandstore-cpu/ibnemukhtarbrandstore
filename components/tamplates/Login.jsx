@@ -112,7 +112,7 @@ function LoginPage() {
       />
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="hidden md:block my-4 text-center text-xl font-bold tracking-tight text-gray-400">
-          CHAMPIONCHOICE{" "}
+          IBNEMUKHTAR Brand Store{" "}
         </h2>
         <h2 className="mt-10 text-center text-2xl/9 font-normal tracking-tight text-gray-900">
           Sign in to your account{" "}
