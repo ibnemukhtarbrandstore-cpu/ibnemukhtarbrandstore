@@ -136,8 +136,8 @@ export default function RefundPolicy() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-3">Questions About Your Refund?</h2>
           <p className="mb-2">Contact our customer support team:</p>
           <ul className="space-y-1">
-            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 346 7383686</a></li>
-            <li><strong>Phone:</strong> +92 312 0905007</li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 3164288921</a></li>
+            <li><strong>Phone:</strong> +92 3164288921</li>
             <li><strong>Email:</strong> <a href="mailto:support@ibnemukhtarbrandstore.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
           </ul>
           <p className="mt-3 text-sm text-gray-600">

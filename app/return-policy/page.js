@@ -64,7 +64,7 @@ export default function ReturnPolicy() {
                 <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
                 <div>
                   <p className="font-semibold">Contact Us</p>
-                  <p className="text-sm">Reach out to our customer support via WhatsApp (+92 346 7383686) or email within the return window</p>
+                  <p className="text-sm">Reach out to our customer support via WhatsApp (+92 3164288921) or email within the return window</p>
                 </div>
               </li>
               <li className="flex gap-3">
@@ -131,8 +131,8 @@ export default function ReturnPolicy() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-3">Need Help?</h2>
           <p className="mb-2">Contact our customer support team:</p>
           <ul className="space-y-1">
-            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 346 7383686</a></li>
-            <li><strong>Phone:</strong> +92 312 0905007</li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 3164288921</a></li>
+            <li><strong>Phone:</strong> +92 3164288921</li>
             <li><strong>Email:</strong> <a href="mailto:support@ibnemukhtarbrandstore.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
           </ul>
         </section>

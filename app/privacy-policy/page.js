@@ -178,8 +178,8 @@ export default function PrivacyPolicyPage() {
             <p className="mb-2">For privacy-related questions or concerns, contact us:</p>
             <ul className="space-y-1">
               <li><strong>Email:</strong> <a href="mailto:support@ibnemukhtarbrandstore.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
-              <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 346 7383686</a></li>
-              <li><strong>Phone:</strong> +92 312 0905007</li>
+              <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 3164288921</a></li>
+              <li><strong>Phone:</strong> +92 3164288921</li>
               <li><strong>Address:</strong> Chinniot, Punjab, Pakistan</li>
             </ul>
           </div>

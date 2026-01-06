@@ -78,7 +78,7 @@ export default function ShippingPolicy() {
             For shipping inquiries, contact us:
           </p>
           <ul className="mt-2 space-y-1">
-            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 346 7383686</a></li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 3164288921</a></li>
             <li><strong>Email:</strong> <a href="mailto:support@ibnemukhtarbrandstore.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
           </ul>
         </section>

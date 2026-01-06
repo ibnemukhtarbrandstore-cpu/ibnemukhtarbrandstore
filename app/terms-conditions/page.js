@@ -124,7 +124,7 @@ export default function TermsConditions() {
           <p className="mb-2">For questions about these Terms and Conditions:</p>
           <ul className="space-y-1">
             <li><strong>Email:</strong> <a href="mailto:support@ibnemukhtarbrandstore.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
-            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 346 7383686</a></li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 3164288921</a></li>
             <li><strong>Address:</strong> Chinniot, Punjab, Pakistan</li>
           </ul>
         </section>
