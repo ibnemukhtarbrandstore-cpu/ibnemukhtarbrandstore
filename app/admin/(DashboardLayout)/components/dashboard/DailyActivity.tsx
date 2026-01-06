@@ -20,6 +20,8 @@ export interface Order {
   amount: number;
   time: string;
   color: "primary" | "secondary" | "success" | "warning" | "error";
+  paymentMethod?: string;
+  status?: string;
 }
 
 const DailyActivity = () => {
@@ -38,7 +40,8 @@ const DailyActivity = () => {
     const fetchOrders = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await fetch("/api/get-orders?status=paid", {
+        // Fetch ALL orders (not just paid) - includes COD pending orders
+        const res = await fetch("/api/get-orders", {
           method: "POST",
           body: JSON.stringify({ token }),
           headers: {
@@ -55,6 +58,7 @@ const DailyActivity = () => {
         const startOfDay = new Date(now.setHours(0, 0, 0, 0));
         const endOfDay = new Date(now.setHours(23, 59, 59, 999));
 
+        // Filter for today's orders
         const todayOrders = data.orders.filter((order: any) => {
           const orderDate = new Date(order.createdAt);
           return orderDate >= startOfDay && orderDate <= endOfDay;
@@ -69,13 +73,22 @@ const DailyActivity = () => {
             .toString()
             .padStart(2, "0")} ${ampm}`;
 
+          // Color based on payment status
+          const color = order.status === "paid"
+            ? "success"
+            : order.paymentMethod === "COD"
+              ? "warning"
+              : "primary";
+
           return {
             orderId: order.orderId.toString(),
             id: order._id || order.id || Math.random().toString(),
             name: order.name || "Unknown",
             amount: order.amount || 0,
             time: formattedTime,
-            color: "success",
+            color: color,
+            paymentMethod: order.paymentMethod || "MANUAL",
+            status: order.status || "pending",
           };
         });
 
@@ -145,6 +158,30 @@ const DailyActivity = () => {
                   }}
                 >
                   Rs.{order.amount.toFixed(2)} <br /> received from {order.name}
+                  {order.paymentMethod && (
+                    <span style={{
+                      fontSize: "11px",
+                      marginLeft: "6px",
+                      padding: "2px 6px",
+                      borderRadius: "4px",
+                      background: order.paymentMethod === "COD" ? "#FEF3C7" : "#D1FAE5",
+                      color: order.paymentMethod === "COD" ? "#F59E0B" : "#10B981"
+                    }}>
+                      {order.paymentMethod === "COD" ? "💵 COD" : "🏦 " + order.paymentMethod}
+                    </span>
+                  )}
+                  {order.status === "pending" && (
+                    <span style={{
+                      fontSize: "11px",
+                      marginLeft: "6px",
+                      padding: "2px 6px",
+                      borderRadius: "4px",
+                      background: "#FEE2E2",
+                      color: "#DC2626"
+                    }}>
+                      Pending
+                    </span>
+                  )}
                 </Typography>
 
                 <Link

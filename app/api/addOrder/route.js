@@ -31,21 +31,40 @@ export async function POST(req) {
         const product = await Product.findOne({ slug });
         if (!product) throw new Error("Product not found");
 
-        if (product.size !== size || product.color !== color)
-          throw new Error("Size or color mismatch");
+        /**
+         * SIZE VARIANTS LOGIC:
+         * - If product has sizeVariants, deduct from specific size stock
+         * - Otherwise, use old availability logic
+         */
+        const hasVariants = product.sizeVariants && product.sizeVariants.length > 0;
 
-        if (product.availability < parseInt(qty))
-          throw new Error("Not enough quantity available");
+        if (hasVariants) {
+          // Check if size is available with enough stock
+          if (!product.isSizeAvailable(size, parseInt(qty))) {
+            throw new Error(`Size ${size} not available or insufficient stock`);
+          }
 
-        await Product.updateOne(
-          { slug },
-          { $inc: { availability: -parseInt(qty) } }
-        );
+          // Deduct stock from specific size
+          product.updateSizeStock(size, -parseInt(qty));
+          await product.save();
+        } else {
+          // Old logic for backward compatibility
+          if (product.size !== size || product.color !== color)
+            throw new Error("Size or color mismatch");
+
+          if (product.availability < parseInt(qty))
+            throw new Error("Not enough quantity available");
+
+          await Product.updateOne(
+            { slug },
+            { $inc: { availability: -parseInt(qty) } }
+          );
+        }
 
         products[product.slug] = {
           title: product.title,
-          size: product.size,
-          color: product.color,
+          size: size || product.size,
+          color: color || product.color,
           qty: parseInt(qty),
           price: product.price,
         };

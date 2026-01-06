@@ -3,6 +3,8 @@ import LoadingComponent from "../../../components/atom/LoadingComponent";
 import OrderDetailPage from "../../../components/organism/OrderPageCmpnt";
 import { connectDb } from '@/middleware/mongodb';
 import { Order } from "../../../models/Order";
+import mongoose from "mongoose";
+import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic"; // Add this line to disable static prerendering
 
@@ -14,6 +16,16 @@ export const metadata = {
 
 export default async function Page({ params }) {
   const { id } = await params;
+
+  /**
+   * IMPORTANT: Check if ID is valid MongoDB ObjectId
+   * This prevents errors when accessing /order/track/... routes
+   * which would incorrectly match this [id] dynamic route
+   */
+  if (!mongoose.Types.ObjectId.isValid(id.trim())) {
+    notFound(); // Return 404 for invalid ObjectIds
+  }
+
   await connectDb();
   const order = await Order.findOne({ _id: id.trim() }).lean();
   // console.log("order in order page: ",order);

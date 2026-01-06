@@ -1,18 +1,18 @@
 import OrdersPage from "@/components/tamplates/OrdersPage";
+
 export const metadata = {
-  title: "Orders - CHAMPION-CHOICE",
+  title: "Orders - Ibnemukhtar Brand Store",
   description:
-    "View all your past, pending, paid, or delivered martial arts gear orders at CHAMPION-CHOICE. Track your purchases and stay updated on shipping status.",
+    "View all your past, pending, paid, or delivered fashion orders. Track your purchases and stay updated on shipping status.",
   keywords: [
-    "martial arts order history",
-    "champion-choice orders",
-    "karate gear orders",
-    "taekwondo order tracking",
-    "martial arts purchases",
-    "pending orders",
-    "delivered martial arts items",
+    "order history",
+    "ibnemukhtar orders",
+    "fashion order tracking",
+    "winter jackets orders",
+    "shoes purchases",
   ],
 };
+
 const Page = () => {
   return <OrdersPage />;
 };

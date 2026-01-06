@@ -361,8 +361,8 @@ const Page = () => {
                               <Typography color="textSecondary" variant="h6">
                                 {order.createdAt
                                   ? new Date(
-                                      order.createdAt
-                                    ).toLocaleDateString()
+                                    order.createdAt
+                                  ).toLocaleDateString()
                                   : "-"}
                               </Typography>
                             </TableCell>
@@ -372,10 +372,10 @@ const Page = () => {
                                 color="primary"
                                 variant="contained"
                                 onClick={() =>
-                                  updateStatus(order.orderId, "deliverd")
+                                  updateStatus(order.orderId, "delivered")
                                 }
                               >
-                                Delliverd
+                                Delivered
                               </Button>{" "}
                             </TableCell>
                           </TableRow>

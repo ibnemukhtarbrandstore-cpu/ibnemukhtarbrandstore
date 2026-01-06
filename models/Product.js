@@ -5,11 +5,42 @@ const productSchema = new mongoose.Schema(
     title: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     disc: { type: String, required: true },
-    size: { type: String },
+    size: { type: String }, // Kept for backward compatibility
     category: { type: String, required: true },
     color: { type: String },
     price: { type: Number, required: true },
-    availability: { type: Number, required: true },
+    availability: { type: Number, required: true }, // Total stock (used when sizeVariants is empty)
+
+    /**
+     * SIZE VARIANTS SYSTEM
+     * Multiple sizes with individual stock tracking
+     * 
+     * Usage:
+     * - If sizeVariants array is empty → use old 'size' field and 'availability'
+     * - If sizeVariants has items → each size has its own stock
+     */
+    sizeVariants: [{
+      size: {
+        type: String,
+        required: true,
+        trim: true // "S", "M", "L", "XL", "38", "40" etc.
+      },
+      stock: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: 0 // Can't be negative
+      },
+      sku: {
+        type: String,
+        unique: true,
+        sparse: true // Allows null while maintaining uniqueness
+      },
+      priceAdjustment: {
+        type: Number,
+        default: 0 // Extra cost for this size (e.g., XL +100 Rs)
+      }
+    }],
     productFor: { type: String },
     images: {
       type: [String],
@@ -162,6 +193,48 @@ const productSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+/**
+ * Virtual Field: Calculate total available stock
+ * - If using size variants → sum all size stocks
+ * - Otherwise → use availability field
+ */
+productSchema.virtual('totalStock').get(function () {
+  if (this.sizeVariants && this.sizeVariants.length > 0) {
+    return this.sizeVariants.reduce((total, variant) => total + variant.stock, 0);
+  }
+  return this.availability || 0;
+});
+
+/**
+ * Method: Update stock for a specific size
+ * Returns: true if successful, false if size not found
+ */
+productSchema.methods.updateSizeStock = function (size, quantityChange) {
+  const variant = this.sizeVariants.find(v => v.size === size);
+  if (variant) {
+    variant.stock += quantityChange; // Can be negative for deductions
+    if (variant.stock < 0) variant.stock = 0; // Prevent negative stock
+    return true;
+  }
+  return false;
+};
+
+/**
+ * Method: Get stock for specific size
+ */
+productSchema.methods.getSizeStock = function (size) {
+  const variant = this.sizeVariants.find(v => v.size === size);
+  return variant ? variant.stock : 0;
+};
+
+/**
+ * Method: Check if size is available
+ */
+productSchema.methods.isSizeAvailable = function (size, quantity = 1) {
+  const variant = this.sizeVariants.find(v => v.size === size);
+  return variant ? variant.stock >= quantity : false;
+};
 
 // delete mongoose.models.Product;
 

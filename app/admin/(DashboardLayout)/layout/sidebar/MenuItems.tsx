@@ -18,6 +18,7 @@ import {
   IconFlag,
   IconReport,
   IconFilePlus,
+  IconArrowBackUp,
 } from "@tabler/icons-react";
 import { uniqueId } from "lodash";
 
@@ -183,6 +184,12 @@ const Menuitems: MenuitemsType[] = [
         href: "/admin/cencle-order",
       },
     ],
+  },
+  {
+    id: uniqueId(),
+    title: "Returns",
+    icon: IconArrowBackUp,
+    href: "/admin/returns",
   },
   {
     id: uniqueId(),

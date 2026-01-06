@@ -100,7 +100,7 @@ export default function TrendingNow() {
 function ProductCard({ product, onClick, mobile = false }) {
     const [imageError, setImageError] = useState(false);
 
-    const cardClasses = mobile ? "flex-shrink-0 w-40 sm:w-48 snap-center" : "";
+    const cardClasses = mobile ? "flex-shrink-0 w-44 sm:w-52 snap-center" : "";
     const price = product.flashPrice || product.price;
     const hasDiscount = product.flashPrice && product.price > product.flashPrice;
     const viewCount = product.views || 0;

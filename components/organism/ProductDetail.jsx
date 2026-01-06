@@ -380,56 +380,67 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
               </div>
 
               {/* Price & Actions */}
-              <div className="mb-6 flex flex-col md:flex-row md:items-center md:gap-6">
-                {product.availability == 0 && (
-                  <span className="title-font font-medium text-xl md:text-2xl text-gray-900 ">
-                    Out of Stock!
-                  </span>
+              <div className="mb-6 flex flex-col gap-4">
+                {/* Out of Stock Badge */}
+                {product.availability === 0 && (
+                  <div className="bg-red-50 border-2 border-red-500 rounded-lg p-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl">❌</span>
+                      <div>
+                        <p className="text-xl font-bold text-red-700">Out of Stock</p>
+                        <p className="text-sm text-red-600">This item is currently unavailable</p>
+                      </div>
+                    </div>
+                  </div>
                 )}
+
+                {/* In Stock - Show Price & Buttons */}
                 {product.availability > 0 && (
-                  <HeadingStyle
-                    level="7"
-                    tag="span"
-                    className="text-2xl md:text-3xl text-[#DD8560] font-bold"
-                  >
-                    Rs.{product.price}/_
-                  </HeadingStyle>
+                  <>
+                    <HeadingStyle
+                      level="7"
+                      tag="div"
+                      className="text-2xl md:text-3xl text-[#DD8560] font-bold"
+                    >
+                      Rs.{product.price}/_
+                    </HeadingStyle>
+
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <button
+                        onClick={() => {
+                          buyNow(
+                            product.slug,
+                            1,
+                            product.price,
+                            product.title,
+                            selectedSize,
+                            selectedColor,
+                            product.images[0]
+                          );
+                        }}
+                        className="flex-1 flex items-center justify-center text-sm text-white bg-black font-normal border-0 py-3 px-6 focus:outline-none hover:bg-[#DD8560] rounded transition-all duration-150"
+                      >
+                        Buy Now
+                      </button>
+                      <button
+                        onClick={() => {
+                          addToCart(
+                            product.slug,
+                            1,
+                            product.price,
+                            product.title,
+                            selectedSize,
+                            selectedColor,
+                            product.images[0]
+                          );
+                        }}
+                        className="flex-1 flex items-center justify-center text-sm text-white bg-[#DD8560] border-0 py-3 px-6 focus:outline-none hover:bg-black rounded transition-all duration-150"
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  </>
                 )}
-                <div className="flex flex-col md:flex-row gap-2 mt-4 md:mt-0">
-                  <button
-                    onClick={() => {
-                      buyNow(
-                        product.slug,
-                        1,
-                        product.price,
-                        product.title,
-                        selectedSize,
-                        selectedColor,
-                        product.images[0]
-                      );
-                    }}
-                    className=" flex items-center justify-center text-sm text-white bg-black font-normal border-0 py-2 px-4 focus:outline-none hover:bg-[#DD8560] rounded transition-all duration-150"
-                  >
-                    Buy Now
-                  </button>
-                  <button
-                    disabled={product.availablity ? true : false}
-                    onClick={() => {
-                      addToCart(
-                        product.slug,
-                        1,
-                        product.price,
-                        product.title,
-                        selectedSize,
-                        selectedColor,
-                        product.images[0]
-                      );
-                    }}
-                    className="flex items-center justify-center text-sm text-white bg-[#DD8560]  border-0 py-2 px-4 focus:outline-none hover:bg-black rounded transition-all duration-150"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
               </div>
 
 

@@ -11,7 +11,8 @@ export const SAFETY_RULES = {
         'refundPayment',
         'accessAdminPanel',
         'deleteReview',
-        'banUser'
+        'banUser',
+        'admin'
     ],
 
     // Destructive actions requiring explicit confirmation

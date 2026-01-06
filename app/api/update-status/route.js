@@ -23,10 +23,15 @@ export const POST = async (req) => {
         {
           status: body.status,
           deliveryStatus: body.deliveryStatus,
-          imgUrl: proff.proofimgurl,
+          imgUrl: proff?.proofimgurl || null, // COD won't have proof
         }
       );
-      await Proof.findOneAndDelete({ orderId: proff.orderId });
+
+      // Only delete proof if it exists (manual payments)
+      if (proff) {
+        await Proof.findOneAndDelete({ orderId: proff.orderId });
+      }
+
       if (order?.couponCode) {
         const couponbefor = await Coupon.findOne(
           { code: order.couponCode.toUpperCase() })
@@ -47,12 +52,12 @@ export const POST = async (req) => {
       try {
         await EmailService.sendEmail(
           order.email,
-          "âœ… Order Confirmed - Details Inside",
+          "✅ Order Confirmed - Details Inside",
           `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
       <img src="https://res.cloudinary.com/do58gkhav/image/upload/v1748369684/payment_proofs/nqwzd4hhjq5l37cwrlxj.jpg" alt="Champion Choice Logo" style="border-radius: 50%; max-width: 150px; display: block; margin: auto;"/>
         
-              <h2 style="color: #DD8560; text-align: center;">ðŸŽ‰ Your Order is Confirmed!</h2>
+              <h2 style="color: #DD8560; text-align: center;">🎉 Your Order is Confirmed!</h2>
         
               <p>Hi <strong>${order.name}</strong>,</p>
         
@@ -79,12 +84,12 @@ export const POST = async (req) => {
                 </a>
               </p>
         
-              <p>Thanks for trusting Champion-Choice. Weâ€™re getting your gear ready! ðŸ¥‹</p>
+              <p>Thanks for trusting Champion-Choice. We're getting your gear ready! 🥋</p>
         
               <hr style="margin: 30px 0;" />
               <p style="font-size: 12px; color: #777; text-align: center;">
                 Champion-Choice Support Team<br/>
-                ðŸ“§ championhub00@gmail.com
+                📧 championhub00@gmail.com
               </p>
             </div>
           `,
@@ -122,7 +127,7 @@ export const POST = async (req) => {
         console.log("orderId from frontend: ", orderId);
         console.log("deliverystatus from frontend: ", deliveryStatus);
 
-        // Convert the image file to arrayBuffer â†’ buffer
+        // Convert the image file to arrayBuffer → buffer
         const base64Data = imageFile.replace(/^data:image\/\w+;base64,/, "");
         const buffer = Buffer.from(base64Data, "base64");
 
@@ -167,7 +172,7 @@ export const POST = async (req) => {
         const item = products[slug];
 
 
-        // ðŸ›’ Reduce stock for normal product (and uniform too if present in Product collection)
+        // 🛒 Reduce stock for normal product (and uniform too if present in Product collection)
         const product = await Product.findOneAndUpdate(
           { slug: slug },
           { $inc: { availability: -item.qty } },
@@ -181,18 +186,18 @@ export const POST = async (req) => {
       try {
         await EmailService.sendEmail(
           order.email,
-          "ðŸ“¦ Your Order Has Been Shipping - Thank You!",
+          "📦 Your Order Has Been Shipping - Thank You!",
           `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
       <img src="https://res.cloudinary.com/do58gkhav/image/upload/v1748369684/payment_proofs/nqwzd4hhjq5l37cwrlxj.jpg" alt="Champion Choice Logo" style="border-radius: 50%; max-width: 150px; display: block; margin: auto;"/>
       
-            <h2 style="color: #28a745; text-align: center;">âœ… Your Order Has Been Shipping!</h2>
+            <h2 style="color: #28a745; text-align: center;">✅ Your Order Has Been Shipping!</h2>
       
             <p>Hi <strong>${order.name}</strong>,</p>
       
-            <p>Weâ€™re happy to let you know that your order has been successfully Shipping. Please wait for the delivery. Your order has been shipping in 3-5 working days. Hope you loved your gear!</p>
+            <p>We're happy to let you know that your order has been successfully Shipping. Please wait for the delivery. Your order has been shipping in 3-5 working days. Hope you loved your gear!</p>
       
-            <h3 style="margin-top: 20px;">ðŸ› ï¸  Order Summary:</h3>
+            <h3 style="margin-top: 20px;">🛠️ Order Summary:</h3>
             <ul style="padding-left: 20px;">
               ${Object.entries(order.products)
             .map(
@@ -219,7 +224,7 @@ export const POST = async (req) => {
             <hr style="margin: 30px 0;" />
             <p style="font-size: 12px; color: #777; text-align: center;">
               Champion-Choice Support Team<br/>
-              ðŸ“§ championhub00@gmail.com
+              📧 championhub00@gmail.com
             </p>
           </div>
         `,
@@ -233,34 +238,54 @@ export const POST = async (req) => {
         );
       }
     }
-    // only run if order delivered
-    if (body?.deliveryStatus === "deliverd") {
+    // only run if order delivered - FIXED TYPO
+    if (body?.deliveryStatus === "delivered") {
       //order delivered logic
-      body?.orderId
-      console.log("body: ", body);
+      console.log("Delivered order body: ", body);
+
+      // Find the order first to check payment method
+      const existingOrder = await Order.findOne({ orderId: body?.orderId });
+
+      if (!existingOrder) {
+        return NextResponse.json(
+          { error: "Order not found" },
+          { status: 404 }
+        );
+      }
+
+      // **AUTO-PAID LOGIC - FOR ALL ORDERS**
+      // If order status is "pending" when delivered, automatically mark as "paid"
+      const updateFields = {
+        deliveryStatus: "delivered"
+      };
+
+      if (existingOrder.status === "pending") {
+        updateFields.status = "paid";
+        console.log("✅ Order auto-marked as PAID on delivery (was pending)");
+      }
 
       let order = await Order.findOneAndUpdate(
         { orderId: body?.orderId },
-        { deliveryStatus: body.deliveryStatus },
+        updateFields,
         { new: true, runValidators: true }
       );
-      console.log("order : ", order);
+      console.log("Updated order: ", order);
 
       try {
         await EmailService.sendEmail(
           order.email,
-          "ðŸ“¦ Your Order Has Been Delivered - Thank You!",
+          "📦 Your Order Has Been Delivered - Thank You!",
           `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
       <img src="https://res.cloudinary.com/do58gkhav/image/upload/v1748369684/payment_proofs/nqwzd4hhjq5l37cwrlxj.jpg" alt="Champion Choice Logo" style="border-radius: 50%; max-width: 150px; display: block; margin: auto;"/>
       
-            <h2 style="color: #28a745; text-align: center;">âœ… Your Order Has Been Delivered!</h2>
+            <h2 style="color: #28a745; text-align: center;">✅ Your Order Has Been Delivered!</h2>
       
             <p>Hi <strong>${order.name}</strong>,</p>
       
-            <p>Weâ€™re happy to let you know that your order has been successfully delivered. Hope you loved your gear!</p>
+            <p>We're happy to let you know that your order has been successfully delivered. Hope you loved your gear!</p>
       
-            <h3 style="margin-top: 20px;">ðŸ› ï¸  Order Summary:</h3>
+            <h3 style="margin-top: 20px;">🛠️ Order Summary:</h3>
             <ul style="padding-left: 20px;">
               ${Object.entries(order.products)
             .map(
@@ -287,7 +312,7 @@ export const POST = async (req) => {
             <hr style="margin: 30px 0;" />
             <p style="font-size: 12px; color: #777; text-align: center;">
               Champion-Choice Support Team<br/>
-              ðŸ“§ championhub00@gmail.com
+              📧 championhub00@gmail.com
             </p>
           </div>
         `,
@@ -302,7 +327,7 @@ export const POST = async (req) => {
       }
       return new Response(
         JSON.stringify({
-          message: "Order deliverd marked successfully", order
+          message: "Order delivered marked successfully", order
         }),
         {
           status: 200,

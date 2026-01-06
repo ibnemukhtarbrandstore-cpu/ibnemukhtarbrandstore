@@ -3,15 +3,15 @@
 
 export const WELCOME_MESSAGES = {
     homepage: {
-        ur: "Assalam-o-Alaikum! Champion Choice mein aapka khair maqdam. Main aapki shopping assistant hoon. Kya main aapki madad kar sakti hoon?",
-        en: "Assalam-o-Alaikum! Welcome to Champion Choice. I am your shopping assistant. How can I help you?"
+        ur: "Assalam-o-Alaikum! ibnemukhtar brand store mein aapka khusaamdeed. Main aapki shopping assistant hoon. Kya main aapki madad kar sakti hoon?",
+        en: "Assalam-o-Alaikum! Welcome to ibnemukhtar brand store. I am your shopping assistant. How can I help you?"
     },
     product_detail: {
         ur: "Assalam-o-Alaikum! Is product ke baare mein koi sawal ho to zaroor poochein. Main aapki madad ke liye hazir hoon.",
         en: "Assalam-o-Alaikum! If you have any questions about this product, feel free to ask. I'm here to help."
     },
     checkout: {
-        ur: "Assalam-o-Alaikum! Checkout page par aapka khair maqdam. Apni details fill karein, main har step mein aapki madad karungi.",
+        ur: "Assalam-o-Alaikum! Checkout page par aapka khusaamdeed. Apni details fill karein, main har step mein aapki madad karungi.",
         en: "Assalam-o-Alaikum! Welcome to checkout page. Fill in your details, I will guide you through each step."
     },
     payment: {
@@ -19,7 +19,7 @@ export const WELCOME_MESSAGES = {
         en: "Assalam-o-Alaikum! Select your payment method. I will provide you the account details."
     },
     contact: {
-        ur: "Assalam-o-Alaikum! Contact page par aapka khair maqdam. Aap hamen WhatsApp, call, ya message kar sakte hain.",
+        ur: "Assalam-o-Alaikum! Contact page par aapka khusaamdeed. Aap hamen WhatsApp, call, ya message kar sakte hain.",
         en: "Assalam-o-Alaikum! Welcome to contact page. You can WhatsApp, call, or message us."
     },
     ai_shopping: {
@@ -31,7 +31,7 @@ export const WELCOME_MESSAGES = {
         en: "Assalam-o-Alaikum! Browsing our products. Let me know if you like something."
     },
     account: {
-        ur: "Assalam-o-Alaikum! Aapke account page par khair maqdam. Apni details yahan dekh sakte hain.",
+        ur: "Assalam-o-Alaikum! Aapke account page par khusaamdeed. Apni details yahan dekh sakte hain.",
         en: "Assalam-o-Alaikum! Welcome to your account page. You can view your details here."
     },
     orders: {
@@ -39,7 +39,7 @@ export const WELCOME_MESSAGES = {
         en: "Assalam-o-Alaikum! Your orders are here. Feel free to ask any questions."
     },
     blog: {
-        ur: "Assalam-o-Alaikum! Blog section mein aapka khair maqdam. Interesting articles padhein.",
+        ur: "Assalam-o-Alaikum! Blog section mein aapka khusaamdeed. Interesting articles padhein.",
         en: "Assalam-o-Alaikum! Welcome to blog section. Read interesting articles."
     },
     search: {
@@ -47,8 +47,8 @@ export const WELCOME_MESSAGES = {
         en: "Assalam-o-Alaikum! Search results are here. Let me know if you like any product."
     },
     other: {
-        ur: "Assalam-o-Alaikum! Champion Choice mein aapka khair maqdam. Main aapki madad ke liye hazir hoon.",
-        en: "Assalam-o-Alaikum! Welcome to Champion Choice. I'm here to help you."
+        ur: "Assalam-o-Alaikum! ibnemukhtar brand store mein aapka khusaamdeed. Main aapki madad ke liye hazir hoon.",
+        en: "Assalam-o-Alaikum! Welcome to ibnemukhtar brand store. I'm here to help you."
     }
 };
 

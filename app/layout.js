@@ -115,10 +115,7 @@ export default function RootLayout({ children }) {
                     content="nacpytod5s5ffuq77lmy9ws820jyiz"
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta
-                    name="google-site-verification"
-                    content="VJejj7reIcd0mDSKEBtoji8V3TPr6yJOxDFRW8HAqRg"
-                />
+                <meta name="google-site-verification" content="u9Ht-tpTj9hZeTHgbLt5ztmOsfEjVTZy76_XM-h51nE" />
 
                 {/* Google Analytics */}
 

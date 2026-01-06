@@ -87,6 +87,42 @@ const orderSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+
+    /**
+     * M&P COURIER TRACKING FIELDS
+     * For order tracking and delivery management
+     */
+    courierService: {
+      type: String,
+      default: "M&P", // "M&P", "TCS", "Leopards", etc.
+    },
+    trackingNumber: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    trackingUrl: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    courierBookingId: {
+      type: String,
+      default: "",
+      trim: true, // M&P booking reference
+    },
+    shippedAt: {
+      type: Date,
+      default: null, // When order was shipped
+    },
+    estimatedDelivery: {
+      type: Date,
+      default: null, // Expected delivery date
+    },
+    deliveryNotes: {
+      type: String,
+      default: "", // Courier notes or special instructions
+    },
   },
   { timestamps: true }
 );

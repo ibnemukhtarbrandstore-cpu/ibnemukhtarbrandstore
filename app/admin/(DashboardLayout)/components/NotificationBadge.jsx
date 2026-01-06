@@ -92,31 +92,29 @@ export default function NotificationBadge() {
                 </Box>
                 <Divider />
 
-                {count > 0 ? (
-                    <>
-                        <MenuItem disabled>
-                            <Box>
-                                <Typography variant="body1" fontWeight={600}>
-                                    {count} New Orders
-                                </Typography>
-                                <Typography variant="caption" color="text.secondary">
-                                    💵 {breakdown.cod} COD • 🏦 {breakdown.manual} Manual
-                                </Typography>
-                            </Box>
-                        </MenuItem>
-                        <Divider />
-                        <MenuItem onClick={handleViewOrders}>
-                            <Typography variant="body2">
-                                📋 View Unshifted Orders
+                {count > 0 ? [
+                    <MenuItem key="notification-info" disabled>
+                        <Box>
+                            <Typography variant="body1" fontWeight={600}>
+                                {count} New Orders
                             </Typography>
-                        </MenuItem>
-                        <MenuItem onClick={handleMarkAllRead}>
-                            <Typography variant="body2" color="text.secondary">
-                                ✓ Mark All as Read
+                            <Typography variant="caption" color="text.secondary">
+                                💵 {breakdown.cod} COD • 🏦 {breakdown.manual} Manual
                             </Typography>
-                        </MenuItem>
-                    </>
-                ) : (
+                        </Box>
+                    </MenuItem>,
+                    <Divider key="divider-1" />,
+                    <MenuItem key="view-orders" onClick={handleViewOrders}>
+                        <Typography variant="body2">
+                            📋 View Unshifted Orders
+                        </Typography>
+                    </MenuItem>,
+                    <MenuItem key="mark-read" onClick={handleMarkAllRead}>
+                        <Typography variant="body2" color="text.secondary">
+                            ✓ Mark All as Read
+                        </Typography>
+                    </MenuItem>
+                ] : (
                     <MenuItem disabled>
                         <Typography variant="body2" color="text.secondary">
                             No new notifications

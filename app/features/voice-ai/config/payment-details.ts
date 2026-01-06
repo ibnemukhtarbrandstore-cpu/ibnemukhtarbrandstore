@@ -27,16 +27,16 @@ export const PAYMENT_DETAILS = {
 
 export const PAYMENT_VOICE_SCRIPTS = {
     easypaisa: {
-        ur: "EasyPaisa ke liye 0346-7383686 par payment karein. Ali Raza ke naam se. Payment ke baad screenshot upload zaroor karein.",
+        ur: "EasyPaisa ke liye 0 3 4 6 7 3 8 3 6 8 6 par payment karein. Ali Raza ke naam se. Payment ke baad screenshot upload zaroor karein.",
         en: "For EasyPaisa, send payment to 0346-7383686 in the name of Ali Raza. Upload screenshot after payment."
     },
     jazzcash: {
-        ur: "JazzCash ke liye 0312-0905007 par payment karein. Ali Raza ke naam se. Screenshot upload karna na bhoolein.",
+        ur: "JazzCash ke liye 0 3 1 2 0 9 0 5 0 0 7 par payment karein. Ali Raza ke naam se. Screenshot upload karna na bhoolein.",
         en: "For JazzCash, send payment to 0312-0905007 in the name of Ali Raza. Don't forget to upload screenshot."
     },
     meezan: {
         ur: "Meezan Bank Chinniot Branch. Account number 4 8 0 1 0 1 0 4 2 7 9 9 7 3. IBAN PK58MEZN0048010104279973. Ali Raza ke naam se. Payment proof upload karein.",
-        en: "Meezan Bank Chinniot Branch. Account number 48010104279973. IBAN PK58MEZN0048010104279973. In the name of Ali Raza. Upload payment proof."
+        en: "Meezan Bank Chinniot Branch. Account number 4 8 0 1 0 1 0 4 2 7 9 9 7 3. IBAN PK58MEZN0048010104279973. In the name of Ali Raza. Upload payment proof."
     },
     cod: {
         ur: "Ji sir, Cash on Delivery available hai. Lekin Rs. 100 extra charge lagega. Payment courier ko delivery par dena hoga.",

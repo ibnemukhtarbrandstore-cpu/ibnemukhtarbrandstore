@@ -206,7 +206,14 @@ const Page = () => {
                     <Typography variant="h5" color="success.main" align="center" mb={2}>
                       Product Uploaded Successfully!
                     </Typography>
-                    <Button variant="contained" color="primary" onClick={() => setSuccess(false)}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        setSuccess(false);
+                        setBtnLoading(false);
+                      }}
+                    >
                       Add Another Product
                     </Button>
                   </BaseCard>

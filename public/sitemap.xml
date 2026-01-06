@@ -1,227 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Homepage -->
   <url>
-       <loc>https://www.champzones.com/</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>1.0000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
+  
+  <!-- Product Pages -->
   <url>
-       <loc>https://www.champzones.com/uniforms</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/products</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/hoodies</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/all-products/recommended</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/tshirts</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/all-products/limited</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
+  <!--Collections & Categories -->
   <url>
-       <loc>https://www.champzones.com/mugs</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/best-sellers</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/stickers</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/trending</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/login</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/fresh-stock</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/checkout</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/clothing</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/products</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/accessories</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/contact-us</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/formal</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/all-products/recommended</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/casual</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/uniforms-company?company=dae%20do</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/beauty</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/uniforms-company?company=fila</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/electronics</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/uniforms-company?company=gr%20tkd</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/collections/eid</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
+  
+  <!-- User Account Pages -->
   <url>
-       <loc>https://www.champzones.com/uniforms-company?company=moto</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/login</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/uniforms-company?company=pine%20tree</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/signup</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/uniforms-company?company=pro%20specs</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/forgot</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/all-products/flash-sale</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/myaccount</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/all-products/limited</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/orders</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
+  
+  <!-- Purchase Flow -->
   <url>
-       <loc>https://www.champzones.com/about</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/checkout</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+  
+  <!-- Search & Browse -->
   <url>
-       <loc>https://www.champzones.com/blog</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/search</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
+  
+  <!-- Informational Pages -->
   <url>
-       <loc>https://www.champzones.com/search</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/about</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/myaccount</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/contact-us</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/orders</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/blog</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
+  
+  <!-- Policy Pages -->
   <url>
-       <loc>https://www.champzones.com/privacy-policy</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/privacy-policy</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/return-policy</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/terms-conditions</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/refund-policy</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/return-policy</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/shiping-policy</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/refund-policy</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
+  
   <url>
-       <loc>https://www.champzones.com/terms-conditions</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
+    <loc>https://ibnemukhtarbrandstore.vercel.app/shiping-policy</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
-  <url>
-       <loc>https://www.champzones.com/product/taekwondo-tkd-hoodie-black</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.champzones.com/product/taekwondo-training-tshirt-mens-sports-fit-black</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.champzones.com/product/traditional-korean-art-taekwondo-tshirt</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.champzones.com/signup</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.champzones.com/forgot</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.champzones.com/product/taekwondo-tkd-hoodie-yellow</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.champzones.com/product/traditional-korean-art-taekwondo-tshirt-l</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.champzones.com/product/traditional-korean-art-taekwondo-tshirt-s</loc>
-       <lastmod>2025-07-23T04:57:05+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.6400</priority>
-  </url>
+  
 </urlset>

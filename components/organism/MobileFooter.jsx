@@ -12,6 +12,7 @@ import { LuShirt } from "react-icons/lu";
 import { IconList } from "@tabler/icons-react";
 import { GiShorts } from 'react-icons/gi';
 import SmartDisplayOutlinedIcon from '@mui/icons-material/SmartDisplayOutlined';
+import { MdOutlineLocalShipping } from "react-icons/md"; // Track Order icon
 
 
 const MobileFooter = () => {
@@ -80,9 +81,30 @@ const MobileFooter = () => {
           <FiSearch
             className={`text-3xl pt-1 text-black rounded-lg transition ease-in-out`}
           />
-          <span className={`text-[7px] text-black `}>Search</span>
+          <span className="text-[7px] text-black">Search</span>
         </button>
       </Link>
+
+      {/* Track Order - NEW */}
+      <Link
+        onMouseEnter={() => handleHover("/order/track")}
+        title="Track Orders"
+        href="/order/track"
+      >
+        <button
+          suppressHydrationWarning={true}
+          className="text-center flex flex-col items-center justify-center relative"
+        >
+          {isActive("/order/track") && (
+            <span className="absolute top-0 w-[40px] h-1 bg-[#DD8560]"></span>
+          )}
+          <MdOutlineLocalShipping
+            className={`text-3xl pt-1 text-black rounded-lg transition ease-in-out`}
+          />
+          <span className={`text-[7px] text-black`}>Track</span>
+        </button>
+      </Link>
+
       <Link href="/stream" className={`flex flex-col items-center ${isActive('/stream') ? 'text-red-600' : 'text-gray-500'}`}>
         <div className="relative">
           <SmartDisplayOutlinedIcon size={24} className={isActive('/stream') ? 'animate-pulse' : ''} />
@@ -92,24 +114,6 @@ const MobileFooter = () => {
           </span>
         </div>
         <span className="text-[7px] text-black">Shorts</span>
-      </Link>
-      <Link
-        onMouseEnter={() => handleHover("/orders")}
-        title="Orders"
-        href="/orders"
-      >
-        <button
-          suppressHydrationWarning={true}
-          className="text-center flex flex-col items-center justify-center relative"
-        >
-          {isActive("/orders") && (
-            <span className="absolute top-0 w-[40px] h-1 bg-[#DD8560]"></span>
-          )}{" "}
-          <FiShoppingBag
-            className={`text-3xl pt-1 text-black rounded-lg transition ease-in-out`}
-          />
-          <span className={`text-[7px] text-black `}>Orders</span>
-        </button>
       </Link>
 
       {isAdmin === true && (

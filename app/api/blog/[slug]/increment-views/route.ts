@@ -8,9 +8,9 @@ export async function POST(
 ) {
   try {
     await connectDb();
-    
-    const { slug } = params;
-    
+
+    const { slug } = await params;
+
     if (!slug) {
       return NextResponse.json(
         { error: 'Blog slug is required' },

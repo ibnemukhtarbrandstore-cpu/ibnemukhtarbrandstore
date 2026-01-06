@@ -7,6 +7,10 @@ import {
   Box,
   Button,
   Container,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
   Grid,
   MenuItem,
   Pagination,
@@ -20,6 +24,7 @@ import {
   TableHead,
   TableRow,
   Typography,
+  TextField,
 } from "@mui/material";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
@@ -28,6 +33,7 @@ import { toast, ToastContainer } from "react-toastify";
 import BaseCard from "../(DashboardLayout)/components/shared/BaseCard";
 import { cancelPendingRequests } from "@/services/api";
 import NotificationBadge from "../(DashboardLayout)/components/NotificationBadge"; // 🆕
+import TrackingModal from "@/components/admin/TrackingModal"; // 🆕 Tracking modal
 
 const MainWrapper = styled("div")(() => ({
   display: "flex",
@@ -48,6 +54,17 @@ const Page = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState("");
+
+  // Modal state for tracking details
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [trackingData, setTrackingData] = useState({
+    courierService: "M&P",
+    trackingNumber: "",
+    courierBookingId: "",
+    estimatedDelivery: "",
+    deliveryNotes: "",
+  });
 
   const handleChange = (e) => {
     setMonth(e.target.value);
@@ -163,6 +180,25 @@ const Page = () => {
     } catch (error) {
       console.error("Failed to mark notifications as read:", error);
     }
+  };
+
+  // Open modal for tracking details
+  const handleOpenModal = (order) => {
+    setSelectedOrder(order);
+    setOpenModal(true);
+    // Reset tracking data
+    setTrackingData({
+      courierService: "M&P",
+      trackingNumber: "",
+      courierBookingId: "",
+      estimatedDelivery: "",
+      deliveryNotes: "",
+    });
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSelectedOrder(null);
   };
 
   const toBase64 = (file) => {
@@ -424,20 +460,22 @@ const Page = () => {
                                   {Object.keys(order.products).length}
                                 </Typography>
                               </TableCell>
-                              <Typography
-                                variant="body2"
-                                fontWeight={600}
-                                sx={{
-                                  backgroundColor: "#FEF3C7",
-                                  color: "#F59E0B",
-                                  padding: "4px 8px",
-                                  borderRadius: "4px",
-                                  display: "inline-block",
-                                  fontSize: "12px"
-                                }}
-                              >
-                                {order.phone}
-                              </Typography>
+                              <TableCell>
+                                <Typography
+                                  variant="body2"
+                                  fontWeight={600}
+                                  sx={{
+                                    backgroundColor: "#FEF3C7",
+                                    color: "#F59E0B",
+                                    padding: "4px 8px",
+                                    borderRadius: "4px",
+                                    display: "inline-block",
+                                    fontSize: "12px"
+                                  }}
+                                >
+                                  {order.phone}
+                                </Typography>
+                              </TableCell>
                               <TableCell>
                                 <Typography color="textSecondary" variant="h6">
                                   Rs.{order.amount}/_
@@ -497,11 +535,9 @@ const Page = () => {
                                 <Button
                                   color="primary"
                                   variant="contained"
-                                  onClick={() =>
-                                    updateStatus(order.orderId, "delivering")
-                                  }
+                                  onClick={() => handleOpenModal(order)}
                                 >
-                                  Delivering
+                                  Assign Tracking
                                 </Button>
                               </TableCell>
                             </TableRow>
@@ -545,9 +581,10 @@ const Page = () => {
           {/* ------------------------------------------- */}
           {/* <Footer /> */}
         </Box>
-      </PageWrapper>
-    </MainWrapper>
+      </PageWrapper >
+    </MainWrapper >
   );
 };
 
 export default Page;
+

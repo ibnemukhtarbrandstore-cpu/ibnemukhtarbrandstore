@@ -3,13 +3,11 @@
 import BorderSection from "@/components/atom/BorderSection";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import LoadingComponent from "../../components/atom/LoadingComponent";
-import { cancelPendingRequests } from "@/services/api";
+import LoadingComponent from "../atom/LoadingComponent";
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedDuration, setSelectedDuration] = useState("this week");
 
@@ -21,7 +19,7 @@ const OrdersPage = () => {
       return;
     }
 
-    fetch("/api/all-orders", {
+    fetch("/api/get-orders", {
       method: "POST",
       body: JSON.stringify({ token }),
       headers: {
@@ -34,10 +32,11 @@ const OrdersPage = () => {
           setOrders(data.orders);
         }
         setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch orders:", error);
+        setLoading(false);
       });
-      return () => {
-        cancelPendingRequests();
-      };
   }, []);
 
   const filterOrders = () => {
@@ -89,7 +88,7 @@ const OrdersPage = () => {
                   <option value="cancelled">Cancelled</option>
                 </select>
               </div>
-              <span className="inline-block text-gray-500"> from </span>
+              <span className="inline-block text-gray-500">from </span>
               <div>
                 <label
                   htmlFor="duration"
@@ -169,14 +168,40 @@ const OrdersPage = () => {
                     </dl>
 
                     <div className="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4">
-                      {order.deliveryStatus !== "deliverd" && (
-                        <button
-                          type="button"
+                      {/* Track Order Button - Show if not delivered */}
+                      {order.deliveryStatus !== "delivered" && (
+                        <Link
+                          href={`/order/track/${order._id}`}
                           className="w-full rounded-lg border border-[#DD8560] px-3 py-2 text-center text-sm font-medium text-[#DD8560] hover:bg-[#DD8560]/90 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 lg:w-auto"
                         >
                           Track order
-                        </button>
+                        </Link>
                       )}
+
+                      {/* Request Return Button - Show only if delivered and within 14 days */}
+                      {(() => {
+                        // Only for delivered and paid orders
+                        if (order.deliveryStatus !== "delivered" || order.status !== "paid") return null;
+
+                        // Calculate days since order created
+                        const createdDate = new Date(order.createdAt);
+                        const today = new Date();
+                        const daysSinceOrder = Math.floor((today - createdDate) / (1000 * 60 * 60 * 24));
+
+                        // Only show if within 14 days
+                        if (daysSinceOrder > 14) return null;
+
+                        return (
+                          <Link
+                            href={`/myaccount/returns/request?orderId=${order._id}`}
+                            className="w-full rounded-lg bg-orange-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-300 lg:w-auto"
+                          >
+                            🔄 Request Return
+                          </Link>
+                        );
+                      })()}
+
+                      {/* View Details Button - Always show */}
                       <Link
                         href={`/order/${order._id}`}
                         className="w-full inline-flex justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 lg:w-auto"
@@ -195,7 +220,7 @@ const OrdersPage = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 

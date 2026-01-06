@@ -8,6 +8,7 @@ import ProfileTab from "@/components/organism/ProfileTab";
 import SettingsTab from "@/components/organism/SettingsTab";
 // New Import
 import StudioTab from "@/components/organism/StudioTab";
+import ReturnsTab from "@/components/organism/ReturnsTab";
 
 import { useAuth } from "@/hooks/useAuth";
 import { cancelPendingRequests } from "@/services/api";
@@ -20,6 +21,7 @@ import {
   FiShoppingBag,
   FiUser,
   FiVideo, // Imported Icon
+  FiRotateCcw, // Returns Icon
 } from "react-icons/fi";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -103,6 +105,8 @@ const MyAccountPage = () => {
         return <StudioTab />;
       case "orders":
         return <OrdersTab orders={orders} />;
+      case "returns":
+        return <ReturnsTab />;
       case "notifications":
         return <NotificationsTab />;
       case "settings":
@@ -138,8 +142,8 @@ const MyAccountPage = () => {
               <button
                 onClick={() => setActiveTab("profile")}
                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-left ${activeTab === "profile"
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
                   }`}
               >
                 <FiUser className="text-lg" />
@@ -150,8 +154,8 @@ const MyAccountPage = () => {
               <button
                 onClick={() => setActiveTab("studio")}
                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-left ${activeTab === "studio"
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
                   }`}
               >
                 <FiVideo className="text-lg" />
@@ -161,8 +165,8 @@ const MyAccountPage = () => {
               <button
                 onClick={() => setActiveTab("ChangePasswordForm")}
                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-left ${activeTab === "ChangePasswordForm"
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
                   }`}
               >
                 <FiSettings className="text-lg" />
@@ -172,8 +176,8 @@ const MyAccountPage = () => {
               <button
                 onClick={() => setActiveTab("orders")}
                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-left ${activeTab === "orders"
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
                   }`}
               >
                 <FiShoppingBag className="text-lg" />
@@ -186,10 +190,21 @@ const MyAccountPage = () => {
               </button>
 
               <button
+                onClick={() => setActiveTab("returns")}
+                className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-left ${activeTab === "returns"
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
+                  }`}
+              >
+                <FiRotateCcw className="text-lg" />
+                <span>My Returns</span>
+              </button>
+
+              <button
                 onClick={() => setActiveTab("notifications")}
                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-left ${activeTab === "notifications"
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
                   }`}
               >
                 <FiBell className="text-lg" />
@@ -199,8 +214,8 @@ const MyAccountPage = () => {
               <button
                 onClick={() => setActiveTab("settings")}
                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-left ${activeTab === "settings"
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-700 hover:bg-gray-100"
                   }`}
               >
                 <FiSettings className="text-lg" />

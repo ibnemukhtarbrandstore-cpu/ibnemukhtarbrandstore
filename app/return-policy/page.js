@@ -1,58 +1,146 @@
-import Head from "next/head";
+export const metadata = {
+  title: "Return Policy - Ibnemukhtar Brand Store | Easy Returns Process",
+  description: "Learn about Ibnemukhtar Brand Store's hassle-free return policy. Returns accepted within 1-4 working days of delivery for damaged, defective, or incorrect items.",
+  keywords: "return policy, exchange policy, ibnemukhtar returns, product returns pakistan",
+};
 
-const ReturnPlicy = () => {
+export default function ReturnPolicy() {
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-12">
-      <Head>
-        <title>Return Policy - CHAMPION-CHOICE</title>
-        <meta
-          name="description"
-          content="Read our advanced return policy for both Pakistan and international buyers. Learn about eligibility, process, and important terms for returns and exchanges."
-        />
-      </Head>
-      <h1 className="text-4xl font-extrabold mb-6 text-center text-blue-800">Return & Exchange Policy</h1>
-      <p className="mb-6 text-lg text-gray-700 text-center">
-        At <span className="font-semibold">CHAMPION-CHOICE</span>, we are committed to your satisfaction. Please read our return and exchange policy carefully for both Pakistan and international buyers.
-      </p>
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-blue-700 mb-2">For Buyers in Pakistan</h2>
-        <ul className="list-disc pl-6 text-gray-800 mb-4">
-          <li>Returns and exchanges are accepted within <span className="font-semibold">7 days</span> of delivery.</li>
-          <li>Items must be unused, unwashed, and in original packaging with all tags attached.</li>
-          <li>Returns are only accepted for products that are <span className="font-semibold">damaged, defective, or incorrect</span> as delivered.</li>
-          <li>Change of mind is <span className="font-semibold text-red-600">not</span> applicable for returns.</li>
-          <li>To initiate a return, contact our support team with your order number, photos of the product, and reason for return.</li>
-          <li><span className="font-semibold text-blue-700">Return shipping charges will be paid by the customer</span> unless the item was received damaged or incorrect. We always ensure that return shipping costs are reasonable and never exceed the value of the product being returned.</li>
-        </ul>
-      </div>
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-blue-700 mb-2">For International Buyers</h2>
-        <ul className="list-disc pl-6 text-gray-800 mb-4">
-          <li>Returns and exchanges are accepted within <span className="font-semibold">14 days</span> of delivery.</li>
-          <li>Items must be unused, unwashed, and in original packaging with all tags attached.</li>
-          <li>Only products that are <span className="font-semibold">damaged, defective, or incorrect</span> as delivered are eligible for return.</li>
-          <li>Change of mind is <span className="font-semibold text-red-600">not</span> applicable for returns.</li>
-          <li>Contact our support team with your order number, clear photos, and reason for return to initiate the process.</li>
-          <li><span className="font-semibold text-blue-700">A fixed return shipping charge of 600 PKR applies for all international returns</span> (unless the item was received damaged or incorrect). We guarantee that the return shipping cost will never exceed the value of the product. If your product value is less than the return shipping, please contact our support for a fair solution.</li>
-          <li>International buyers are responsible for any customs duties and taxes on returns unless the item was received damaged or incorrect.</li>
-        </ul>
-      </div>
-      <div className="mb-8">
-        <h2 className="text-xl font-bold text-blue-600 mb-2">General Terms & Conditions</h2>
-        <ul className="list-disc pl-6 text-gray-800 mb-4">
-          <li>All returns are subject to inspection. If the product does not meet our return criteria, it will be sent back to the customer.</li>
-          <li>Refunds (if applicable) will be processed within 7-10 business days after approval.</li>
-          <li>Shipping charges (original and return) are non-refundable unless the return is due to our error.</li>
-          <li>Customized or personalized items are <span className="font-semibold text-red-600">not eligible</span> for return or exchange.</li>
-        </ul>
-      </div>
-      <div className="mb-4 p-4 bg-blue-50 border-l-4 border-blue-400">
-        <p className="text-blue-900 font-semibold">
-          <span className="font-bold">Need Help?</span> Contact our customer support at <a href="mailto:support@championchoice.com" className="underline text-blue-700">support@championchoice.com</a> or WhatsApp for quick assistance.
+    <div className="max-w-4xl mx-auto p-6 md:p-8 my-12">
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Return & Exchange Policy</h1>
+
+      <div className="space-y-6 text-gray-700">
+        <p className="text-lg text-gray-600">
+          At <strong>Ibnemukhtar Brand Store</strong>, your satisfaction is our priority. We offer a transparent and fair return policy to ensure a worry-free shopping experience.
+        </p>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Return Window</h2>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+            <p className="font-semibold text-blue-900">
+              Returns accepted within <span className="text-xl">1-4 working days</span> after delivery
+            </p>
+            <p className="text-blue-700 text-sm mt-1">
+              Please inspect your items upon delivery and contact us immediately if there's an issue.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Eligible Returns</h2>
+          <p className="mb-2">We accept returns only for the following reasons:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong>Damaged Items:</strong> Product arrived damaged during shipping</li>
+            <li><strong>Defective Items:</strong> Manufacturing defects or quality issues</li>
+            <li><strong>Wrong Item:</strong> You received a different product than ordered</li>
+            <li><strong>Size/Color Mismatch:</strong> Item doesn't match the ordered specifications</li>
+          </ul>
+          <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded mt-3">
+            <p className="text-red-800 font-semibold">
+              ❌ Change of mind returns are NOT accepted
+            </p>
+            <p className="text-red-700 text-sm">
+              Please ensure you're ordering the correct item, size, and color before placing your order.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Return Conditions</h2>
+          <p className="mb-2">To qualify for a return, items must meet these conditions:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>✅ Unused and unworn</li>
+            <li>✅ In original packaging with all tags attached</li>
+            <li>✅ No signs of damage, stains, or alterations</li>
+            <li>✅ All accessories and free gifts (if any) included</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">How to Return an Item</h2>
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <ol className="space-y-3">
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
+                <div>
+                  <p className="font-semibold">Contact Us</p>
+                  <p className="text-sm">Reach out to our customer support via WhatsApp (+92 346 7383686) or email within the return window</p>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">2</span>
+                <div>
+                  <p className="font-semibold">Provide Details</p>
+                  <p className="text-sm">Share your order number, reason for return, and clear photos of the item/issue</p>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">3</span>
+                <div>
+                  <p className="font-semibold">Get Approval</p>
+                  <p className="text-sm">Our team will review and approve your return request</p>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">4</span>
+                <div>
+                  <p className="font-semibold">Ship the Item</p>
+                  <p className="text-sm">Pack the item securely and ship it back to our address (we'll provide details)</p>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">5</span>
+                <div>
+                  <p className="font-semibold">Receive Refund/Exchange</p>
+                  <p className="text-sm">Once we receive and inspect the item, you'll get a refund or exchange</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Return Shipping Costs</h2>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong>Our Mistake:</strong> If the item is damaged, defective, or incorrect, we'll cover all return shipping costs</li>
+            <li><strong>Customer Request:</strong> For size/color changes or other reasons, return shipping is paid by the customer</li>
+          </ul>
+          <p className="mt-2 text-sm text-gray-600">
+            We ensure return shipping costs are reasonable and never exceed the product value.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Non-Returnable Items</h2>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Customized or personalized products</li>
+            <li>Underwear or intimate apparel (for hygiene reasons)</li>
+            <li>Items on final sale or clearance (marked as non-returnable)</li>
+            <li>Gift cards or vouchers</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Exchanges</h2>
+          <p className="mb-2">
+            We happily accept exchanges for size or color variations, subject to availability. The exchange process follows the same steps as returns. There's no additional charge for exchanges if initiated within the return window.
+          </p>
+        </section>
+
+        <section className="bg-green-50 p-4 rounded-lg">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Need Help?</h2>
+          <p className="mb-2">Contact our customer support team:</p>
+          <ul className="space-y-1">
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 346 7383686</a></li>
+            <li><strong>Phone:</strong> +92 312 0905007</li>
+            <li><strong>Email:</strong> <a href="mailto:support@ibnemukhtarbrandstore.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
+          </ul>
+        </section>
+
+        <p className="text-sm text-gray-500 mt-8">
+          Last Updated: January 2026
         </p>
       </div>
     </div>
   );
-};
-
-export default ReturnPlicy;
+}
