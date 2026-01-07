@@ -40,12 +40,13 @@ const Header = () => {
       <div
         suppressHydrationWarning={true}
         className={` menue  ${open
-            ? "w-full h-full block fixed top-0 z-50 mt-[-20px]"
-            : "w-0 h-0 hidden"
+          ? "w-full h-full block fixed top-0 z-50 mt-[-20px]"
+          : "w-0 h-0 hidden"
           }  bg-white transition-all duration-300`}
       >
         <button
           suppressHydrationWarning={true}
+          aria-label="Close menu"
           className="font-[100] text-[30px] pt-8 pl-4 text-gray-700 hover:text-[#DD8560] transition-colors"
           onClick={togleSideBar}
         >
@@ -106,15 +107,21 @@ const Header = () => {
 
         <div className="flex flex-col items-center justify-center space-y-2 pt-30px">
           <BorderSection className="py-1" />
-          <ul className="flex items-center justify-center space-x-8 text-[30px]">
+          <ul className="flex items-center justify-center space-x-8 text-[30px]" aria-label="Social media links">
             <li className="text-gray-700 hover:text-[#DD8560] transition-colors cursor-pointer">
-              <FaSquareXTwitter />
+              <a href="#" aria-label="Follow us on Twitter">
+                <FaSquareXTwitter />
+              </a>
             </li>
             <li className="text-gray-700 hover:text-[#DD8560] transition-colors cursor-pointer">
-              <RiInstagramFill />
+              <a href="#" aria-label="Follow us on Instagram">
+                <RiInstagramFill />
+              </a>
             </li>
             <li className="text-gray-700 hover:text-[#DD8560] transition-colors cursor-pointer">
-              <IoLogoYoutube />
+              <a href="#" aria-label="Subscribe on YouTube">
+                <IoLogoYoutube />
+              </a>
             </li>
           </ul>
         </div>
@@ -165,6 +172,7 @@ const Header = () => {
       >
         <button
           suppressHydrationWarning={true}
+          aria-label="Close cart"
           className="font-[100] text-[30px] pt-8 pl-4 text-gray-700 hover:text-[#DD8560] transition-colors"
           onClick={togleCart}
         >
@@ -206,6 +214,7 @@ const Header = () => {
                       <div className="w-full flex items-center justify-center ml-[-20px] space-x-3">
                         <button
                           suppressHydrationWarning={true}
+                          aria-label="Decrease quantity"
                           disabled={item.qty === 0 ? true : false}
                           onClick={() => {
                             removeFromCart(
@@ -226,6 +235,7 @@ const Header = () => {
                         </span>
                         <button
                           suppressHydrationWarning={true}
+                          aria-label="Increase quantity"
                           disabled={item.disabled === 1 ? true : false}
                           onClick={() => {
                             addToCart(

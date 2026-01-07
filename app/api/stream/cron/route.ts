@@ -7,10 +7,12 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
     try {
-        const authHeader = request.headers.get('authorization');
-        if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-            // return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-        }
+        // Manual trigger enabled - no auth required
+        // If you want to re-enable auth, uncomment below:
+        // const authHeader = request.headers.get('authorization');
+        // if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+        //     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        // }
 
         const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
         if (!YOUTUBE_API_KEY) {

@@ -177,7 +177,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-2xl font-semibold text-gray-800 mb-3">Contact Us</h2>
             <p className="mb-2">For privacy-related questions or concerns, contact us:</p>
             <ul className="space-y-1">
-              <li><strong>Email:</strong> <a href="mailto:support@ibnemukhtarbrandstore.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
+              <li><strong>Email:</strong> <a href="mailto:ibnemukhtarbrandstore@gmail.com" className="text-blue-600 hover:underline">support@ibnemukhtarbrandstore.com</a></li>
               <li><strong>WhatsApp:</strong> <a href="https://wa.me/923467383686" className="text-blue-600 hover:underline">+92 3164288921</a></li>
               <li><strong>Phone:</strong> +92 3164288921</li>
               <li><strong>Address:</strong> Chinniot, Punjab, Pakistan</li>

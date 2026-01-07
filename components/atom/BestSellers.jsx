@@ -102,7 +102,7 @@ export default function BestSellers() {
 function ProductCard({ product, rank, onClick, mobile = false }) {
     const [imageError, setImageError] = useState(false);
 
-    const cardClasses = mobile ? "flex-shrink-0 w-44 sm:w-52 snap-center" : "";
+    const cardClasses = mobile ? "flex-shrink-0 w-56 sm:w-64 snap-center" : "";
     const price = product.flashPrice || product.price;
     const hasDiscount = product.flashPrice && product.price > product.flashPrice;
     const salesCount = product.salesCount || 0;
@@ -113,26 +113,26 @@ function ProductCard({ product, rank, onClick, mobile = false }) {
             onClick={onClick}
         >
             {/* Best Seller Badge */}
-            <div className="absolute top-2 left-2 z-10 bg-gradient-to-r from-green-400 to-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+            <div className="absolute top-2 left-2 z-10 bg-gradient-to-r from-green-400 to-emerald-600 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
                 🏆 #{rank}
             </div>
 
             {/* Sales Count Badge */}
             {salesCount > 100 && (
-                <div className="absolute top-2 right-2 z-10 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                <div className="absolute top-2 right-2 z-10 bg-emerald-500 text-white text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-1 rounded-full shadow-lg">
                     {salesCount >= 1000 ? `${Math.floor(salesCount / 1000)}K+` : `${salesCount}+`} sold
                 </div>
             )}
 
             {/* Stock Indicator */}
             {product.availability > 1 && (
-                <div className="absolute top-11 right-2 z-10 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full shadow">
+                <div className="absolute top-11 right-2 z-10 bg-green-500 text-white text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-1 rounded-full shadow">
                     ✓ In Stock
                 </div>
             )}
 
             {/* Product Image */}
-            <div className={`relative ${mobile ? 'h-48' : 'h-64'} bg-gray-100 overflow-hidden`}>
+            <div className={`relative ${mobile ? 'h-56 sm:h-64' : 'h-64'} bg-gray-100 overflow-hidden`}>
                 {product.images && product.images.length > 0 && !imageError ? (
                     <Image
                         src={getOptimizedCloudinaryUrl(product.images[0])}
@@ -140,7 +140,7 @@ function ProductCard({ product, rank, onClick, mobile = false }) {
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                         onError={() => setImageError(true)}
-                        sizes={mobile ? "160px" : "(max-width: 768px) 50vw, 20vw"}
+                        sizes={mobile ? "240px" : "(max-width: 768px) 50vw, 20vw"}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -151,25 +151,25 @@ function ProductCard({ product, rank, onClick, mobile = false }) {
 
             {/* Product Info */}
             <div className="p-3 md:p-4">
-                <h3 className="text-sm md:text-base font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-green-600 transition-colors">
+                <h3 className="text-sm md:text-base font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-green-600 transition-colors min-h-[2.5rem]">
                     {product.title}
                 </h3>
 
                 {/* Rating */}
                 {product.rating > 0 && (
                     <div className="flex items-center gap-1 mb-2">
-                        <span className="text-yellow-400">★</span>
-                        <span className="text-sm font-semibold">{product.rating.toFixed(1)}</span>
+                        <span className="text-yellow-400 text-sm">★</span>
+                        <span className="text-xs sm:text-sm font-semibold">{product.rating.toFixed(1)}</span>
                     </div>
                 )}
 
                 {/* Price */}
-                <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg md:text-xl font-bold text-green-600">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <span className="text-base sm:text-lg md:text-xl font-bold text-green-600">
                         Rs. {price?.toLocaleString()}
                     </span>
                     {hasDiscount && (
-                        <span className="text-xs md:text-sm text-gray-400 line-through">
+                        <span className="text-xs sm:text-sm text-gray-400 line-through">
                             Rs. {product.price?.toLocaleString()}
                         </span>
                     )}
@@ -180,7 +180,7 @@ function ProductCard({ product, rank, onClick, mobile = false }) {
                     onClick={(e) => {
                         e.stopPropagation();
                     }}
-                    className="mt-3 w-full bg-gradient-to-r from-green-400 to-emerald-600 text-white py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100"
+                    className="mt-2 sm:mt-3 w-full bg-gradient-to-r from-green-400 to-emerald-600 text-white py-2 rounded-lg text-xs sm:text-sm font-semibold hover:shadow-lg transition-all duration-300 md:opacity-0 md:group-hover:opacity-100"
                 >
                     Add to Cart
                 </button>

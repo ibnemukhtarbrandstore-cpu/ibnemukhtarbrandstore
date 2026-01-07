@@ -48,7 +48,10 @@ const DesktopHeader = () => {
 
                         {/* Professional Dropdown */}
                         <div className="relative group">
-                            <button className="flex items-center text-sm font-medium text-gray-700 group-hover:text-[#DD8560] transition-colors py-4">
+                            <button
+                                aria-label="Collections menu"
+                                className="flex items-center text-sm font-medium text-gray-700 group-hover:text-[#DD8560] transition-colors py-4"
+                            >
                                 COLLECTIONS
                                 <BiChevronDown className="ml-1 text-lg group-hover:rotate-180 transition-transform duration-300" />
                             </button>
@@ -81,7 +84,14 @@ const DesktopHeader = () => {
                             </Link>
                         )}
 
-                        <div className="relative cursor-pointer group" onClick={toggleCart}>
+                        <div
+                            className="relative cursor-pointer group"
+                            onClick={toggleCart}
+                            role="button"
+                            aria-label="Open shopping cart"
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === 'Enter' && toggleCart()}
+                        >
                             <FaCartPlus className="text-2xl text-gray-800 group-hover:text-[#DD8560] transition-colors" />
                             {Object.keys(cart).length > 0 && (
                                 <span className="absolute -top-2 -right-2 bg-[#DD8560] text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full animate-pulse">
@@ -102,6 +112,9 @@ const DesktopHeader = () => {
                     <h2 className="font-bold text-2xl text-gray-800">Your Cart</h2>
                     <IoCloseCircleSharp
                         onClick={toggleCart}
+                        aria-label="Close cart"
+                        role="button"
+                        tabIndex={0}
                         className="text-3xl text-gray-400 hover:text-red-500 cursor-pointer transition-colors"
                     />
                 </div>
@@ -124,11 +137,17 @@ const DesktopHeader = () => {
                                         <div className="flex items-center bg-gray-100 rounded-full px-2 py-1">
                                             <BiSolidMinusCircle
                                                 onClick={() => removeFromCart(k, 1, item.price, item.name, item.variant, item.size)}
+                                                aria-label="Decrease quantity"
+                                                role="button"
+                                                tabIndex={0}
                                                 className="text-[#DD8560] cursor-pointer hover:scale-110 transition-transform"
                                             />
                                             <span className="mx-3 text-sm font-bold">{item.qty}</span>
                                             <BiSolidPlusCircle
                                                 onClick={() => addToCart(k, 1, item.price, item.name, item.variant, item.size)}
+                                                aria-label="Increase quantity"
+                                                role="button"
+                                                tabIndex={0}
                                                 className="text-[#DD8560] cursor-pointer hover:scale-110 transition-transform"
                                             />
                                         </div>
@@ -148,6 +167,7 @@ const DesktopHeader = () => {
                         <Link href="/checkout" className="w-full">
                             <button
                                 disabled={Object.keys(cart).length <= 0}
+                                aria-label="Proceed to checkout"
                                 className="w-full flex items-center justify-center space-x-2 bg-black text-white py-3 rounded-sm hover:bg-[#DD8560] disabled:bg-gray-200 transition-colors"
                             >
                                 <IoBagCheckOutline />
@@ -157,6 +177,7 @@ const DesktopHeader = () => {
                         <button
                             onClick={clearCart}
                             disabled={Object.keys(cart).length <= 0}
+                            aria-label="Clear cart"
                             className="w-full border border-gray-200 text-gray-600 py-3 rounded-sm hover:bg-gray-50 disabled:opacity-50 transition-colors text-sm font-bold uppercase"
                         >
                             Clear

@@ -67,8 +67,7 @@ const MobileBanner = () => {
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div
-                className="relative w-full"
-                style={{ paddingBottom: `${(300 / 600) * 100}%` }}
+                className="relative w-full h-60"
               >
                 <Image
                   src={slide.imgSrc}

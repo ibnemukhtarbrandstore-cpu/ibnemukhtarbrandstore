@@ -23,7 +23,10 @@ import MobileHeader from "@/components/molecules/MobileHeader";
 import DesktopHeader from "@/components/organism/DesktopHeader";
 import VoiceWidget, { PageVoiceGuide } from "./features/voice-ai";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+    subsets: ["latin"],
+    display: 'swap', // Prevents invisible text during font loading
+});
 
 export const metadata = {
     title: {
@@ -110,11 +113,18 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <head>
+                {/* Performance: Resource hints for external domains */}
+                <link rel="preconnect" href="https://res.cloudinary.com" />
+                <link rel="dns-prefetch" href="https://www.facebook.com" />
+                <link rel="dns-prefetch" href="https://vercel.com" />
+
+                {/* Meta tags */}
+                <meta name="theme-color" content="#ffffff" />
                 <meta
                     name="facebook-domain-verification"
                     content="nacpytod5s5ffuq77lmy9ws820jyiz"
                 />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
                 <meta name="google-site-verification" content="u9Ht-tpTj9hZeTHgbLt5ztmOsfEjVTZy76_XM-h51nE" />
 
                 {/* Google Analytics */}

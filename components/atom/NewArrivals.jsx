@@ -100,7 +100,7 @@ export default function NewArrivals() {
 
 function ProductCard({ product, onClick, mobile = false }) {
     const cardClasses = mobile
-        ? "flex-shrink-0 w-64 snap-center"
+        ? "flex-shrink-0 w-[45%] min-w-[160px] snap-center"
         : "w-full";
 
     const price = product.flashPrice || product.price;
