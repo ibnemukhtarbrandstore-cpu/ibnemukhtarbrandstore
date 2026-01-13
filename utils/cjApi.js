@@ -6,26 +6,11 @@
 import axios from 'axios';
 
 const CJ_API_URL = process.env.CJ_API_URL || 'https://developers.cjdropshipping.com/api2.0/v1';
-const CJ_EMAIL = process.env.CJ_EMAIL;
-const CJ_PASSWORD = process.env.CJ_PASSWORD;
-
-// Legacy support: Parse old format "email@api@password"
 const CJ_API_KEY = process.env.CJ_API_KEY;
-let parsedEmail = CJ_EMAIL;
-let parsedPassword = CJ_PASSWORD;
 
-// If using legacy format, parse it
-if (!parsedEmail && !parsedPassword && CJ_API_KEY) {
-    const parts = CJ_API_KEY.split('@api@');
-    if (parts.length === 2) {
-        parsedEmail = parts[0];
-        parsedPassword = parts[1];
-        console.log('📝 Parsed CJ credentials from legacy format');
-    }
-}
-
-if (!parsedEmail || !parsedPassword) {
-    console.warn('⚠️ CJ credentials not found. Set CJ_EMAIL and CJ_PASSWORD environment variables.');
+if (!CJ_API_KEY) {
+    console.warn('⚠️ CJ_API_KEY not found in environment variables');
+    console.warn('⚠️ Get it from: CJ Dashboard → My CJ → Authorization → API → API Key');
 }
 
 // Token cache
@@ -34,6 +19,7 @@ let tokenExpiry = null;
 
 /**
  * Get Access Token from CJ API
+ * Official Documentation: https://developers.cjdropshipping.com/
  * Token is cached and auto-refreshed when expired
  */
 async function getAccessToken() {
@@ -45,15 +31,15 @@ async function getAccessToken() {
     try {
         console.log('🔑 Fetching new CJ Access Token...');
 
-        if (!parsedEmail || !parsedPassword) {
-            throw new Error('CJ email and password not configured');
+        if (!CJ_API_KEY) {
+            throw new Error('CJ_API_KEY is not configured. Get it from CJ Dashboard → My CJ → Authorization → API → API Key');
         }
 
+        // Official CJ API authentication endpoint
         const response = await axios.post(
             `${CJ_API_URL}/authentication/getAccessToken`,
             {
-                email: parsedEmail,
-                password: parsedPassword,
+                apiKey: CJ_API_KEY,  // Format: "CJUserNum@api@xxxxxxxxxxxxxxxx"
             },
             {
                 headers: {
@@ -65,17 +51,22 @@ async function getAccessToken() {
 
         if (response.data?.code === 200 && response.data?.data?.accessToken) {
             accessToken = response.data.data.accessToken;
-            // Token valid for 2 hours, cache for 1.5 hours to be safe
-            tokenExpiry = Date.now() + (90 * 60 * 1000); // 90 minutes
+            // Token valid for 15 days, cache for 14 days to be safe
+            tokenExpiry = Date.now() + (14 * 24 * 60 * 60 * 1000); // 14 days
 
             console.log('✅ CJ Access Token obtained successfully');
+            console.log('Token expires:', new Date(tokenExpiry).toISOString());
             return accessToken;
         } else {
-            throw new Error(response.data?.message || 'Failed to get access token');
+            const errorMsg = response.data?.message || 'Failed to get access token';
+            console.error('❌ CJ API Response:', response.data);
+            throw new Error(errorMsg);
         }
     } catch (error) {
         console.error('❌ CJ Access Token Error:', error.message);
-        console.error('Response:', error.response?.data);
+        if (error.response?.data) {
+            console.error('API Response:', error.response.data);
+        }
 
         // If development mode, allow fallback to test mode
         if (process.env.NODE_ENV === 'development') {
