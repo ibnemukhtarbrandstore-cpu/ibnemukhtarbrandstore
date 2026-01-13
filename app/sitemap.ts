@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/collections/accessories',
         '/collections/sports',
         '/collections/electronics',
-        // Demographics
+        // Demographics 
         '/collections/mens',
         '/collections/womens',
         '/collections/kids',
