@@ -6,10 +6,26 @@
 import axios from 'axios';
 
 const CJ_API_URL = process.env.CJ_API_URL || 'https://developers.cjdropshipping.com/api2.0/v1';
-const CJ_API_KEY = process.env.CJ_API_KEY;
+const CJ_EMAIL = process.env.CJ_EMAIL;
+const CJ_PASSWORD = process.env.CJ_PASSWORD;
 
-if (!CJ_API_KEY) {
-    console.warn('⚠️ CJ_API_KEY not found in environment variables');
+// Legacy support: Parse old format "email@api@password"
+const CJ_API_KEY = process.env.CJ_API_KEY;
+let parsedEmail = CJ_EMAIL;
+let parsedPassword = CJ_PASSWORD;
+
+// If using legacy format, parse it
+if (!parsedEmail && !parsedPassword && CJ_API_KEY) {
+    const parts = CJ_API_KEY.split('@api@');
+    if (parts.length === 2) {
+        parsedEmail = parts[0];
+        parsedPassword = parts[1];
+        console.log('📝 Parsed CJ credentials from legacy format');
+    }
+}
+
+if (!parsedEmail || !parsedPassword) {
+    console.warn('⚠️ CJ credentials not found. Set CJ_EMAIL and CJ_PASSWORD environment variables.');
 }
 
 // Token cache
@@ -29,13 +45,19 @@ async function getAccessToken() {
     try {
         console.log('🔑 Fetching new CJ Access Token...');
 
+        if (!parsedEmail || !parsedPassword) {
+            throw new Error('CJ email and password not configured');
+        }
+
         const response = await axios.post(
             `${CJ_API_URL}/authentication/getAccessToken`,
-            {},
+            {
+                email: parsedEmail,
+                password: parsedPassword,
+            },
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'CJ-Access-Token': CJ_API_KEY,
                 },
                 timeout: 10000,
             }
@@ -53,6 +75,7 @@ async function getAccessToken() {
         }
     } catch (error) {
         console.error('❌ CJ Access Token Error:', error.message);
+        console.error('Response:', error.response?.data);
 
         // If development mode, allow fallback to test mode
         if (process.env.NODE_ENV === 'development') {
