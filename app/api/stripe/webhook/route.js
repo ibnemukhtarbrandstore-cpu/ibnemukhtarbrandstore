@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { verifyWebhookSignature } from '@/utils/stripeHelpers';
-import connectDB from '@/lib/connectDB';
+import { connectDb } from '@/middleware/mongodb';
 import Order from '@/models/Order';
 
 /**

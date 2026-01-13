@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createPaymentIntent } from '@/utils/stripeHelpers';
-import connectDB from '@/lib/connectDB';
+import { connectDb } from '@/middleware/mongodb';
 import { Product } from '@/models/Product';
 
 /**
