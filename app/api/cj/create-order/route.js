@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createCJOrder } from '@/utils/cjApi';
-import connectDB from '@/lib/connectDB';
+import { connectDb } from '@/middleware/mongodb';
 import Order from '@/models/Order';
 
 /**

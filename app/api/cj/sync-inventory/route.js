@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { syncCJInventory } from '@/utils/cjApi';
-import connectDB from '@/lib/connectDB';
 import { Product } from '@/models/Product';
+import { connectDb } from '@/middleware/mongodb';
 
 /**
  * POST /api/cj/sync-inventory
@@ -11,7 +11,7 @@ export async function POST(request) {
     try {
         const { productIds = [] } = await request.json();
 
-        await connectDB();
+        await connectDb();
 
         // Get all CJ products or specific ones
         let query = { isCJProduct: true };
