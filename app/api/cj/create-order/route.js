@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createCJOrder } from '@/utils/cjApi';
 import { connectDb } from '@/middleware/mongodb';
-import Order from '@/models/Order';
+import { Order } from "@/models/Order";
 
 /**
  * POST /api/cj/create-order
@@ -18,7 +18,7 @@ export async function POST(request) {
             );
         }
 
-        await connectDB();
+        await connectDb();
 
         // Get order details
         const order = await Order.findById(orderId).populate('products.productId');

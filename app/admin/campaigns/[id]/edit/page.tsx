@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import dynamic from 'next/dynamic';
-import 'react-quill/dist/quill.snow.css';
-
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import TiptapEditor from '@/components/editor/TiptapEditor';
 
 interface Campaign {
     _id: string;
@@ -202,15 +199,10 @@ export default function EditCampaignPage({ params }: { params: { id: string } })
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                             Email Content
                         </label>
-                        <div className="border border-gray-300 rounded-lg overflow-hidden">
-                            <ReactQuill
-                                theme="snow"
-                                value={htmlContent}
-                                onChange={setHtmlContent}
-                                className="bg-white"
-                                style={{ minHeight: '400px' }}
-                            />
-                        </div>
+                        <TiptapEditor
+                            content={htmlContent}
+                            onChange={setHtmlContent}
+                        />
                     </div>
 
                     {/* Actions */}
