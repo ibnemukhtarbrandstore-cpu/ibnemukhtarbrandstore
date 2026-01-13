@@ -5,10 +5,21 @@
 
 import Stripe from 'stripe';
 
-// Initialize Stripe with secret key
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-    apiVersion: '2023-10-16',
-});
+// Lazy initialization of Stripe to avoid build-time errors
+let stripeInstance = null;
+
+function getStripe() {
+    if (!stripeInstance) {
+        const secretKey = process.env.STRIPE_SECRET_KEY;
+        if (!secretKey) {
+            throw new Error('STRIPE_SECRET_KEY is not configured');
+        }
+        stripeInstance = new Stripe(secretKey, {
+            apiVersion: '2023-10-16',
+        });
+    }
+    return stripeInstance;
+}
 
 /**
  * Create payment intent for checkout
@@ -19,6 +30,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
  */
 export async function createPaymentIntent(amount, currency = 'usd', metadata = {}) {
     try {
+        const stripe = getStripe();
         const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round(amount * 100), // Convert to cents
             currency: currency.toLowerCase(),
@@ -49,6 +61,7 @@ export async function createPaymentIntent(amount, currency = 'usd', metadata = {
  */
 export async function retrievePaymentIntent(paymentIntentId) {
     try {
+        const stripe = getStripe();
         const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
         return {
             success: true,
@@ -70,6 +83,7 @@ export async function retrievePaymentIntent(paymentIntentId) {
  */
 export async function confirmPaymentIntent(paymentIntentId) {
     try {
+        const stripe = getStripe();
         const paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId);
         return {
             success: true,
@@ -100,6 +114,7 @@ export function verifyWebhookSignature(payload, signature) {
             return null;
         }
 
+        const stripe = getStripe();
         const event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
         return event;
     } catch (error) {
