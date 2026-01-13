@@ -93,8 +93,18 @@ export async function POST(request) {
         });
     } catch (error) {
         console.error('❌ Import from URL Error:', error);
+
+        // Provide specific error messages
+        let errorMessage = 'Internal server error';
+
+        if (error.message?.includes('CJ_API_KEY') || error.message?.includes('access token')) {
+            errorMessage = 'CJ API credentials not configured. Please add CJ_API_KEY to environment variables.';
+        } else if (error.message?.includes('Invalid') || error.message?.includes('not found')) {
+            errorMessage = error.message;
+        }
+
         return NextResponse.json(
-            { success: false, error: error.message || 'Internal server error' },
+            { success: false, error: errorMessage },
             { status: 500 }
         );
     }

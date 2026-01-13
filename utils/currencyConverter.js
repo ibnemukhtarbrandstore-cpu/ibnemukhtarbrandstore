@@ -155,7 +155,7 @@ export function detectCurrencyFromCountry(countryCode) {
 
 /**
  * Detect user's location and currency from IP
- * (Client-side version - uses external service)
+ * (Client-side version - uses server-side proxy to avoid CORS)
  * @returns {Promise<object>} - { country, currency, symbol }
  */
 export async function detectUserCurrency() {
@@ -174,9 +174,9 @@ export async function detectUserCurrency() {
             };
         }
 
-        // Use ipapi.co for geolocation (free tier: 1000 requests/day)
-        const response = await fetch('https://ipapi.co/json/', {
-            signal: AbortSignal.timeout(3000), // 3 second timeout
+        // Use our server-side proxy API to avoid CORS issues
+        const response = await fetch('/api/geolocation', {
+            signal: AbortSignal.timeout(5000), // 5 second timeout
         });
 
         if (!response.ok) {
@@ -184,12 +184,12 @@ export async function detectUserCurrency() {
         }
 
         const data = await response.json();
-        const countryCode = data.country_code;
+        const countryCode = data.country;
         const currency = detectCurrencyFromCountry(countryCode);
 
         return {
             country: countryCode,
-            countryName: data.country_name,
+            countryName: data.countryName,
             currency: currency,
             symbol: SUPPORTED_CURRENCIES[currency]?.symbol || '$',
             currencyName: SUPPORTED_CURRENCIES[currency]?.name || 'US Dollar',

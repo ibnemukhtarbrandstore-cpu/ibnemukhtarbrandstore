@@ -34,8 +34,14 @@ export async function POST(request) {
         }
     } catch (error) {
         console.error('❌ CJ Search API Error:', error);
+
+        // Check if it's an authentication error
+        const errorMessage = error.message?.includes('CJ_API_KEY') || error.message?.includes('access token')
+            ? 'CJ API credentials not configured. Please add CJ_API_KEY to environment variables.'
+            : 'Internal server error';
+
         return NextResponse.json(
-            { success: false, error: 'Internal server error' },
+            { success: false, error: errorMessage },
             { status: 500 }
         );
     }
