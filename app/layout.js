@@ -22,6 +22,7 @@ import AdvancedWhatsAppButton from "@/components/atom/AdvancedWhatsAppButton";
 import MobileHeader from "@/components/molecules/MobileHeader";
 import DesktopHeader from "@/components/organism/DesktopHeader";
 import VoiceWidget, { PageVoiceGuide } from "./features/voice-ai";
+import { CurrencyProvider } from "@/context/CurrencyContext";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -135,33 +136,35 @@ export default function RootLayout({ children }) {
                     <AuthProvider>
                         <CatProvider>
                             <GlobalVariableProvider>
-                                <CartProvider>
-                                    <TopLoaderProvider />
-                                    <MobileHeader />
-                                    <DesktopHeader />
-                                    <ToastContainer
-                                        position="top-center"
-                                        autoClose={4000}
-                                        hideProgressBar={false}
-                                        newestOnTop={false}
-                                        closeOnClick={true}
-                                        rtl={false}
-                                        pauseOnFocusLoss
-                                        draggable
-                                        pauseOnHover
-                                        theme="light"
-                                    />
-                                    <FakePurchaseNotifications />
-                                    <SpeedInsights />
-                                    <Analytics />
-                                    <ClientFacebookWrapper />
-                                    {children}
-                                    {/* <AdvancedWhatsAppButton /> */}
-                                    <VoiceWidget />
-                                    <PageVoiceGuide />
-                                    <Foter />
-                                    <MobileFooter />
-                                </CartProvider>
+                                <CurrencyProvider>
+                                    <CartProvider>
+                                        <TopLoaderProvider />
+                                        <MobileHeader />
+                                        <DesktopHeader />
+                                        <ToastContainer
+                                            position="top-center"
+                                            autoClose={4000}
+                                            hideProgressBar={false}
+                                            newestOnTop={false}
+                                            closeOnClick={true}
+                                            rtl={false}
+                                            pauseOnFocusLoss
+                                            draggable
+                                            pauseOnHover
+                                            theme="light"
+                                        />
+                                        <FakePurchaseNotifications />
+                                        <SpeedInsights />
+                                        <Analytics />
+                                        <ClientFacebookWrapper />
+                                        {children}
+                                        {/* <AdvancedWhatsAppButton /> */}
+                                        <VoiceWidget />
+                                        <PageVoiceGuide />
+                                        <Foter />
+                                        <MobileFooter />
+                                    </CartProvider>
+                                </CurrencyProvider>
                             </GlobalVariableProvider>
                         </CatProvider>
                     </AuthProvider>

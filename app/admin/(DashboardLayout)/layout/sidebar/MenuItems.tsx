@@ -82,6 +82,12 @@ const Menuitems: MenuitemsType[] = [
         icon: IconSettings,
         href: "/admin/manage-products",
       },
+      {
+        id: uniqueId(),
+        title: "CJ Products",
+        icon: IconShoppingCartPlus,
+        href: "/admin/cj-products/search",
+      },
     ],
   },
   {

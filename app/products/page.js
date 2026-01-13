@@ -35,18 +35,63 @@ const Page = async ({ searchParams }) => {
     await connectDb();
   }
 
-  // Get category filter from URL - await searchParams
+  // Get all filter parameters from URL - await searchParams
   const params = await searchParams;
   const category = params?.category;
   const tag = params?.tag;
+  const sizeParam = params?.size;
+  const colorParam = params?.color;
+  const minPrice = params?.minPrice;
+  const maxPrice = params?.maxPrice;
 
-  // Build query
+  // Build advanced query
   let query = {};
+
+  // Category filter (can be comma-separated)
   if (category) {
-    query.category = category;
+    const categories = category.split(',').filter(Boolean);
+    if (categories.length > 1) {
+      query.category = { $in: categories };
+    } else {
+      query.category = categories[0];
+    }
   }
+
+  // Tag filter
   if (tag) {
-    query.tags = { $in: [tag] };
+    const tags = tag.split(',').filter(Boolean);
+    query.tags = { $in: tags };
+  }
+
+  // Size filter (multi-select support)
+  if (sizeParam) {
+    const sizes = sizeParam.split(',').filter(Boolean);
+    if (sizes.length > 0) {
+      // Match products with ANY of the selected sizes
+      query.$or = [
+        { size: { $in: sizes } }, // Old size field
+        { 'sizeVariants.size': { $in: sizes } } // New size variants
+      ];
+    }
+  }
+
+  // Color filter (multi-select support)
+  if (colorParam) {
+    const colors = colorParam.split(',').filter(Boolean);
+    if (colors.length > 0) {
+      query.color = { $in: colors.map(c => new RegExp(c, 'i')) }; // Case insensitive
+    }
+  }
+
+  // Price range filter
+  if (minPrice || maxPrice) {
+    query.price = {};
+    if (minPrice) {
+      query.price.$gte = parseFloat(minPrice);
+    }
+    if (maxPrice) {
+      query.price.$lte = parseFloat(maxPrice);
+    }
   }
 
   const Products = await Product.find(query);

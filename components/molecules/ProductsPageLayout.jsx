@@ -5,6 +5,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import ProductCard from "../atom/ProductCard";
 import FilterSidebar from "../atom/FilterSidebar";
+import ProductFilters from "../filters/ProductFilters";
 
 const ProductsPageLayout = ({
   product,
@@ -173,6 +174,8 @@ const ProductsPageLayout = ({
 
         <section className="bg-white body-font pb-8">
           <div className="container px-5 py-12 mx-auto">
+            {/* URL-Based Product Filters */}
+            <ProductFilters currentPath="/products" />
             <div className="flex items-center justify-between mb-8">
               <span className="text-gray-600 font-medium">{filteredProducts.length} RESULTS</span>
               <button onClick={() => setShowFilters(true)} className="lg:hidden flex items-center gap-1 p-2 bg-blue-600 text-white rounded-md">

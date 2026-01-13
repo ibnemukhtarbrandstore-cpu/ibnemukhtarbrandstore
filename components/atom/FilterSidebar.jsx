@@ -2,16 +2,16 @@
 import { useState, useEffect } from 'react';
 import { IconFilter, IconX, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons-react';
 
-export default function FilterSidebar({ 
-  filters, 
-  setFilters, 
-  categories = [], 
-  tags = [], 
+export default function FilterSidebar({
+  filters,
+  setFilters,
+  categories = [],
+  tags = [],
   sizes = [],
   colors = [],
   onApplyFilters,
   isOpen = true,
-  onToggle 
+  onToggle
 }) {
   const [priceRange, setPriceRange] = useState([0, 10000]);
   const [expandedSections, setExpandedSections] = useState({
@@ -56,7 +56,7 @@ export default function FilterSidebar({
     console.log('Tag clicked:', tag, 'Current tags:', filters.tags);
     setFilters(prev => ({
       ...prev,
-      tags: prev.tags.includes(tag) 
+      tags: prev.tags.includes(tag)
         ? prev.tags.filter(t => t !== tag)
         : [...prev.tags, tag]
     }));
@@ -66,7 +66,7 @@ export default function FilterSidebar({
     console.log('Size clicked:', size, 'Current sizes:', filters.sizes);
     setFilters(prev => ({
       ...prev,
-      sizes: prev.sizes.includes(size) 
+      sizes: prev.sizes.includes(size)
         ? prev.sizes.filter(s => s !== size)
         : [...prev.sizes, size]
     }));
@@ -76,7 +76,7 @@ export default function FilterSidebar({
     console.log('Color clicked:', color, 'Current colors:', filters.colors);
     setFilters(prev => ({
       ...prev,
-      colors: prev.colors.includes(color) 
+      colors: prev.colors.includes(color)
         ? prev.colors.filter(c => c !== color)
         : [...prev.colors, color]
     }));
@@ -122,15 +122,15 @@ export default function FilterSidebar({
   };
 
   const hasActiveFilters = () => {
-    return filters.category || 
-           filters.tags.length > 0 || 
-           filters.sizes.length > 0 ||
-           filters.colors.length > 0 ||
-           filters.rating > 0 || 
-           filters.availability ||
-           filters.search ||
-           priceRange[0] > 0 || 
-           priceRange[1] < 10000;
+    return filters.category ||
+      filters.tags.length > 0 ||
+      filters.sizes.length > 0 ||
+      filters.colors.length > 0 ||
+      filters.rating > 0 ||
+      filters.availability ||
+      filters.search ||
+      priceRange[0] > 0 ||
+      priceRange[1] < 10000;
   };
 
   return (
@@ -148,7 +148,7 @@ export default function FilterSidebar({
             <IconX className="w-5 h-5 text-gray-600" />
           </button>
         </div>
-        
+
         {hasActiveFilters() && (
           <button
             onClick={clearAllFilters}
@@ -173,7 +173,7 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.search && (
             <div className="relative">
               <IconSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -201,7 +201,7 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.price && (
             <div className="space-y-3">
               <div className="flex gap-2">
@@ -240,7 +240,7 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.category && (
             <div className="space-y-2">
               {categories.map((category) => (
@@ -272,11 +272,11 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.tags && (
             <div className="space-y-2 max-h-40 overflow-y-auto">
-              {tags.map((tag) => (
-                <label key={tag} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+              {tags.map((tag, index) => (
+                <label key={`tag-${index}-${tag}`} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
                   <input
                     type="checkbox"
                     checked={filters.tags.includes(tag)}
@@ -303,11 +303,11 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.sizes && (
             <div className="space-y-2 max-h-40 overflow-y-auto">
-              {sizes.map((size) => (
-                <label key={size} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+              {sizes.map((size, index) => (
+                <label key={`size-${index}-${size}`} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
                   <input
                     type="checkbox"
                     checked={filters.sizes.includes(size)}
@@ -334,11 +334,11 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.colors && (
             <div className="space-y-2 max-h-40 overflow-y-auto">
-              {colors.map((color) => (
-                <label key={color} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+              {colors.map((color, index) => (
+                <label key={`color-${index}-${color}`} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
                   <input
                     type="checkbox"
                     checked={filters.colors.includes(color)}
@@ -365,7 +365,7 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.rating && (
             <div className="space-y-2">
               {[5, 4, 3, 2, 1].map((rating) => (
@@ -402,7 +402,7 @@ export default function FilterSidebar({
               <IconChevronDown className="w-4 h-4 text-gray-500" />
             )}
           </button>
-          
+
           {expandedSections.availability && (
             <div className="space-y-2">
               <label className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">

@@ -190,6 +190,78 @@ const productSchema = new mongoose.Schema(
       features: [{ type: String }]
     },
 
+    // ✅ CJ DROPSHIPPING INTEGRATION FIELDS
+    // Indicates if this product is from CJ Dropshipping
+    isCJProduct: {
+      type: Boolean,
+      default: false,
+      index: true // For efficient filtering
+    },
+
+    // CJ Product Identifier
+    cjProductId: {
+      type: String,
+      default: null,
+      sparse: true,
+      index: true
+    },
+
+    // CJ Variant/SKU Identifier
+    cjVariantId: {
+      type: String,
+      default: null
+    },
+
+    // CJ Supplier ID
+    cjSupplierId: {
+      type: String,
+      default: null
+    },
+
+    // Product currency (from CJ, usually USD)
+    currency: {
+      type: String,
+      default: 'USD',
+      enum: ['USD', 'PKR', 'AED', 'GBP', 'EUR', 'CAD', 'AUD', 'INR', 'SAR', 'QAR', 'KWD', 'OMR', 'BHD']
+    },
+
+    // Base currency for price conversions
+    baseCurrency: {
+      type: String,
+      default: 'USD'
+    },
+
+    // Shipping cost from CJ
+    shippingCost: {
+      type: Number,
+      default: 0,
+      min: 0
+    },
+
+    // CJ Warehouse/Origin country
+    warehouseLocation: {
+      type: String,
+      default: null
+    },
+
+    // Last inventory sync timestamp
+    lastSyncedAt: {
+      type: Date,
+      default: null
+    },
+
+    // CJ Product URL (for reference)
+    cjProductUrl: {
+      type: String,
+      default: null
+    },
+
+    // Processing time (days)
+    processingTime: {
+      type: Number,
+      default: 1 // 1-3 days usually
+    },
+
   },
   { timestamps: true }
 );
