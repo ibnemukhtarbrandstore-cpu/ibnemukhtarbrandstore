@@ -377,15 +377,18 @@ export async function syncCJInventory(productIds = []) {
  * Supports formats:
  * - https://cjdropshipping.com/product/detail/123456
  * - https://www.cjdropshipping.com/product/123456
+ * - https://cjdropshipping.com/product/name-p-123456.html
  * @param {string} url - CJ product URL
  * @returns {string|null} - Extracted product ID or null
  */
 export function extractCJProductId(url) {
     try {
         const patterns = [
-            /\/product\/detail\/(\d+)/,
-            /\/product\/(\d+)/,
-            /pid[=:](\d+)/,
+            /\/product\/[^\/]*-p-(\d+)\.html/,  // New format: product/name-p-123456.html
+            /\/p-(\d+)\.html/,                   // Short format: p-123456.html
+            /\/product\/detail\/(\d+)/,          // Old format: product/detail/123456
+            /\/product\/(\d+)/,                  // Simple format: product/123456
+            /pid[=:](\d+)/,                      // Query param: pid=123456
         ];
 
         for (const pattern of patterns) {
