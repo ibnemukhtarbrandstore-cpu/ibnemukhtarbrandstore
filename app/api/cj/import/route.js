@@ -9,7 +9,7 @@ import { connectDb } from '@/middleware/mongodb';
  */
 export async function POST(request) {
     try {
-        const { cjProductId, productData } = await request.json();
+        const { cjProductId, productData, overrides } = await request.json();
 
         if (!cjProductId || !productData) {
             return NextResponse.json(
@@ -36,6 +36,15 @@ export async function POST(request) {
 
         // Map CJ product to store format
         const mappedProduct = mapCJProductToStore(productData);
+
+        // Apply Overrides if present (Title, Price, Description, etc.)
+        if (overrides) {
+            if (overrides.title) mappedProduct.title = overrides.title;
+            if (overrides.description) mappedProduct.description = overrides.description;
+            if (overrides.price) mappedProduct.price = parseFloat(overrides.price);
+            if (overrides.category) mappedProduct.category = overrides.category;
+            // Add more overrideable fields as needed
+        }
 
         // Generate unique slug
         const baseSlug = mappedProduct.title

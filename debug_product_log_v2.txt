@@ -1,0 +1,241 @@
+--- PRODUCT DETAIL DEBUG ---
+Token: API@CJ4993440@C...
+
+2. Searching for "shirt" to get a PID...
+Found PID: 2601140758001621300
+
+3. Fetching Details for 2601140758001621300...
+Attempting GET /product/query...
+GET Status: 200
+GET Response Code: 200
+✅ GET worked!
+{
+  "pid": "2601140758001621300",
+  "productName": "[\"2025 跨境外贸新款卡通动物3D数码印花男T恤运动套装休闲大码短袖\",\"2025跨境外贸新款卡通动物\",\"3d数码印花男t恤\"]",
+  "productNameSet": [
+    "2025 跨境外贸新款卡通动物3D数码印花男T恤运动套装休闲大码短袖",
+    "2025跨境外贸新款卡通动物",
+    "3d数码印花男t恤"
+  ],
+  "productNameEn": "Mens Digital-Print Sports Short-Sleeve Shirt",
+  "productSku": "CJTW2729118",
+  "productImage": "[\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/8f0fc22f-0d50-4467-9dcb-962c1f881ebf.jpg\",\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg\",\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/36a5eb48-304a-4e12-8ed1-bbba12c1e4d5.jpg\"]",
+  "productImageSet": [
+    "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/8f0fc22f-0d50-4467-9dcb-962c1f881ebf.jpg",
+    "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/36a5eb48-304a-4e12-8ed1-bbba12c1e4d5.jpg",
+    "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg"
+  ],
+  "productWeight": "200.00-300.00",
+  "productUnit": null,
+  "productType": "ORDINARY_PRODUCT",
+  "categoryId": "2502190153271613100",
+  "categoryName": "Women's Clothing > Tops & Sets > Women's Short-Sleeved Shirts",
+  "entryCode": "6211439000",
+  "entryName": "涤纶女士短袖",
+  "entryNameEn": "Women's Polyester Short Sleeve",
+  "materialName": "[\"布料\"]",
+  "materialNameSet": [
+    "布料"
+  ],
+  "materialNameEn": "[\"Cloth\"]",
+  "materialNameEnSet": [
+    "Cloth"
+  ],
+  "materialKey": "[\"FABRIC\"]",
+  "materialKeySet": [
+    "FABRIC"
+  ],
+  "packingWeight": "230.00-330.00",
+  "packingName": "[\"塑料袋\"]",
+  "packingNameSet": [
+    "塑料袋"
+  ],
+  "packingNameEn": "[\"Plastic bags\"]",
+  "packingNameEnSet": [
+    "Plastic bags"
+  ],
+  "packingKey": "[\"PLASTIC_BAG\"]",
+  "packingKeySet": [
+    "PLASTIC_BAG"
+  ],
+  "productKey": "[\"颜色\",\"尺码\"]",
+  "productKeySet": [
+    "颜色",
+    "尺码"
+  ],
+  "productKeyEn": "Color-Size",
+  "productPro": "[\"服装\"]",
+  "productProSet": [
+    "服装"
+  ],
+  "productProEn": "[\"Clothes\"]",
+  "productProEnSet": [
+    "Clothes"
+  ],
+  "sellPrice": "4.86",
+  "sourceFrom": 10,
+  "description": "<p><b>Product information:</b><br>Color: Beige<br> Sleeve Length: Short Sleeve<br> Pants Length: Shorts<br> Sizes: S, M, L, XL, XXL, 3XL<br> Thickness: Regular<br> Fabric Name: Cotton Blend<br> Occasion: Casual<br> Main Fabric Composition: Polyester<br> Top Style: T-Shirt<br> Stock Type: Full-Order Stock<br> Hooded: No Hood<br> Suitable Season: Summer<br> Style: Sporty</p>\n<b>Note:</b>\n<p></p>1. Asian sizes are 1 to 2 sizes smaller than European and American people. Choose the larger size if your size between two sizes. Please allow 2-3cm differences due to manual measurement. 2. Please check the size chart carefully before you buy the item, if you don't know how to choose size, please contact our customer service. 3.As you know, the different computers display colors differently, the color of the actual item may vary slightly from the following images. \n<p></p>\n<br>\n<b>Packing list: </b>\n<br> Short-Sleeve x1pc\n<br>\n<p></p>\n<b>Product Image:</b>\n<br>\n<img src=\"https://cf.cjdropshipping.com/quick/product/9c0a1ae0-65f3-4ac4-b5a4-8f7c4074b60e.jpg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/ca698806-c9f4-4453-b339-c23f7f409a72.jpg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/dd29bb39-531e-429f-ae0b-c8b324d844d2.jpg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/9456f858-8c0e-4087-a471-2ee8c3a8d915.jpg\">",
+  "variants": [
+    {
+      "vid": "2601140758001621500",
+      "pid": "2601140758001621300",
+      "variantName": null,
+      "variantNameEn": "Mens Digital-Print Sports Short-Sleeve Shirt Beige S",
+      "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg",
+      "variantSku": "CJTW272911801AZ",
+      "variantUnit": "个",
+      "variantProperty": null,
+      "variantKey": "Beige-S",
+      "variantLength": 300,
+      "variantWidth": 200,
+      "variantHeight": 30,
+      "variantVolume": 1800000,
+      "variantWeight": 230,
+      "variantSellPrice": 4.86,
+      "createTime": 1768377480000,
+      "variantStandard": "long=300,width=200,height=30",
+      "variantSugSellPrice": 35.24,
+      "combineNum": null,
+      "inventoryNum": null,
+      "combineVariants": null,
+      "inventories": null
+    },
+    {
+      "vid": "2601140758001621600",
+      "pid": "2601140758001621300",
+      "variantName": null,
+      "variantNameEn": "Mens Digital-Print Sports Short-Sleeve Shirt Beige M",
+      "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg",
+      "variantSku": "CJTW272911802BY",
+      "variantUnit": "个",
+      "variantProperty": null,
+      "variantKey": "Beige-M",
+      "variantLength": 300,
+      "variantWidth": 200,
+      "variantHeight": 30,
+      "variantVolume": 1800000,
+      "variantWeight": 250,
+      "variantSellPrice": 4.86,
+      "createTime": 1768377480000,
+      "variantStandard": "long=300,width=200,height=30",
+      "variantSugSellPrice": 35.24,
+      "combineNum": null,
+      "inventoryNum": null,
+      "combineVariants": null,
+      "inventories": null
+    },
+    {
+      "vid": "2601140758001621800",
+      "pid": "2601140758001621300",
+      "variantName": null,
+      "variantNameEn": "Mens Digital-Print Sports Short-Sleeve Shirt Beige L",
+      "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg",
+      "variantSku": "CJTW272911803CX",
+      "variantUnit": "个",
+      "variantProperty": null,
+      "variantKey": "Beige-L",
+      "variantLength": 300,
+      "variantWidth": 200,
+      "variantHeight": 30,
+      "variantVolume": 1800000,
+      "variantWeight": 270,
+      "variantSellPrice": 4.86,
+      "createTime": 1768377480000,
+      "variantStandard": "long=300,width=200,height=30",
+      "variantSugSellPrice": 35.24,
+      "combineNum": null,
+      "inventoryNum": null,
+      "combineVariants": null,
+      "inventories": null
+    },
+    {
+      "vid": "2601140758001622000",
+      "pid": "2601140758001621300",
+      "variantName": null,
+      "variantNameEn": "Mens Digital-Print Sports Short-Sleeve Shirt Beige XL",
+      "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg",
+      "variantSku": "CJTW272911804DW",
+      "variantUnit": "个",
+      "variantProperty": null,
+      "variantKey": "Beige-XL",
+      "variantLength": 300,
+      "variantWidth": 200,
+      "variantHeight": 30,
+      "variantVolume": 1800000,
+      "variantWeight": 290,
+      "variantSellPrice": 4.86,
+      "createTime": 1768377480000,
+      "variantStandard": "long=300,width=200,height=30",
+      "variantSugSellPrice": 35.24,
+      "combineNum": null,
+      "inventoryNum": null,
+      "combineVariants": null,
+      "inventories": null
+    },
+    {
+      "vid": "2601140758001622200",
+      "pid": "2601140758001621300",
+      "variantName": null,
+      "variantNameEn": "Mens Digital-Print Sports Short-Sleeve Shirt Beige XXL",
+      "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg",
+      "variantSku": "CJTW272911805EV",
+      "variantUnit": "个",
+      "variantProperty": null,
+      "variantKey": "Beige-XXL",
+      "variantLength": 300,
+      "variantWidth": 200,
+      "variantHeight": 30,
+      "variantVolume": 1800000,
+      "variantWeight": 310,
+      "variantSellPrice": 4.86,
+      "createTime": 1768377480000,
+      "variantStandard": "long=300,width=200,height=30",
+      "variantSugSellPrice": 35.24,
+      "combineNum": null,
+      "inventoryNum": null,
+      "combineVariants": null,
+      "inventories": null
+    },
+    {
+      "vid": "2601140758001622400",
+      "pid": "2601140758001621300",
+      "variantName": null,
+      "variantNameEn": "Mens Digital-Print Sports Short-Sleeve Shirt Beige 3XL",
+      "variantImage": "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg",
+      "variantSku": "CJTW272911806FU",
+      "variantUnit": "个",
+      "variantProperty": null,
+      "variantKey": "Beige-3XL",
+      "variantLength": 300,
+      "variantWidth": 200,
+      "variantHeight": 30,
+      "variantVolume": 1800000,
+      "variantWeight": 330,
+      "variantSellPrice": 4.86,
+      "createTime": 1768377480000,
+      "variantStandard": "long=300,width=200,height=30",
+      "variantSugSellPrice": 35.24,
+      "combineNum": null,
+      "inventoryNum": null,
+      "combineVariants": null,
+      "inventories": null
+    }
+  ],
+  "addMarkStatus": 0,
+  "createrTime": "2026-01-14T07:58:00+08:00",
+  "productVideo": null,
+  "status": "3",
+  "suggestSellPrice": "35.24",
+  "listedNum": 2,
+  "supplierName": null,
+  "supplierId": null,
+  "customizationVersion": null,
+  "customizationJson1": null,
+  "customizationJson2": null,
+  "customizationJson3": null,
+  "customizationJson4": null,
+  "isTestProduct": false
+}
+
+Attempting POST /product/query...
+❌ POST Request Error: Request failed with status code 429

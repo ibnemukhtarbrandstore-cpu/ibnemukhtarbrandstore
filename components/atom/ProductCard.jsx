@@ -577,51 +577,21 @@ const ProductCard = forwardRef(function ProductCard(
             <>
               <div className="mt-0 text-[12px]">
                 Size:
-                {product.size.includes("xxs") && (
-                  <span className="border border-gray-500 px-1 mx-1 ">XXS</span>
-                )}
-                {product.size.includes("xs") && (
-                  <span className="border border-gray-500 px-1 mx-1 ">XS</span>
-                )}
-                {product.size.includes("s") && (
-                  <span className="border border-gray-500 px-1 mx-1 ">S</span>
-                )}
-                {product.size.includes("m") && (
-                  <span className="border border-gray-500 px-1 mx-1 ">M</span>
-                )}
-                {product.size.includes("l") && (
-                  <span className="border border-gray-500 px-1 mx-1 ">L</span>
-                )}
-                {product.size.includes("xl") && (
-                  <span className="border border-gray-500 px-1 mx-1 ">XL</span>
-                )}
-                {product.size.includes("xxl") && (
-                  <span className="border border-gray-500 px-1 mx-1 ">XXL</span>
-                )}
+                {getAvailableSizes().slice(0, 5).map((s) => (
+                  <span key={s} className="border border-gray-500 px-1 mx-1">{s.toUpperCase()}</span>
+                ))}
+                {getAvailableSizes().length > 5 && <span className="mx-1">...</span>}
               </div>
               <div className="mt-0 text-[12px] flex flex-row items-center justify-start">
-                Color:
-                {product.color.includes("gray") && (
-                  <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-5 h-5 focus:outline-none"></button>
-                )}
-                {product.color.includes("blue") && (
-                  <button className="border-2 border-gray-300 ml-1 bg-blue-700 rounded-full w-5 h-5 focus:outline-none"></button>
-                )}
-                {product.color.includes("white") && (
-                  <button className="border-2 border-gray-300 ml-1 bg-white rounded-full w-5 h-5 focus:outline-none"></button>
-                )}
-                {product.color.includes("black") && (
-                  <button className="border-2 border-gray-300 ml-1 bg-black rounded-full w-5 h-5 focus:outline-none"></button>
-                )}
-                {product.color.includes("green") && (
-                  <button className="border-2 border-gray-300 ml-1 bg-green-700 rounded-full w-5 h-5 focus:outline-none"></button>
-                )}
-                {product.color.includes("yellow") && (
-                  <button className="border-2 border-gray-300 ml-1 bg-yellow-700 rounded-full w-5 h-5 focus:outline-none"></button>
-                )}
-                {product.color.includes("red") && (
-                  <button className="border-2 border-gray-300 ml-1 bg-red-700 rounded-full w-5 h-5 focus:outline-none"></button>
-                )}
+                {getAvailableColors().slice(0, 5).map((c) => (
+                  <button
+                    key={c}
+                    className="border-2 border-gray-300 ml-1 rounded-full w-5 h-5 focus:outline-none"
+                    style={{ backgroundColor: c.toLowerCase() }}
+                    title={c}
+                  />
+                ))}
+                {getAvailableColors().length > 5 && <span className="text-[10px] ml-1">...</span>}
               </div>
             </>
           )}

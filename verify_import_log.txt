@@ -1,0 +1,36 @@
+--- VERIFY IMPORT & MAPPING (Dynamic) ---
+1. Fetching Details for 2601140758001621300 (GET)...
+✅ Fetch Success!
+Title: Mens Digital-Print Sports Short-Sleeve Shirt
+
+2. Mapping to Store Format...
+Mapped Product:
+{
+  "title": "Mens Digital-Print Sports Short-Sleeve Shirt",
+  "description": "<p><b>Product information:</b><br>Color: Beige<br> Sleeve Length: Short Sleeve<br> Pants Length: Shorts<br> Sizes: S, M, L, XL, XXL, 3XL<br> Thickness: Regular<br> Fabric Name: Cotton Blend<br> Occasion: Casual<br> Main Fabric Composition: Polyester<br> Top Style: T-Shirt<br> Stock Type: Full-Order Stock<br> Hooded: No Hood<br> Suitable Season: Summer<br> Style: Sporty</p>\n<b>Note:</b>\n<p></p>1. Asian sizes are 1 to 2 sizes smaller than European and American people. Choose the larger size if your size between two sizes. Please allow 2-3cm differences due to manual measurement. 2. Please check the size chart carefully before you buy the item, if you don't know how to choose size, please contact our customer service. 3.As you know, the different computers display colors differently, the color of the actual item may vary slightly from the following images. \n<p></p>\n<br>\n<b>Packing list: </b>\n<br> Short-Sleeve x1pc\n<br>\n<p></p>\n<b>Product Image:</b>\n<br>\n<img src=\"https://cf.cjdropshipping.com/quick/product/9c0a1ae0-65f3-4ac4-b5a4-8f7c4074b60e.jpg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/ca698806-c9f4-4453-b339-c23f7f409a72.jpg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/dd29bb39-531e-429f-ae0b-c8b324d844d2.jpg\">\n<img src=\"https://oss-cf.cjdropshipping.com/product/2026/01/14/07/9456f858-8c0e-4087-a471-2ee8c3a8d915.jpg\">",
+  "price": 4.86,
+  "images": [
+    "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/8f0fc22f-0d50-4467-9dcb-962c1f881ebf.jpg",
+    "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/36a5eb48-304a-4e12-8ed1-bbba12c1e4d5.jpg",
+    "https://oss-cf.cjdropshipping.com/product/2026/01/14/07/b4e5a89a-7752-47c0-a268-2667a9a800bc.jpg"
+  ],
+  "category": "Women's Clothing > Tops & Sets > Women's Short-Sleeved Shirts",
+  "availableQty": 2,
+  "cjProductId": "2601140758001621300",
+  "cjVariantId": null,
+  "cjSupplierId": null,
+  "currency": "USD",
+  "baseCurrency": "USD",
+  "shippingCost": 0,
+  "warehouseLocation": "AUTO",
+  "isCJProduct": true,
+  "lastSyncedAt": "2026-01-14T18:07:01.379Z",
+  "weight": 0,
+  "dimensions": {
+    "length": 0,
+    "width": 0,
+    "height": 0
+  }
+}
+✅ Images mapped correctly (Array of strings)
+✅ Qty: 2

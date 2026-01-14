@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Search, Plus, ExternalLink, RefreshCcw } from 'lucide-react';
 import Image from 'next/image';
+import ImportEditModal from '@/components/organism/ImportEditModal';
 
 export default function CJProductsSearchPage() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -90,9 +91,21 @@ export default function CJProductsSearchPage() {
     };
 
     // Import product to store
-    const handleImportProduct = async (cjProduct) => {
+    // Step 1: Open Modal
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+
+    const handleOpenImportModal = (cjProduct) => {
+        setSelectedProduct(cjProduct);
+        setModalOpen(true);
+    };
+
+    // Step 2: Confirm & Save
+    const handleConfirmImport = async (cjProduct, overrides) => {
         const productId = cjProduct.pid || cjProduct.productId;
         setImporting({ ...importing, [productId]: true });
+        // Close modal immediately to avoid UI lag, but keep loading state in button if needed (or keep modal open?)
+        // Let's keep modal logic handled by this function, maybe we close AFTER success.
 
         try {
             const response = await fetch('/api/cj/import', {
@@ -101,13 +114,16 @@ export default function CJProductsSearchPage() {
                 body: JSON.stringify({
                     cjProductId: productId,
                     productData: cjProduct,
+                    overrides: overrides // Pass the edited data
                 }),
             });
 
             const data = await response.json();
 
             if (data.success) {
-                toast.success(`✅ "${cjProduct.productNameEn}" added to store!`);
+                toast.success(`✅ "${overrides.title}" added to store!`);
+                setModalOpen(false); // Close modal on success
+                setSelectedProduct(null);
             } else {
                 toast.error(data.error || 'Failed to import product');
             }
@@ -141,8 +157,8 @@ export default function CJProductsSearchPage() {
                             <button
                                 onClick={() => setActiveTab('search')}
                                 className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'search'
-                                        ? 'border-blue-500 text-blue-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    ? 'border-blue-500 text-blue-600'
+                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     }`}
                             >
                                 <Search className="inline w-5 h-5 mr-2" />
@@ -151,8 +167,8 @@ export default function CJProductsSearchPage() {
                             <button
                                 onClick={() => setActiveTab('url')}
                                 className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'url'
-                                        ? 'border-blue-500 text-blue-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    ? 'border-blue-500 text-blue-600'
+                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     }`}
                             >
                                 <ExternalLink className="inline w-5 h-5 mr-2" />
@@ -289,14 +305,14 @@ export default function CJProductsSearchPage() {
                                             )}
 
                                             <button
-                                                onClick={() => handleImportProduct(product)}
+                                                onClick={() => handleOpenImportModal(product)}
                                                 disabled={isImporting}
                                                 className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm font-medium"
                                             >
                                                 {isImporting ? (
                                                     <>
                                                         <RefreshCcw className="w-4 h-4 animate-spin" />
-                                                        Importing...
+                                                        Processing...
                                                     </>
                                                 ) : (
                                                     <>
@@ -347,6 +363,16 @@ export default function CJProductsSearchPage() {
                     </div>
                 )}
             </div>
+            {/* Import Edit Modal */}
+            <ImportEditModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+                onSave={handleConfirmImport}
+                cjProduct={selectedProduct}
+                isLoading={selectedProduct ? importing[selectedProduct.pid || selectedProduct.productId] : false}
+            />
         </div>
+
+
     );
 }

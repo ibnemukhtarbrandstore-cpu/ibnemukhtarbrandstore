@@ -122,24 +122,61 @@ export default async function SlugPage({ params }) {
     let tShirts = {};
 
     for (let item of Products) {
-      const title = item.title;
-      if (tShirts.hasOwnProperty(title)) {
-        if (item.availability > 0) {
-          if (!tShirts[title].color.includes(item.color)) {
-            tShirts[title].color.push(item.color);
-          }
-          if (!tShirts[title].size.includes(item.size)) {
-            tShirts[title].size.push(item.size);
-          }
+      if (item.sizeVariants && item.sizeVariants.length > 0) {
+        // Handle New Schema (CJ Imported)
+        const title = item.title;
+        if (!tShirts[title]) {
+          tShirts[title] = JSON.parse(JSON.stringify(item));
+          // Map all sizes from sizeVariants to the top-level 'size' array for filtering
+          tShirts[title].size = item.sizeVariants.filter(v => v.stock > 0).map(v => v.size);
+          tShirts[title].color = [item.color]; // Only one color per document in new schema
         }
       } else {
-        tShirts[title] = JSON.parse(JSON.stringify(item));
-        tShirts[title].color = item.availability > 0 ? [item.color] : [];
-        tShirts[title].size = item.availability > 0 ? [item.size] : [];
+        // Handle Legacy Schema
+        const title = item.title;
+        if (tShirts.hasOwnProperty(title)) {
+          if (item.availability > 0) {
+            if (!tShirts[title].color.includes(item.color)) {
+              tShirts[title].color.push(item.color);
+            }
+            if (!tShirts[title].size.includes(item.size)) {
+              tShirts[title].size.push(item.size);
+            }
+          }
+        } else {
+          tShirts[title] = JSON.parse(JSON.stringify(item));
+          tShirts[title].color = item.availability > 0 ? [item.color] : [];
+          tShirts[title].size = item.availability > 0 ? [item.size] : [];
+        }
       }
     }
 
     const productRelatedData = JSON.parse(JSON.stringify(tShirts));
+
+    // Calculate variants for the Current Product
+    const variants = await Product.find({ title: productData.title }).lean();
+    const colorSizeSlug = {};
+
+    // 1. Populate from standard multi-doc variants
+    for (const item of variants) {
+      // Legacy check
+      if (!item.sizeVariants || item.sizeVariants.length === 0) {
+        const { color, size, slug: itemSlug } = item;
+        if (!colorSizeSlug[color]) colorSizeSlug[color] = {};
+        colorSizeSlug[color][size] = { slug: itemSlug };
+      } else {
+        // New Schema check
+        const { color, sizeVariants, slug: itemSlug } = item;
+        if (!colorSizeSlug[color]) colorSizeSlug[color] = {};
+
+        sizeVariants.forEach(v => {
+          if (v.stock > 0) {
+            // For new schema, all sizes map to SAME slug (client-side switch)
+            colorSizeSlug[color][v.size] = { slug: itemSlug };
+          }
+        });
+      }
+    }
 
     return (
       <>

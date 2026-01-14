@@ -229,7 +229,7 @@ export async function getCJProductDetails(productId) {
     try {
         const response = await makeAuthenticatedRequest('/product/query', {
             pid: productId,
-        });
+        }, 'GET');
 
         // Test mode fallback
         if (response.isTestMode) {
@@ -279,7 +279,7 @@ export async function getCJProductVariants(productId) {
     try {
         const response = await makeAuthenticatedRequest('/product/variant/query', {
             pid: productId,
-        });
+        }, 'GET');
 
         if (response.isTestMode) {
             return { success: true, variants: [] };
@@ -491,32 +491,138 @@ export function extractCJProductId(url) {
  * @param {object} cjProduct - CJ product object
  * @returns {object} - Mapped product for our database
  */
+/**
+ * Map CJ product to our store format
+ * @param {object} cjProduct - CJ product object
+ * @returns {object} - Mapped product for our database
+ */
 export function mapCJProductToStore(cjProduct) {
+    // 1. Handle Images
+    let images = [];
+    if (Array.isArray(cjProduct.productImageSet) && cjProduct.productImageSet.length > 0) {
+        images = cjProduct.productImageSet;
+    } else if (typeof cjProduct.productImage === 'string') {
+        try {
+            if (cjProduct.productImage.trim().startsWith('[')) {
+                images = JSON.parse(cjProduct.productImage);
+            } else {
+                images = [cjProduct.productImage];
+            }
+        } catch (e) {
+            images = [cjProduct.productImage];
+        }
+    }
+
+    // 2. Handle Pricing (Markup & Currency)
+    // Formula: (CJ Price + Shipping) * Markup * Exchange Rate
+    const PKR_RATE = 280; // Approx rate, should be dynamic ideally
+    const MARKUP = 2.5;   // 2.5x Markup strategy
+
+    // Base cost in USD
+    const costUSD = parseFloat(cjProduct.sellPrice || cjProduct.price || 0);
+    const shippingUSD = parseFloat(cjProduct.shippingCost || 0); // Often 0 in initial fetch
+
+    // Calculate Sell Price in PKR
+    // If shipping is 0, we assume a buffer in markup
+    const estimatedSellPricePKR = Math.ceil((costUSD * MARKUP) * PKR_RATE);
+
+    // 3. Handle Variants (Color/Size Extraction)
+    let color = 'Default';
+    let sizeVariants = [];
+
+    if (Array.isArray(cjProduct.variants) && cjProduct.variants.length > 0) {
+        // Group by Color (CJ variantKey is usually "Color-Size" or just "Color" or "Size")
+        // Example: "Beige-S", "Blue-L"
+
+        // We pick the FIRST color we find to be the "Primary" color for this product
+        // (Since our schema supports one color per product document)
+        const firstVariant = cjProduct.variants[0];
+        let primaryColor = 'Default';
+
+        // Try to extract color from key
+        if (firstVariant.variantKey) {
+            const parts = firstVariant.variantKey.split('-');
+            if (parts.length > 1) {
+                primaryColor = parts[0]; // "Beige"
+            } else if (parts.length === 1 && isNaN(parts[0])) {
+                // If it's just "Beige", assuming it's color
+                primaryColor = parts[0];
+            }
+        }
+
+        color = primaryColor;
+
+        // Now filter variants that match this color and map to sizes
+        sizeVariants = cjProduct.variants
+            .filter(v => {
+                if (!v.variantKey) return true;
+                return v.variantKey.startsWith(primaryColor) || !v.variantKey.includes('-');
+            })
+            .map(v => {
+                // Extract Size
+                let size = 'Standard';
+                if (v.variantKey) {
+                    const parts = v.variantKey.split('-');
+                    if (parts.length > 1) {
+                        size = parts[1]; // "S"
+                    } else if (parts.length === 1) {
+                        // If key is "S", "M" etc
+                        size = parts[0];
+                    }
+                }
+
+                // Adjust price per size if needed (CJ gives specific price per variant)
+                // We store the adjustment relative to the base price
+                const variantCost = parseFloat(v.variantSellPrice || 0);
+                const variantPricePKR = Math.ceil((variantCost * MARKUP) * PKR_RATE);
+                const priceAdjustment = variantPricePKR - estimatedSellPricePKR;
+
+                return {
+                    size: size,
+                    stock: v.inventoryNum || 100, // Defaut to 100 if inventory is null (common in CJ)
+                    sku: v.variantSku,
+                    priceAdjustment: priceAdjustment
+                };
+            });
+    }
+
+    // 4. Fallback Stock
+    const totalStock = parseInt(cjProduct.stock || cjProduct.inventory || cjProduct.listedNum || 0);
+
     return {
         title: cjProduct.productNameEn || cjProduct.productName,
         description: cjProduct.description || cjProduct.productDescriptionEn || '',
-        price: parseFloat(cjProduct.sellPrice || cjProduct.price || 0),
-        images: cjProduct.productImage ? [cjProduct.productImage] : [],
+
+        // Save Calculated Price in PKR
+        price: estimatedSellPricePKR > 0 ? estimatedSellPricePKR : 0,
+
+        // Keep original currency info for reference/admin
+        currency: 'PKR',
+        baseCurrency: 'USD',
+
+        images: images,
         category: cjProduct.categoryName || 'Uncategorized',
-        availableQty: cjProduct.stock || cjProduct.inventory || 0,
+        color: color,
+
+        // If variants found, use them. Else use total stock.
+        availability: totalStock > 0 ? totalStock : 100,
+        sizeVariants: sizeVariants,
 
         // CJ specific fields
         cjProductId: cjProduct.pid || cjProduct.productId,
         cjVariantId: cjProduct.vid || null,
         cjSupplierId: cjProduct.supplierId || null,
-        currency: cjProduct.currency || 'USD',
-        baseCurrency: 'USD',
         shippingCost: parseFloat(cjProduct.shippingCost || 0),
         warehouseLocation: cjProduct.warehouseCountry || 'AUTO',
         isCJProduct: true,
         lastSyncedAt: new Date(),
 
         // Product details
-        weight: cjProduct.weight || 0,
+        weight: parseFloat(cjProduct.packageWeight || cjProduct.weight || 0),
         dimensions: {
-            length: cjProduct.packageLength || 0,
-            width: cjProduct.packageWidth || 0,
-            height: cjProduct.packageHeight || 0,
+            length: parseFloat(cjProduct.packageLength || 0),
+            width: parseFloat(cjProduct.packageWidth || 0),
+            height: parseFloat(cjProduct.packageHeight || 0),
         },
     };
 }
