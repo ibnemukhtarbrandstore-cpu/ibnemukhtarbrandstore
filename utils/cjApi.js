@@ -4,6 +4,8 @@
  */
 
 import axios from 'axios';
+import { SystemConfig } from '@/models/SystemConfig';
+import { connectDb } from '@/middleware/mongodb';
 
 const CJ_API_URL = process.env.CJ_API_URL || 'https://developers.cjdropshipping.com/api2.0/v1';
 const CJ_API_KEY = process.env.CJ_API_KEY;
@@ -13,59 +15,87 @@ if (!CJ_API_KEY) {
     console.warn('⚠️ Get it from: CJ Dashboard → My CJ → Authorization → API → API Key');
 }
 
-// Token cache
-let accessToken = null;
-let tokenExpiry = null;
-
 /**
  * Get Access Token from CJ API
  * Official Documentation: https://developers.cjdropshipping.com/
- * Token is cached and auto-refreshed when expired
+ * Token is cached in MongoDB and auto-refreshed when expired
  */
 async function getAccessToken() {
-    // Return cached token if still valid
-    if (accessToken && tokenExpiry && Date.now() < tokenExpiry) {
-        return accessToken;
-    }
-
     try {
+        await connectDb(); // Ensure DB is connected
+
+        // 1. Check DB for valid token
+        const cachedConfig = await SystemConfig.findOne({ key: 'cj_access_token' });
+
+        if (cachedConfig && cachedConfig.value) {
+            const { token, expiry } = cachedConfig.value;
+
+            // If token is valid (with 24h buffer), use it
+            if (new Date(expiry) > new Date(Date.now() + 24 * 60 * 60 * 1000)) {
+                return token;
+            }
+        }
+
         console.log('🔑 Fetching new CJ Access Token...');
 
         if (!CJ_API_KEY) {
             throw new Error('CJ_API_KEY is not configured. Get it from CJ Dashboard → My CJ → Authorization → API → API Key');
         }
 
-        // Official CJ API authentication endpoint
+        // 2. Fetch from API
         const response = await axios.post(
             `${CJ_API_URL}/authentication/getAccessToken`,
+            { apiKey: CJ_API_KEY },
             {
-                apiKey: CJ_API_KEY,  // Format: "CJUserNum@api@xxxxxxxxxxxxxxxx"
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                timeout: 10000,
+                headers: { 'Content-Type': 'application/json' },
+                timeout: 10000
             }
         );
 
         if (response.data?.code === 200 && response.data?.data?.accessToken) {
-            accessToken = response.data.data.accessToken;
-            // Token valid for 15 days, cache for 14 days to be safe
-            tokenExpiry = Date.now() + (14 * 24 * 60 * 60 * 1000); // 14 days
+            const newToken = response.data.data.accessToken;
+            // Token is valid for 15 days, we store expiry
+            const expiryDate = new Date(Date.now() + (14 * 24 * 60 * 60 * 1000)); // 14 days safety
 
-            console.log('✅ CJ Access Token obtained successfully');
-            console.log('Token expires:', new Date(tokenExpiry).toISOString());
-            return accessToken;
+            // 3. Save to DB
+            await SystemConfig.findOneAndUpdate(
+                { key: 'cj_access_token' },
+                {
+                    value: { token: newToken, expiry: expiryDate },
+                    description: 'CJ Dropshipping API Access Token'
+                },
+                { upsert: true, new: true }
+            );
+
+            console.log('✅ CJ Access Token refreshed & saved to DB');
+            return newToken;
         } else {
+            // Handle Rate Limit specifically
+            if (response.data?.message?.includes('Too Many Requests') || response.status === 429) {
+                // Try to fallback to old token if it exists regardless of expiry if we are desperate
+                if (cachedConfig?.value?.token) {
+                    console.warn('⚠️ Rate limit hit. Using potentially expired cached token.');
+                    return cachedConfig.value.token;
+                }
+            }
+
             const errorMsg = response.data?.message || 'Failed to get access token';
             console.error('❌ CJ API Response:', response.data);
             throw new Error(errorMsg);
         }
     } catch (error) {
         console.error('❌ CJ Access Token Error:', error.message);
-        if (error.response?.data) {
-            console.error('API Response:', error.response.data);
+
+        // Handle 429 in catch block too
+        if (error.response?.status === 429 || error.message?.includes('Too Many Requests')) {
+            try {
+                const cachedConfig = await SystemConfig.findOne({ key: 'cj_access_token' });
+                if (cachedConfig?.value?.token) {
+                    console.warn('⚠️ Rate limit hit (Caught). Using cached token.');
+                    return cachedConfig.value.token;
+                }
+            } catch (dbErr) { /* ignore */ }
+            throw new Error('CJ API Rate Limit Reached (1 request/5min). Please try again later.');
         }
 
         // If development mode, allow fallback to test mode
