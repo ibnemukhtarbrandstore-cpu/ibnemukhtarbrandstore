@@ -111,7 +111,8 @@ async function getAccessToken() {
 /**
  * Create authenticated API request
  */
-async function makeAuthenticatedRequest(endpoint, data = {}, method = 'POST') {
+async function makeAuthenticatedRequest(endpoint, data = {}, method = 'POST', retryCount = 0) {
+    // 1. Get Token
     const token = await getAccessToken();
 
     // Test mode check
@@ -119,18 +120,43 @@ async function makeAuthenticatedRequest(endpoint, data = {}, method = 'POST') {
         return { isTestMode: true };
     }
 
-    const response = await axios({
-        method: method,
-        url: `${CJ_API_URL}${endpoint}`,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        },
-        data: data,
-        timeout: 30000,
-    });
+    try {
+        const config = {
+            method: method,
+            url: `${CJ_API_URL}${endpoint}`,
+            headers: {
+                'Content-Type': 'application/json',
+                'CJ-Access-Token': token,
+                'Authorization': `Bearer ${token}`,
+            },
+            timeout: 30000,
+        };
 
-    return response;
+        if (method === 'GET') {
+            config.params = data;
+        } else {
+            config.data = data;
+        }
+
+        const response = await axios(config);
+        return response;
+    } catch (error) {
+        // 2. Handle 401 Unauthorized - Token Invalid/Expired
+        if (error.response && error.response.status === 401 && retryCount < 1) {
+            console.warn('⚠️ CJ API Token expired/invalid (401). Refreshing...');
+
+            // Delete invalid token from DB
+            try {
+                await SystemConfig.deleteOne({ key: 'cj_access_token' });
+                console.log('🗑️ Invalid token removed from cache');
+            } catch (e) { console.error('Error clearing token:', e); }
+
+            // Retry Request (Recursively) - Force refresh happens in getAccessToken
+            return makeAuthenticatedRequest(endpoint, data, method, retryCount + 1);
+        }
+
+        throw error;
+    }
 }
 
 /**
@@ -148,7 +174,7 @@ export async function searchCJProducts(query = '', page = 1, pageSize = 20, filt
             pageNum: page,
             pageSize: pageSize,
             ...filters,
-        });
+        }, 'GET');
 
         // Fallback to test mode only if token fetch failed in dev
         if (response.isTestMode) {
