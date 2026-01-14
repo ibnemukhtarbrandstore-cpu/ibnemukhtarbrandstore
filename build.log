@@ -1,0 +1,23 @@
+
+> championchice-store@0.1.0 build
+> next build --webpack
+
+   ▲ Next.js 16.0.7 (webpack)
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 35.2s
+   Running TypeScript ...
+Failed to compile.
+
+./check-pricing.ts:31:21
+Type error: Property 'success' does not exist on type 'object'.
+
+[0m [90m 29 |[39m         log([32m'Fetch returned.'[39m)[33m;[39m
+ [90m 30 |[39m
+[31m[1m>[22m[39m[90m 31 |[39m         [36mif[39m ([33m![39mresult[33m.[39msuccess [33m||[39m [33m![39mresult[33m.[39mproduct) {
+ [90m    |[39m                     [31m[1m^[22m[39m
+ [90m 32 |[39m             log([32m'❌ Fetch failed'[39m)[33m;[39m
+ [90m 33 |[39m             log(result[33m.[39merror)[33m;[39m
+ [90m 34 |[39m             [36mreturn[39m[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null

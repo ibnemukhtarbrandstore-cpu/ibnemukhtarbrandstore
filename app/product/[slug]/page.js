@@ -155,24 +155,24 @@ export default async function SlugPage({ params }) {
 
     // Calculate variants for the Current Product
     const relatedVariants = await Product.find({ title: productData.title }).lean();
-    const colorSizeSlug = {};
+    const relatedColorSizeSlug = {};
 
     // 1. Populate from standard multi-doc variants
     for (const item of relatedVariants) {
       // Legacy check
       if (!item.sizeVariants || item.sizeVariants.length === 0) {
         const { color, size, slug: itemSlug } = item;
-        if (!colorSizeSlug[color]) colorSizeSlug[color] = {};
-        colorSizeSlug[color][size] = { slug: itemSlug };
+        if (!relatedColorSizeSlug[color]) relatedColorSizeSlug[color] = {};
+        relatedColorSizeSlug[color][size] = { slug: itemSlug };
       } else {
         // New Schema check
         const { color, sizeVariants, slug: itemSlug } = item;
-        if (!colorSizeSlug[color]) colorSizeSlug[color] = {};
+        if (!relatedColorSizeSlug[color]) relatedColorSizeSlug[color] = {};
 
         sizeVariants.forEach(v => {
           if (v.stock > 0) {
             // For new schema, all sizes map to SAME slug (client-side switch)
-            colorSizeSlug[color][v.size] = { slug: itemSlug };
+            relatedColorSizeSlug[color][v.size] = { slug: itemSlug };
           }
         });
       }
@@ -211,7 +211,7 @@ export default async function SlugPage({ params }) {
         <ProductDetail
           params={slug}
           product={JSON.parse(JSON.stringify(productData))}
-          variant={JSON.parse(JSON.stringify(colorSizeSlug))}
+          variant={JSON.parse(JSON.stringify(relatedColorSizeSlug))}
           productrelatedData={productRelatedData}
         />
       </>
