@@ -75,12 +75,11 @@ export default function CJProductsSearchPage() {
             const data = await response.json();
 
             if (data.success) {
-                toast.success('Product imported successfully!');
+                toast.info('Product details fetched! Please review and save.');
+                handleOpenImportModal(data.cjProduct);
                 setCjUrl('');
-                // Optionally redirect to manage products page
-                // router.push('/admin/cj-products/manage');
             } else {
-                toast.error(data.error || 'Failed to import product');
+                toast.error(data.error || 'Failed to fetch product details');
             }
         } catch (error) {
             console.error('Import error:', error);

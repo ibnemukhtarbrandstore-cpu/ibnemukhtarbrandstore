@@ -37,13 +37,29 @@ export async function POST(request) {
         // Map CJ product to store format
         const mappedProduct = mapCJProductToStore(productData);
 
-        // Apply Overrides if present (Title, Price, Description, etc.)
+        // Apply Overrides if present (All Fields)
         if (overrides) {
             if (overrides.title) mappedProduct.title = overrides.title;
             if (overrides.description) mappedProduct.description = overrides.description;
             if (overrides.price) mappedProduct.price = parseFloat(overrides.price);
             if (overrides.category) mappedProduct.category = overrides.category;
-            // Add more overrideable fields as needed
+
+            // New Detail Fields
+            if (overrides.brand) mappedProduct.brand = overrides.brand;
+            if (overrides.material) mappedProduct.material = overrides.material;
+            if (overrides.careInstructions) mappedProduct.careInstructions = overrides.careInstructions;
+            if (overrides.warranty) mappedProduct.warranty = overrides.warranty;
+            if (overrides.videoUrl) mappedProduct.videoUrl = overrides.videoUrl;
+            if (overrides.tags) mappedProduct.tags = overrides.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
+
+            // AIDA Fields
+            if (overrides.howItWorks) mappedProduct.howItWorks = overrides.howItWorks;
+            if (overrides.mainBenefitHeadline) mappedProduct.mainBenefitHeadline = overrides.mainBenefitHeadline;
+            if (overrides.mainBenefitText) mappedProduct.mainBenefitText = overrides.mainBenefitText;
+            if (overrides.howToUseHeadline) mappedProduct.howToUseHeadline = overrides.howToUseHeadline;
+            if (overrides.howToUseText) mappedProduct.howToUseText = overrides.howToUseText;
+            if (overrides.resultsHeadline) mappedProduct.resultsHeadline = overrides.resultsHeadline;
+            if (overrides.resultsText) mappedProduct.resultsText = overrides.resultsText;
         }
 
         // Generate unique slug

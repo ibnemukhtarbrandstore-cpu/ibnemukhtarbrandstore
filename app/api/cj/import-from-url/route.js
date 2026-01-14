@@ -40,71 +40,21 @@ export async function POST(request) {
 
         const cjProduct = result.product;
 
-        // Check if already imported
+        // Check if already imported (optional check but good for UX)
         await connectDb();
         const existingProduct = await Product.findOne({ cjProductId: productId });
 
-        if (existingProduct) {
-            return NextResponse.json(
-                { success: false, error: 'This product is already imported to your store' },
-                { status: 409 }
-            );
-        }
-
-        // Map to store format
-        const mappedProduct = mapCJProductToStore(cjProduct);
-
-        // Generate unique slug
-        const baseSlug = mappedProduct.title
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/(^-|-$)/g, '');
-
-        let slug = baseSlug;
-        let counter = 1;
-        while (await Product.findOne({ slug })) {
-            slug = `${baseSlug}-${counter}`;
-            counter++;
-        }
-
-        // Create product
-        const newProduct = new Product({
-            ...mappedProduct,
-            slug,
-            disc: mappedProduct.description || 'Imported from CJ Dropshipping',
-            availability: mappedProduct.availableQty || 0,
-            cjProductUrl: productUrl,
-            // Generate unique SKU to avoid duplicate null error
-            sku: `CJ-${productId}-${Date.now()}`,
-        });
-
-        await newProduct.save();
-
         return NextResponse.json({
             success: true,
-            message: 'Product imported successfully',
-            productId: newProduct._id,
-            product: {
-                title: newProduct.title,
-                slug: newProduct.slug,
-                price: newProduct.price,
-                image: newProduct.images[0],
-            },
+            message: 'Product details fetched successfully',
+            cjProduct: cjProduct,
+            alreadyImported: !!existingProduct,
+            existingProductId: existingProduct?._id
         });
     } catch (error) {
-        console.error('❌ Import from URL Error:', error);
-
-        // Provide specific error messages
-        let errorMessage = 'Internal server error';
-
-        if (error.message?.includes('CJ_API_KEY') || error.message?.includes('access token')) {
-            errorMessage = 'CJ API credentials not configured. Please add CJ_API_KEY to environment variables.';
-        } else if (error.message?.includes('Invalid') || error.message?.includes('not found')) {
-            errorMessage = error.message;
-        }
-
+        console.error('❌ Fetch from URL Error:', error);
         return NextResponse.json(
-            { success: false, error: errorMessage },
+            { success: false, error: error.message || 'Failed to fetch product from URL' },
             { status: 500 }
         );
     }
