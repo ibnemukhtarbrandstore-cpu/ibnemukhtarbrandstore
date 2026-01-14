@@ -154,11 +154,11 @@ export default async function SlugPage({ params }) {
     const productRelatedData = JSON.parse(JSON.stringify(tShirts));
 
     // Calculate variants for the Current Product
-    const variants = await Product.find({ title: productData.title }).lean();
+    const relatedVariants = await Product.find({ title: productData.title }).lean();
     const colorSizeSlug = {};
 
     // 1. Populate from standard multi-doc variants
-    for (const item of variants) {
+    for (const item of relatedVariants) {
       // Legacy check
       if (!item.sizeVariants || item.sizeVariants.length === 0) {
         const { color, size, slug: itemSlug } = item;
