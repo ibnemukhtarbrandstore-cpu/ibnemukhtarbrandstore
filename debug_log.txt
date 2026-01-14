@@ -1,6 +1,0 @@
---- CJ API & DB Integration Debugger ---
-🔌 Connecting to MongoDB...
-✅ MongoDB Connected
-ℹ️ No cached token found in DB. API will be called.
-⚠️ NOTE: This script only checks DB connection. Real test requires running the app.
-🔌 Disconnected
