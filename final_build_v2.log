@@ -1,0 +1,227 @@
+﻿
+> championchice-store@0.1.0 build
+> next build --webpack
+
+   Γû▓ Next.js 16.0.7 (webpack)
+   - Environments: .env
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 36.0s
+   Running TypeScript ...
+   Collecting page data using 3 workers ...
+   Generating static pages using 3 workers (0/142) ...
+   Generating static pages using 3 workers (35/142) 
+   Generating static pages using 3 workers (70/142) 
+   Generating static pages using 3 workers (106/142) 
+ Γ£ô Generating static pages using 3 workers (142/142) in 15.6s
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)
+Γöî Γùï /
+Γö£ Γùï /_not-found
+Γö£ Γùï /about
+Γö£ Γùï /admin
+Γö£ Γùï /admin/addProduct
+Γö£ Γùï /admin/ads
+Γö£ Γùï /admin/all-users
+Γö£ Γùï /admin/allProducts
+Γö£ Γùï /admin/blog
+Γö£ ╞Æ /admin/blog/[slug]/edit
+Γö£ Γùï /admin/blog/new
+Γö£ ╞Æ /admin/campaigns/[id]/edit
+Γö£ Γùï /admin/cencle-order
+Γö£ Γùï /admin/cj-products/search
+Γö£ Γùï /admin/coupons
+Γö£ Γùï /admin/creat-coupon
+Γö£ Γùï /admin/create-orders
+Γö£ Γùï /admin/deliverd-order
+Γö£ Γùï /admin/email-campaigns
+Γö£ Γùï /admin/email-dashboard
+Γö£ Γùï /admin/email-subscribers
+Γö£ Γùï /admin/imageUploader
+Γö£ Γùï /admin/manage-products
+Γö£ Γùï /admin/order-confirm
+Γö£ ╞Æ /admin/order/[id]
+Γö£ Γùï /admin/pendings
+Γö£ Γùï /admin/returns
+Γö£ Γùï /admin/short-stock
+Γö£ Γùï /admin/stream-videos
+Γö£ Γùï /admin/unshifted-Orders
+Γö£ Γùï /admin/utilities/alerts
+Γö£ Γùï /admin/utilities/autocomplete
+Γö£ Γùï /admin/utilities/buttons
+Γö£ Γùï /admin/utilities/checkbox
+Γö£ Γùï /admin/utilities/forms
+Γö£ Γùï /admin/utilities/images
+Γö£ Γùï /admin/utilities/pagination
+Γö£ Γùï /admin/utilities/radio
+Γö£ Γùï /admin/utilities/slider
+Γö£ Γùï /admin/utilities/switch
+Γö£ Γùï /admin/utilities/table
+Γö£ Γùï /ai-shopping
+Γö£ ╞Æ /all-products/[type]
+Γö£ Γùï /all-products/flash-sale
+Γö£ Γùï /all-products/recommended
+Γö£ Γùï /all-products/trending
+Γö£ ╞Æ /api/addOrder
+Γö£ ╞Æ /api/addProduct
+Γö£ ╞Æ /api/admin/ads
+Γö£ ╞Æ /api/admin/all-coupons
+Γö£ ╞Æ /api/admin/coupons
+Γö£ ╞Æ /api/admin/coupons/[id]
+Γö£ ╞Æ /api/admin/notifications/count
+Γö£ ╞Æ /api/admin/notifications/mark-all-read
+Γö£ ╞Æ /api/admin/notifications/mark-read
+Γö£ ╞Æ /api/ai/chat
+Γö£ ╞Æ /api/ai/search
+Γö£ ╞Æ /api/all-orders
+Γö£ ╞Æ /api/auth/[...nextauth]
+Γö£ ╞Æ /api/auto-sync
+Γö£ ╞Æ /api/blog
+Γö£ ╞Æ /api/blog/[slug]
+Γö£ ╞Æ /api/blog/[slug]/comments
+Γö£ ╞Æ /api/blog/[slug]/increment-views
+Γö£ ╞Æ /api/blog/[slug]/like
+Γö£ ╞Æ /api/blog/tags
+Γö£ ╞Æ /api/blog/top-blogs
+Γö£ ╞Æ /api/blogs
+Γö£ ╞Æ /api/categories
+Γö£ ╞Æ /api/cj/create-order
+Γö£ ╞Æ /api/cj/import
+Γö£ ╞Æ /api/cj/import-from-url
+Γö£ ╞Æ /api/cj/search
+Γö£ ╞Æ /api/cj/sync-inventory
+Γö£ ╞Æ /api/destroy-cloudinary-image
+Γö£ ╞Æ /api/destroy-cloudinary-image-two
+Γö£ ╞Æ /api/email/campaigns
+Γö£ ╞Æ /api/email/campaigns/[id]
+Γö£ ╞Æ /api/email/campaigns/[id]/send
+Γö£ ╞Æ /api/email/deal
+Γö£ ╞Æ /api/email/deals
+Γö£ ╞Æ /api/email/export
+Γö£ ╞Æ /api/email/flash-sale
+Γö£ ╞Æ /api/email/preferences
+Γö£ ╞Æ /api/email/subscribe
+Γö£ ╞Æ /api/email/subscribers
+Γö£ ╞Æ /api/email/subscribers/export
+Γö£ ╞Æ /api/email/subscribers/stats
+Γö£ ╞Æ /api/email/sync
+Γö£ ╞Æ /api/email/test
+Γö£ ╞Æ /api/email/track/click
+Γö£ ╞Æ /api/email/track/open/[campaignId]/[subscriberId]
+Γö£ ╞Æ /api/email/unsubscribe
+Γö£ ╞Æ /api/featuredProducts
+Γö£ ╞Æ /api/forgot-password
+Γö£ ╞Æ /api/geolocation
+Γö£ ╞Æ /api/get-confirm-order
+Γö£ ╞Æ /api/get-order
+Γö£ ╞Æ /api/get-orders
+Γö£ ╞Æ /api/get-user
+Γö£ ╞Æ /api/get-users
+Γö£ ╞Æ /api/getProducts
+Γö£ ╞Æ /api/login
+Γö£ ╞Æ /api/manual-payment
+Γö£ ╞Æ /api/menual-payment-proof
+Γö£ ╞Æ /api/notifications/send-email
+Γö£ ╞Æ /api/orders/[orderId]/tracking
+Γö£ ╞Æ /api/pincode
+Γö£ ╞Æ /api/popularProducts
+Γö£ ╞Æ /api/products/best-sellers
+Γö£ ╞Æ /api/products/filter
+Γö£ ╞Æ /api/products/fresh-stock
+Γö£ ╞Æ /api/products/manage-status
+Γö£ ╞Æ /api/products/new-arrivals
+Γö£ ╞Æ /api/products/trending
+Γö£ ╞Æ /api/products/unique-finds
+Γö£ ╞Æ /api/returns/[returnId]
+Γö£ ╞Æ /api/returns/[returnId]/status
+Γö£ ╞Æ /api/returns/all
+Γö£ ╞Æ /api/returns/create
+Γö£ ╞Æ /api/returns/customer/[email]
+Γö£ ╞Æ /api/short-stock
+Γö£ ╞Æ /api/signup
+Γö£ ╞Æ /api/stream/cron
+Γö£ ╞Æ /api/stream/feed
+Γö£ ╞Æ /api/stream/interaction
+Γö£ ╞Æ /api/stream/post
+Γö£ ╞Æ /api/stream/studio
+Γö£ ╞Æ /api/stripe/create-intent
+Γö£ ╞Æ /api/stripe/webhook
+Γö£ ╞Æ /api/update-password
+Γö£ ╞Æ /api/update-status
+Γö£ ╞Æ /api/update-user
+Γö£ ╞Æ /api/updateProduct
+Γö£ ╞Æ /api/user
+Γö£ ╞Æ /api/validate-coupon
+Γö£ ╞Æ /api/voice/intent
+Γö£ Γùï /blog
+Γö£ ╞Æ /blog/[slug]
+Γö£ Γùï /checkout
+Γö£ Γùï /checkout/manual-payment
+Γö£ ╞Æ /collections/accessories
+Γö£ ╞Æ /collections/beauty
+Γö£ ╞Æ /collections/best-sellers
+Γö£ ╞Æ /collections/casual
+Γö£ ╞Æ /collections/clothing
+Γö£ ╞Æ /collections/eid
+Γö£ ╞Æ /collections/electronics
+Γö£ ╞Æ /collections/formal
+Γö£ ╞Æ /collections/fresh-stock
+Γö£ ╞Æ /collections/gym
+Γö£ ╞Æ /collections/health
+Γö£ ╞Æ /collections/kids
+Γö£ ╞Æ /collections/mens
+Γö£ ╞Æ /collections/new-arrivals
+Γö£ ╞Æ /collections/outdoor
+Γö£ ╞Æ /collections/pre-loved
+Γö£ ╞Æ /collections/running
+Γö£ ╞Æ /collections/sale
+Γö£ ╞Æ /collections/shoes
+Γö£ ╞Æ /collections/sports
+Γö£ ╞Æ /collections/summer
+Γö£ ╞Æ /collections/trending
+Γö£ ╞Æ /collections/unique-finds
+Γö£ ╞Æ /collections/winter
+Γö£ ╞Æ /collections/womens
+Γö£ Γùï /contact-us
+Γö£ Γùï /features/video-stream
+Γö£ Γùï /forgot
+Γö£ ╞Æ /forgot/[forgot]
+Γö£ ╞Æ /hoodies
+Γö£ Γùï /login
+Γö£ ╞Æ /mugs
+Γö£ Γùï /myaccount
+Γö£ Γùï /myaccount/returns
+Γö£ ╞Æ /myaccount/returns/[returnId]
+Γö£ ╞Æ /myaccount/returns/request
+Γö£ Γùï /order-success
+Γö£ ╞Æ /order/[id]
+Γö£ Γùï /order/track
+Γö£ ╞Æ /order/track/[orderId]
+Γö£ Γùï /orders
+Γö£ Γùï /payment-failed
+Γö£ Γùï /privacy-policy
+Γö£ ╞Æ /product/[slug]
+Γö£ ╞Æ /products
+Γö£ Γùï /refund-policy
+Γö£ Γùï /return-policy
+Γö£ Γùï /robots.txt
+Γö£ ╞Æ /search
+Γö£ Γùï /shiping-policy
+Γö£ Γùï /signup
+Γö£ Γùï /sitemap
+Γö£ Γùï /sitemap.xml
+Γö£ ╞Æ /stickers
+Γö£ Γùï /stream
+Γö£ ╞Æ /stream/download/[id]
+Γö£ Γùï /terms-conditions
+Γö£ Γùï /test-events
+Γö£ Γùï /test-pixel
+Γö£ ╞Æ /tshirts
+Γöö Γùï /unsubscribe
+
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
