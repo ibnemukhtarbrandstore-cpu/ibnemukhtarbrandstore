@@ -21,7 +21,6 @@ import { Providers } from "./providers";
 import AdvancedWhatsAppButton from "@/components/atom/AdvancedWhatsAppButton";
 import MobileHeader from "@/components/molecules/MobileHeader";
 import DesktopHeader from "@/components/organism/DesktopHeader";
-import VoiceWidget, { PageVoiceGuide } from "./features/voice-ai";
 import { CurrencyProvider } from "@/context/CurrencyContext";
 
 const inter = Inter({
@@ -159,8 +158,6 @@ export default function RootLayout({ children }) {
                                         <ClientFacebookWrapper />
                                         {children}
                                         {/* <AdvancedWhatsAppButton /> */}
-                                        <VoiceWidget />
-                                        <PageVoiceGuide />
                                         <Foter />
                                         <MobileFooter />
                                     </CartProvider>

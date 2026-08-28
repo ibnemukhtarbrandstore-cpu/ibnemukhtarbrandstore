@@ -1,3 +1,4 @@
+"use client";
 import { cancelPendingRequests } from "@/services/api";
 import { Badge, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import { IconBell } from "@tabler/icons-react";

@@ -14,7 +14,6 @@ import CouponInput from "../molecules/CouponInput";
 import LoginModal from "../molecules/LoginModal";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
-import { useCheckoutVoice } from "@/app/features/voice-ai";
 import "react-toastify/dist/ReactToastify.css";
 
 function CheckoutPage() {
@@ -43,8 +42,6 @@ function CheckoutPage() {
   const [pincodeData, setPincodeData] = useState(null);
   const [isPakistan, setIsPakistan] = useState(true);
 
-  // Voice guidance for checkout fields
-  useCheckoutVoice(formData);
   const handleApplyCoupon = (couponData) => {
     let discountAmount = 0;
 

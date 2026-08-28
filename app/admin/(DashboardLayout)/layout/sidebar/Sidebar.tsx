@@ -1,3 +1,4 @@
+"use client";
 import { useMediaQuery, Box, Drawer } from "@mui/material";
 import SidebarItems from "./SidebarItems";
 import { DashboardContext } from "@/app/context/DashboardContext";
