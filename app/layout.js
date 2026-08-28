@@ -104,12 +104,42 @@ export const metadata = {
         shortcut: "/images/ibnemukhtar-logo.png",
         apple: "/images/ibnemukhtar-logo.png",
     },
+    alternates: {
+        canonical: "https://ibnemukhtarbrandstore.vercel.app/",
+    },
     verification: {
         google: "qCNmybA9NO4SfownCTp8dkYsHTx0XOvdRk0Kr7PmOBs",
     },
 };
 
 export default function RootLayout({ children }) {
+    const jsonLdOrg = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ibnemukhtar Brand Store",
+        "url": "https://ibnemukhtarbrandstore.vercel.app/",
+        "logo": "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
+        "description": "Shop women's suits, winter jackets, shoes and sports apparel in Pakistan.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+92-316-4288921",
+            "contactType": "customer service",
+            "areaServed": "PK"
+        }
+    };
+
+    const jsonLdWebSite = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Ibnemukhtar Brand Store",
+        "url": "https://ibnemukhtarbrandstore.vercel.app/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://ibnemukhtarbrandstore.vercel.app/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    };
+
     return (
         <html lang="en">
             <head>
@@ -127,8 +157,15 @@ export default function RootLayout({ children }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
                 <meta name="google-site-verification" content="u9Ht-tpTj9hZeTHgbLt5ztmOsfEjVTZy76_XM-h51nE" />
 
-                {/* Google Analytics */}
-
+                {/* Sitewide Structured Data */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+                />
             </head>
             <body className={inter.className}>
                 <Providers>

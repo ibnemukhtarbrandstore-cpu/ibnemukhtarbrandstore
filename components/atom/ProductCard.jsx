@@ -343,9 +343,6 @@ const ProductCard = forwardRef(function ProductCard(
     router.prefetch(`${slug}`);
   };
 
-  const availableSizes = getAvailableSizes();
-  const availableColors = getAvailableColors();
-
   // SEO Structured Data for Product
   const generateProductSchema = () => {
     const productUrl = `https://ibnemukhtarbrandstore.vercel.app${slug}`;
