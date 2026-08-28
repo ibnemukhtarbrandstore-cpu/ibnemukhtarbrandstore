@@ -31,18 +31,22 @@ export default function BlogSEO({ post, url }: BlogSEOProps) {
     };
   }, [url]);
 
-  const description = post.excerpt || post.content.substring(0, 160);
+  const cleanText = (post.excerpt || post.content || '').replace(/<[^>]*>?/gm, '').trim();
+  const description = cleanText.substring(0, 160);
 
-  // Article Schema
-  const articleSchema = {
+  // BlogPosting Schema (Rich Search Snippets)
+  const blogPostingSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "headline": post.title,
     "description": description,
-    "image": post.image || "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
+    "image": post.image ? [post.image] : ["https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png"],
+    "inLanguage": "en-US",
+    "isAccessibleForFree": true,
     "author": {
       "@type": "Person",
-      "name": post.author
+      "name": post.author || "Ibnemukhtar Team",
+      "url": "https://ibnemukhtarbrandstore.vercel.app/about"
     },
     "publisher": {
       "@type": "Organization",
@@ -58,10 +62,10 @@ export default function BlogSEO({ post, url }: BlogSEOProps) {
       "@type": "WebPage",
       "@id": fullUrl
     },
-    "articleSection": post.category,
-    "keywords": post.tags.join(", "),
-    "wordCount": post.content.split(' ').length,
-    "articleBody": post.content
+    "articleSection": post.category || "Fashion & Lifestyle",
+    "keywords": (post.tags || []).join(", "),
+    "wordCount": cleanText.split(/\s+/).length,
+    "articleBody": cleanText
   };
 
   // Organization Schema
@@ -112,38 +116,6 @@ export default function BlogSEO({ post, url }: BlogSEOProps) {
         "item": fullUrl
       }
     ]
-  };
-
-  // BlogPosting Schema (more specific than Article)
-  const blogPostingSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "description": description,
-    "image": post.image || "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png",
-    "author": {
-      "@type": "Person",
-      "name": post.author
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Ibnemukhtar Brand Store",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://ibnemukhtarbrandstore.vercel.app/images/ibnemukhtar-logo.png"
-      }
-    },
-    "datePublished": post.publishedAt,
-    "dateModified": post.updatedAt || post.publishedAt,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": fullUrl
-    },
-    "articleSection": post.category,
-    "keywords": post.tags.join(", "),
-    "wordCount": post.content.split(' ').length,
-    "articleBody": post.content,
-    "url": fullUrl
   };
 
   return (
