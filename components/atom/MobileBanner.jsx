@@ -1,25 +1,27 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
-const slides = [
+const defaultSlides = [
   {
     imgSrc: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728182/srikanta-h-u-v0U6fwD00ns-unsplash_in4d5j.jpg",
     heading: "Premium Women's Suits – Elegant & Affordable Fashion",
     paragraph:
       "Discover our collection of formal and casual women's suits at unbeatable prices in Pakistan.",
     buttonText: "Shop Women's Suits",
-    buttonLink: "/uniforms",
+    buttonLink: "/products",
   },
   {
     imgSrc: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728170/QuillBot-generated-image-2_qxgwka.png",
     heading: "Winter Jackets & Hoodies – Stay Warm in Style",
     paragraph:
-      "Browse premium winter jackets and cozy hoodies for men, women & kids. Pre-loved and new items available.",
+      "Browse premium winter jackets and cozy hoodies for men, women & kids.",
     buttonText: "Shop Winter Wear",
     buttonLink: "/hoodies",
   },
@@ -27,7 +29,7 @@ const slides = [
     imgSrc: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686449/download_r6qimr.jpg",
     heading: "Shoes & Footwear – Comfortable & Stylish",
     paragraph:
-      "Explore our collection of shoes for men, women & kids. Quality footwear at affordable prices.",
+      "Explore our collection of shoes for men, women & kids.",
     buttonText: "Shop Shoes",
     buttonLink: "/collections/shoes",
   },
@@ -35,24 +37,40 @@ const slides = [
     imgSrc: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766686480/Frosty_Family_Fun_x21s1g.jpg",
     heading: "Fashion Accessories – Complete Your Look",
     paragraph:
-      "Browse bags, jewelry and lifestyle items to complement your style. Affordable fashion for everyone.",
-    buttonText: "Shop winter",
+      "Browse lifestyle items to complement your style.",
+    buttonText: "Shop Winter",
     buttonLink: "/collections/winter",
-  },
-  {
-    imgSrc: "https://res.cloudinary.com/dwqchugmp/image/upload/v1766728166/LYL___Wecools_We_Choose_%E5%86%AC%E6%96%B0%E4%BD%9C%E7%B6%9A%E3%80%85%E5%85%A5%E8%8D%B7%E4%B8%AD_aojvpw.jpg",
-    heading: "Premium Men's Suits – Style & Comfort",
-    paragraph:
-      "Discover our collection of formal and casual men's suits at unbeatable prices in Pakistan.",
-    buttonText: "Shop Men's Suits",
-    buttonLink: "/collections/mens",
   },
 ];
 
 const MobileBanner = () => {
+  const [slides, setSlides] = useState(defaultSlides);
+
+  useEffect(() => {
+    const fetchDynamicBanners = async () => {
+      try {
+        const res = await fetch("/api/banners?placement=home-mobile");
+        const data = await res.json();
+        if (data.banners && data.banners.length > 0) {
+          const dynamicMapped = data.banners.map((b) => ({
+            imgSrc: b.image,
+            heading: b.title || "Mobile Banner",
+            paragraph: b.subtitle || "",
+            buttonText: b.buttonText || "Shop Now",
+            buttonLink: b.linkUrl || "/products",
+          }));
+          setSlides(dynamicMapped);
+        }
+      } catch (err) {
+        // Quiet fallback
+      }
+    };
+
+    fetchDynamicBanners();
+  }, []);
+
   return (
     <div>
-      {" "}
       {/* Mobile Banner */}
       <div className="block md:hidden w-full overflow-hidden pt-14 pb-0 m-0">
         <Swiper
@@ -61,32 +79,36 @@ const MobileBanner = () => {
           slidesPerView={1}
           loop={true}
           autoplay={{ delay: 4000 }}
-          // pagination={{ clickable: true }}
           className="w-full h-60"
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <div
-                className="relative w-full h-60"
-              >
+              <div className="relative w-full h-60 bg-[#0F172A]">
                 <Image
                   src={slide.imgSrc}
-                  alt={slide.heading}
+                  alt={slide.heading || "Mobile Banner"}
                   fill
                   className="object-cover"
                   sizes="100vw"
                   priority={index === 0}
                   quality={85}
-                  unoptimized={false} // Let Next.js optimize these large banners
+                  unoptimized={false}
                 />
-                {/* <div className="absolute left-2 bottom-12 ">
-                  <h1 className="text-white font-semibold mb-3 text-xl w-1/2">
-                    {slide.heading}
-                  </h1>
-                  <Link href={"#"} className="text-white font-[100] bg-black py-2 px-4">
-                    COLLECTION
-                  </Link>
-                </div> */}
+                {slide.heading && (
+                  <div className="absolute left-3 bottom-4 right-3 bg-black/50 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                    <h3 className="text-white text-sm font-black uppercase tracking-tight line-clamp-1">
+                      {slide.heading}
+                    </h3>
+                    {slide.buttonLink && (
+                      <Link
+                        href={slide.buttonLink}
+                        className="inline-block mt-1.5 px-4 py-1 bg-[#D4AF37] text-[#0F172A] text-[9px] font-black uppercase tracking-widest rounded-full"
+                      >
+                        {slide.buttonText || "SHOP NOW"}
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             </SwiperSlide>
           ))}

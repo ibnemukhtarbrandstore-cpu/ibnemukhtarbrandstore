@@ -73,7 +73,45 @@ import { Swiper, SwiperSlide } from "swiper/react";
 //     },
 // ];
 
-const DesktopPageBanner = ({ slides = [], textPosition = 'left-2 bottom-12' }) => {
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+const DesktopPageBanner = ({ slides: initialSlides = [], textPosition = 'left-2 bottom-12' }) => {
+    const [slides, setSlides] = useState(initialSlides);
+
+    useEffect(() => {
+        const fetchDynamicBanners = async () => {
+            try {
+                const res = await fetch("/api/banners?placement=page-header");
+                const data = await res.json();
+                if (data.banners && data.banners.length > 0) {
+                    const dynamicMapped = data.banners.map((b) => ({
+                        image: b.image,
+                        alt: b.title || "Page Header Banner",
+                        heading: b.title,
+                        linkUrl: b.linkUrl,
+                    }));
+                    setSlides(dynamicMapped);
+                }
+            } catch (err) {
+                // Quiet fallback
+            }
+        };
+
+        fetchDynamicBanners();
+    }, []);
+
+    const activeSlides = slides.length > 0 ? slides : initialSlides;
+
+    if (activeSlides.length === 0) return null;
+
     return (
         <div>
             {/* Desktop Banner */}
@@ -87,24 +125,25 @@ const DesktopPageBanner = ({ slides = [], textPosition = 'left-2 bottom-12' }) =
                     pagination={{ clickable: true }}
                     className="w-full h-[280px]"
                 >
-                    {slides.map((slide, index) => (
+                    {activeSlides.map((slide, index) => (
                         <SwiperSlide key={index}>
-                            <div className="w-full h-[250px] flex items-center justify-center bg-white overflow-hidden">
+                            <div className="w-full h-[250px] flex items-center justify-center bg-[#0F172A] relative overflow-hidden">
                                 <Image
                                     src={slide.image}
-                                    alt={slide.alt}
-                                    width={600}
-                                    height={250}
-                                    className="object-contain w-auto h-full"
+                                    alt={slide.alt || "Banner"}
+                                    fill
+                                    className="object-cover w-full h-full"
                                     priority={index === 0}
                                     quality={85}
                                     unoptimized={false}
                                 />
-                                <div className={`absolute ${textPosition}`}>
-                                    <h1 className="text-white font-semibold mb-3 text-xl w-1/2">
-                                        {slide.heading}
-                                    </h1>
-                                </div>
+                                {slide.heading && (
+                                    <div className={`absolute ${textPosition} bg-black/40 backdrop-blur-md p-3 rounded-xl border border-white/10`}>
+                                        <h2 className="text-white font-black text-xl uppercase tracking-tight">
+                                            {slide.heading}
+                                        </h2>
+                                    </div>
+                                )}
                             </div>
                         </SwiperSlide>
                     ))}

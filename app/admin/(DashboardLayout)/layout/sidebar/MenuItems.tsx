@@ -19,6 +19,7 @@ import {
   IconReport,
   IconFilePlus,
   IconArrowBackUp,
+  IconPhoto,
 } from "@tabler/icons-react";
 import { uniqueId } from "lodash";
 
@@ -43,6 +44,12 @@ const Menuitems: MenuitemsType[] = [
     title: "Dashboard",
     icon: IconHome,
     href: "/admin",
+  },
+  {
+    id: uniqueId(),
+    title: "Banner Manager",
+    icon: IconPhoto,
+    href: "/admin/banners",
   },
   {
     id: uniqueId(),
