@@ -14,7 +14,12 @@ import {
   styled,
   TextField,
   Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -63,6 +68,7 @@ const Page = () => {
     discountPercent: "",
     tags: "",
     videoUrl: "",
+    sizeChartImage: "",
     // New e-commerce fields
     trackingLink: "",
     weight: "",
@@ -527,25 +533,88 @@ const Page = () => {
                       <TextField name="discountPercent" label="Discount %" type="number" size="small" value={form.discountPercent} onChange={handleChange} fullWidth />
                       <TextField name="tags" label="Tags (comma separated)" size="small" value={form.tags} onChange={handleChange} fullWidth />
 
-                      {/* Video URL Input with Preview */}
-                      <Box>
-                        <TextField
-                          name="videoUrl"
-                          label="YouTube Video URL (Optional)"
-                          size="small"
-                          value={form.videoUrl || ''}
-                          onChange={handleChange}
-                          fullWidth
-                          placeholder="e.g., https://www.youtube.com/watch?v=..."
-                          helperText="Paste a YouTube link to show a video on the product card."
-                        />
-                        {form.videoUrl && (
-                          <Box sx={{ mt: 2, maxWidth: '300px' }}>
-                            <Typography variant="subtitle2" sx={{ mb: 1 }}>Video Preview:</Typography>
-                            <ProductVideo videoUrl={form.videoUrl} autoplay={false} />
-                          </Box>
-                        )}
-                      </Box>
+                      {/* Size Chart Poster Collapsible Accordion */}
+                      <Accordion sx={{ border: "1px solid #cbd5e1", borderRadius: 2, overflow: "hidden" }}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                          <Typography fontWeight="bold" sx={{ color: "#D4AF37", display: "flex", alignItems: "center", gap: 1 }}>
+                            📏 Size Chart Poster Image (Collapsible / Optional Custom Upload)
+                          </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <Stack spacing={2}>
+                            <Typography variant="body2" color="text.secondary">
+                              Upload or paste a custom Size Chart Poster image for this product. It will be displayed in the <strong>Size Chart Tab</strong> on the product detail page.
+                            </Typography>
+                            <TextField
+                              name="sizeChartImage"
+                              label="Size Chart Poster Image URL"
+                              size="small"
+                              value={form.sizeChartImage || ''}
+                              onChange={handleChange}
+                              fullWidth
+                              placeholder="https://res.cloudinary.com/... or upload below"
+                            />
+                            <Box display="flex" alignItems="center" gap={1}>
+                              <Button
+                                variant="outlined"
+                                component="label"
+                                size="small"
+                                startIcon={<CloudUploadIcon />}
+                              >
+                                Upload Size Chart Poster
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  hidden
+                                  onChange={async (e) => {
+                                    const file = e.target.files?.[0];
+                                    if (!file) return;
+                                    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dwqchugmp";
+                                    const presetsToTry = ["ml_default", "usama_preset", "products"];
+                                    let uploadedUrl = "";
+                                    for (const preset of presetsToTry) {
+                                      const uploadData = new FormData();
+                                      uploadData.append("file", file);
+                                      uploadData.append("upload_preset", preset);
+                                      uploadData.append("folder", "size-charts");
+                                      try {
+                                        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+                                          method: "POST",
+                                          body: uploadData,
+                                        });
+                                        const data = await res.json();
+                                        if (data.secure_url) {
+                                          uploadedUrl = data.secure_url;
+                                          break;
+                                        }
+                                      } catch (err) {}
+                                    }
+                                    if (uploadedUrl) {
+                                      setForm((prev) => ({ ...prev, sizeChartImage: uploadedUrl }));
+                                      toast.success("Size chart poster uploaded!");
+                                    } else {
+                                      toast.error("Upload failed, please enter URL manually.");
+                                    }
+                                  }}
+                                />
+                              </Button>
+                            </Box>
+
+                            {form.sizeChartImage && (
+                              <Box sx={{ mt: 1, p: 1, border: "1px border-dashed #cbd5e1", borderRadius: 1, maxW: "350px" }}>
+                                <Typography variant="caption" fontWeight="bold" display="block" mb={1}>
+                                  Size Chart Poster Live Preview:
+                                </Typography>
+                                <img
+                                  src={form.sizeChartImage}
+                                  alt="Size Chart Poster Preview"
+                                  style={{ maxWidth: "100%", maxHeight: "250px", objectFit: "contain", borderRadius: "6px" }}
+                                />
+                              </Box>
+                            )}
+                          </Stack>
+                        </AccordionDetails>
+                      </Accordion>
 
                       {/* E-commerce & Shipping Fields */}
                       <Typography variant="h6" sx={{ mt: 2, mb: 1, fontWeight: 'bold', color: 'primary.main' }}>

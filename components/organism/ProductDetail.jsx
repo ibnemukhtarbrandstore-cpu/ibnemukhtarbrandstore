@@ -445,11 +445,8 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
 
 
 
-              {/* Tabs: Description & Size Guide */}
+              {/* Tabs: Description & Size Chart */}
               {(() => {
-                // Check if product has sizes
-                const hasSizes = availableSizesForColor.length > 0 && availableSizesForColor[0] !== "";
-
                 // Detect size category based on product info
                 const detectSizeCategory = () => {
                   const title = product.title?.toLowerCase() || '';
@@ -473,23 +470,12 @@ const SlugPage = ({ product, variant, params, productrelatedData }) => {
                   return 'mens-clothing'; // default
                 };
 
-                return hasSizes ? (
+                return (
                   <ProductDescriptionTabs
                     product={product}
                     isHtml={isHtml}
                     sizeCategory={detectSizeCategory()}
                   />
-                ) : (
-                  <div className="mt-6 leading-relaxed">
-                    {isHtml ? (
-                      <div
-                        className="prose lg:prose-lg sm:prose-sm max-w-none leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: product.disc }}
-                      />
-                    ) : (
-                      <span>{product.disc}</span>
-                    )}
-                  </div>
                 );
               })()}
 

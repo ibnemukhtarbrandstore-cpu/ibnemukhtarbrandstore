@@ -90,6 +90,13 @@ const productSchema = new mongoose.Schema(
       }
     },
 
+    // Size Chart Poster Image (Optional/Uploaded)
+    sizeChartImage: {
+      type: String,
+      default: null,
+      trim: true
+    },
+
     // ✅ E-commerce & Shipping Fields
     trackingLink: {
       type: String,

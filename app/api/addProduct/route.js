@@ -1,4 +1,4 @@
-﻿import connectDb from '../../../middleware/mongoose';
+import connectDb from '../../../middleware/mongoose';
 import { Product } from '../../../models/Product';
 
 export async function POST(req) {
@@ -12,7 +12,7 @@ export async function POST(req) {
 
     const {
       title, slug, disc, size, category, color, price, availability, images,
-      flashPrice, flashStart, flashEnd, discountPercent, tags, videoUrl,
+      flashPrice, flashStart, flashEnd, discountPercent, tags, videoUrl, sizeChartImage,
       // E-commerce fields
       trackingLink, weight, dimensionLength, dimensionWidth, dimensionHeight,
       brand, material, careInstructions, warranty, sku, condition,
@@ -65,6 +65,7 @@ export async function POST(req) {
       discountPercent: isNaN(discountPercent) ? 0 : discountPercent,
       tags: tags || [],
       videoUrl: videoUrl && videoUrl.trim() !== '' ? videoUrl.trim() : null,
+      sizeChartImage: sizeChartImage || null,
       // E-commerce fields
       trackingLink: trackingLink || null,
       weight: weight ? Number(weight) : null,

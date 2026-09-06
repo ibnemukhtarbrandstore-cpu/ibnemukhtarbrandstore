@@ -119,6 +119,7 @@ export default function ManageProductsPage() {
       flashStart: product.flashStart,
       flashEnd: product.flashEnd,
       discountPercent: product.discountPercent,
+      sizeChartImage: product.sizeChartImage,
     };
     
     updateProductStatus(product._id, updates);
@@ -449,6 +450,20 @@ export default function ManageProductsPage() {
                   })}
                   margin="normal"
                   InputLabelProps={{ shrink: true }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Size Chart Poster Image URL"
+                  value={editDialog.product.sizeChartImage || ''}
+                  onChange={(e) => setEditDialog({
+                    ...editDialog,
+                    product: { ...editDialog.product, sizeChartImage: e.target.value }
+                  })}
+                  margin="normal"
+                  placeholder="https://res.cloudinary.com/..."
+                  helperText="Custom uploaded Size Chart poster for this product"
                 />
               </Grid>
               <Grid item xs={12}>
