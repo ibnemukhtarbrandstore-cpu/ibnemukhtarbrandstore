@@ -164,26 +164,54 @@ export default function BannerManagerPage() {
 
     try {
       setUploadingImage(true);
-      const uploadData = new FormData();
-      uploadData.append("file", file);
-      uploadData.append("upload_preset", "usama_preset"); // Default Cloudinary preset
 
-      const res = await fetch("https://api.cloudinary.com/v1_1/dwqchugmp/image/upload", {
-        method: "POST",
-        body: uploadData,
-      });
-      const data = await res.json();
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dwqchugmp";
+      const presetsToTry = Array.from(
+        new Set([
+          process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
+          "ml_default",
+          "usama_preset",
+          "products",
+        ].filter(Boolean))
+      ) as string[];
 
-      if (data.secure_url) {
-        setFormData((prev) => ({ ...prev, image: data.secure_url }));
+      let uploadedUrl = "";
+      let lastError = "";
+
+      for (const preset of presetsToTry) {
+        const uploadData = new FormData();
+        uploadData.append("file", file);
+        uploadData.append("upload_preset", preset);
+        uploadData.append("folder", "banners");
+
+        try {
+          const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: "POST",
+            body: uploadData,
+          });
+          const data = await res.json();
+          if (data.secure_url) {
+            uploadedUrl = data.secure_url;
+            break;
+          } else if (data.error?.message) {
+            lastError = data.error.message;
+          }
+        } catch (err: any) {
+          lastError = err.message || "Network error";
+        }
+      }
+
+      if (uploadedUrl) {
+        setFormData((prev) => ({ ...prev, image: uploadedUrl }));
         toast.success("Image uploaded successfully!");
       } else {
-        toast.error("Cloudinary upload failed, enter image URL manually.");
+        toast.error(`Upload failed: ${lastError || "Check Cloudinary preset or enter URL"}`);
       }
     } catch (err) {
       toast.error("Upload error. Please paste Image URL manually.");
     } finally {
       setUploadingImage(false);
+      e.target.value = "";
     }
   };
 

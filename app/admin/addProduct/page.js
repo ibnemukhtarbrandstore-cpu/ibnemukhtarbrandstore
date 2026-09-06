@@ -1174,7 +1174,7 @@ const Page = () => {
 
                       {/* Images */}
                       <ImageUploader
-                        maxImages={4}
+                        maxImages={10}
                         minImages={1}
                         onChange={setUploadedImages}
                         initialImages={[]}

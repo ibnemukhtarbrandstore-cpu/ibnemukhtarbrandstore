@@ -3,7 +3,7 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 import { cancelPendingRequests } from "@/services/api";
 
-const DEFAULT_MAX = 4;
+const DEFAULT_MAX = 10;
 const DEFAULT_MIN = 1;
 const DEFAULT_FOLDER = "products";
 const DEFAULT_UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "ml_default";
